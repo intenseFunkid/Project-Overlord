@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.TABpages = new System.Windows.Forms.TabControl();
             this.tabCalendar = new System.Windows.Forms.TabPage();
+            this.BTNDeleteSession = new System.Windows.Forms.Button();
             this.BTNPrevious = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -242,7 +243,10 @@
             this.saveCampaignAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.BTNDeleteSession = new System.Windows.Forms.Button();
+            this.TXTBOXCurrentIngameDate = new System.Windows.Forms.RichTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.TXTBOXGameStartingDate = new System.Windows.Forms.RichTextBox();
             this.TABpages.SuspendLayout();
             this.tabCalendar.SuspendLayout();
             this.tabStat.SuspendLayout();
@@ -263,6 +267,10 @@
             // 
             // tabCalendar
             // 
+            this.tabCalendar.Controls.Add(this.label14);
+            this.tabCalendar.Controls.Add(this.TXTBOXGameStartingDate);
+            this.tabCalendar.Controls.Add(this.label13);
+            this.tabCalendar.Controls.Add(this.TXTBOXCurrentIngameDate);
             this.tabCalendar.Controls.Add(this.BTNDeleteSession);
             this.tabCalendar.Controls.Add(this.BTNPrevious);
             this.tabCalendar.Controls.Add(this.label7);
@@ -283,12 +291,22 @@
             this.tabCalendar.TabIndex = 2;
             this.tabCalendar.Text = "Notes & Calendar";
             this.tabCalendar.UseVisualStyleBackColor = true;
+            this.tabCalendar.Click += new System.EventHandler(this.tabCalendar_Click);
+            // 
+            // BTNDeleteSession
+            // 
+            this.BTNDeleteSession.Location = new System.Drawing.Point(17, 115);
+            this.BTNDeleteSession.Name = "BTNDeleteSession";
+            this.BTNDeleteSession.Size = new System.Drawing.Size(75, 35);
+            this.BTNDeleteSession.TabIndex = 15;
+            this.BTNDeleteSession.Text = "Delete Session";
+            this.BTNDeleteSession.UseVisualStyleBackColor = true;
             // 
             // BTNPrevious
             // 
-            this.BTNPrevious.Location = new System.Drawing.Point(17, 514);
+            this.BTNPrevious.Location = new System.Drawing.Point(17, 528);
             this.BTNPrevious.Name = "BTNPrevious";
-            this.BTNPrevious.Size = new System.Drawing.Size(75, 23);
+            this.BTNPrevious.Size = new System.Drawing.Size(144, 25);
             this.BTNPrevious.TabIndex = 14;
             this.BTNPrevious.Text = "Previous";
             this.BTNPrevious.UseVisualStyleBackColor = true;
@@ -314,25 +332,27 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 326);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(5, 290);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 13);
+            this.label5.Size = new System.Drawing.Size(126, 20);
             this.label5.TabIndex = 11;
             this.label5.Text = "Ingame Controls";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 10);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 11);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 13);
+            this.label4.Size = new System.Drawing.Size(129, 20);
             this.label4.TabIndex = 10;
             this.label4.Text = "Session Controls";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 47);
+            this.label3.Location = new System.Drawing.Point(14, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 9;
@@ -348,9 +368,9 @@
             // 
             // BTNNextMonth
             // 
-            this.BTNNextMonth.Location = new System.Drawing.Point(17, 455);
+            this.BTNNextMonth.Location = new System.Drawing.Point(17, 497);
             this.BTNNextMonth.Name = "BTNNextMonth";
-            this.BTNNextMonth.Size = new System.Drawing.Size(75, 23);
+            this.BTNNextMonth.Size = new System.Drawing.Size(144, 25);
             this.BTNNextMonth.TabIndex = 7;
             this.BTNNextMonth.Text = "Next Month";
             this.BTNNextMonth.UseVisualStyleBackColor = true;
@@ -365,18 +385,18 @@
             // 
             // BTNNextWeek_Ingame
             // 
-            this.BTNNextWeek_Ingame.Location = new System.Drawing.Point(17, 410);
+            this.BTNNextWeek_Ingame.Location = new System.Drawing.Point(17, 466);
             this.BTNNextWeek_Ingame.Name = "BTNNextWeek_Ingame";
-            this.BTNNextWeek_Ingame.Size = new System.Drawing.Size(75, 23);
+            this.BTNNextWeek_Ingame.Size = new System.Drawing.Size(144, 25);
             this.BTNNextWeek_Ingame.TabIndex = 3;
             this.BTNNextWeek_Ingame.Text = "Next Week";
             this.BTNNextWeek_Ingame.UseVisualStyleBackColor = true;
             // 
             // BTNNextDay_Ingame
             // 
-            this.BTNNextDay_Ingame.Location = new System.Drawing.Point(17, 364);
+            this.BTNNextDay_Ingame.Location = new System.Drawing.Point(17, 435);
             this.BTNNextDay_Ingame.Name = "BTNNextDay_Ingame";
-            this.BTNNextDay_Ingame.Size = new System.Drawing.Size(75, 23);
+            this.BTNNextDay_Ingame.Size = new System.Drawing.Size(144, 25);
             this.BTNNextDay_Ingame.TabIndex = 2;
             this.BTNNextDay_Ingame.Text = "Next Day";
             this.BTNNextDay_Ingame.UseVisualStyleBackColor = true;
@@ -2018,7 +2038,7 @@
             // 
             // BTNRollCustomTable
             // 
-            this.BTNRollCustomTable.Location = new System.Drawing.Point(9, 223);
+            this.BTNRollCustomTable.Location = new System.Drawing.Point(9, 186);
             this.BTNRollCustomTable.Name = "BTNRollCustomTable";
             this.BTNRollCustomTable.Size = new System.Drawing.Size(213, 43);
             this.BTNRollCustomTable.TabIndex = 333;
@@ -2067,7 +2087,7 @@
             // 
             // BTNRemoveEntry
             // 
-            this.BTNRemoveEntry.Location = new System.Drawing.Point(84, 376);
+            this.BTNRemoveEntry.Location = new System.Drawing.Point(126, 376);
             this.BTNRemoveEntry.Name = "BTNRemoveEntry";
             this.BTNRemoveEntry.Size = new System.Drawing.Size(96, 25);
             this.BTNRemoveEntry.TabIndex = 327;
@@ -2105,7 +2125,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(9, 278);
+            this.label10.Location = new System.Drawing.Point(6, 268);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(83, 16);
             this.label10.TabIndex = 302;
@@ -2120,7 +2140,7 @@
             // 
             // BTNDeleteSelectedTable
             // 
-            this.BTNDeleteSelectedTable.Location = new System.Drawing.Point(105, 516);
+            this.BTNDeleteSelectedTable.Location = new System.Drawing.Point(126, 516);
             this.BTNDeleteSelectedTable.Name = "BTNDeleteSelectedTable";
             this.BTNDeleteSelectedTable.Size = new System.Drawing.Size(96, 35);
             this.BTNDeleteSelectedTable.TabIndex = 300;
@@ -2140,7 +2160,7 @@
             // 
             this.DiceRollers.AutoSize = true;
             this.DiceRollers.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DiceRollers.Location = new System.Drawing.Point(7, 7);
+            this.DiceRollers.Location = new System.Drawing.Point(5, 17);
             this.DiceRollers.Name = "DiceRollers";
             this.DiceRollers.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.DiceRollers.Size = new System.Drawing.Size(128, 25);
@@ -2150,15 +2170,16 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 161);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 124);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 13);
+            this.label8.Size = new System.Drawing.Size(115, 20);
             this.label8.TabIndex = 297;
             this.label8.Text = "Custom Tables";
             // 
             // BTNRollD100
             // 
-            this.BTNRollD100.Location = new System.Drawing.Point(9, 112);
+            this.BTNRollD100.Location = new System.Drawing.Point(126, 57);
             this.BTNRollD100.Name = "BTNRollD100";
             this.BTNRollD100.Size = new System.Drawing.Size(75, 23);
             this.BTNRollD100.TabIndex = 296;
@@ -2177,7 +2198,7 @@
             // TableListBox
             // 
             this.TableListBox.FormattingEnabled = true;
-            this.TableListBox.Location = new System.Drawing.Point(9, 187);
+            this.TableListBox.Location = new System.Drawing.Point(9, 150);
             this.TableListBox.Name = "TableListBox";
             this.TableListBox.Size = new System.Drawing.Size(213, 21);
             this.TableListBox.TabIndex = 294;
@@ -2248,14 +2269,39 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // BTNDeleteSession
+            // TXTBOXCurrentIngameDate
             // 
-            this.BTNDeleteSession.Location = new System.Drawing.Point(13, 276);
-            this.BTNDeleteSession.Name = "BTNDeleteSession";
-            this.BTNDeleteSession.Size = new System.Drawing.Size(75, 35);
-            this.BTNDeleteSession.TabIndex = 15;
-            this.BTNDeleteSession.Text = "Delete Session";
-            this.BTNDeleteSession.UseVisualStyleBackColor = true;
+            this.TXTBOXCurrentIngameDate.Location = new System.Drawing.Point(17, 384);
+            this.TXTBOXCurrentIngameDate.Name = "TXTBOXCurrentIngameDate";
+            this.TXTBOXCurrentIngameDate.Size = new System.Drawing.Size(115, 26);
+            this.TXTBOXCurrentIngameDate.TabIndex = 16;
+            this.TXTBOXCurrentIngameDate.Text = "";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(14, 368);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(105, 13);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "Current Ingame Date";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(14, 323);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(96, 13);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "Date Starting Point";
+            // 
+            // TXTBOXGameStartingDate
+            // 
+            this.TXTBOXGameStartingDate.Location = new System.Drawing.Point(17, 339);
+            this.TXTBOXGameStartingDate.Name = "TXTBOXGameStartingDate";
+            this.TXTBOXGameStartingDate.Size = new System.Drawing.Size(115, 26);
+            this.TXTBOXGameStartingDate.TabIndex = 18;
+            this.TXTBOXGameStartingDate.Text = "";
             // 
             // Form1
             // 
@@ -2498,6 +2544,10 @@
         private System.Windows.Forms.TextBox TXTDescription;
         private System.Windows.Forms.Button BTNPrevious;
         private System.Windows.Forms.Button BTNDeleteSession;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RichTextBox TXTBOXGameStartingDate;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RichTextBox TXTBOXCurrentIngameDate;
 
     }
 }
