@@ -27,14 +27,38 @@ namespace projectOverlord {
 
     
     class dateList {
-        private LinkedList<dateEntry> dList;
+        private LinkedList<dateEntry> dList = new LinkedList<dateEntry>();
         /*private LinkedList<dateEntry> index;*/
         private dateEntry dateError = new dateEntry(-1, "ERROR", "ERROR", -1, -1);
 
+        public int getFirstID() {
+
+            if (dList.Count != 0) {
+                return dList.First.Value.dateID;
+            } else {
+                return -1;
+            }
+
+        }
+
+        public int getLastID() {
+
+            if (dList.Count != 0) {
+                return dList.Last.Value.dateID;
+            } else {
+                return -1;
+            }
+
+        }
         
         //Add specified payload to list
         public Boolean addEntry (dateEntry newDate) {
-            
+
+            if (dList.Count == 0) {
+                dList.AddFirst(newDate);
+                return true;
+            }
+
             LinkedListNode<dateEntry> current = dList.First;
             
             while (current != null) {

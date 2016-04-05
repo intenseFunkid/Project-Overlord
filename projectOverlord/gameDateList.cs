@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace projectOverlord {
 
     //Payload struct
-    struct gameDateEntry {
-        public int gameDateID;      
-        public string entry;
+    public struct gameDateEntry {
+        public int gameDateID;      //Numeric identifier 
+        public string entry;        //Notes for game day
 
         //Payload constructor
         public gameDateEntry(int id, string ent) {
@@ -19,24 +19,53 @@ namespace projectOverlord {
     }
 
     class gameDateList {
-        private LinkedList<gameDateEntry> gDateList;
+        private LinkedList<gameDateEntry> gDateList = new LinkedList<gameDateEntry>();
         //private LinkedList<gameDateEntry> index;
         private gameDateEntry gDateError = new gameDateEntry(-1, "ERROR");
 
+        public int getFirstID() {
+
+            if (gDateList.Count != 0) {
+                return gDateList.First.Value.gameDateID;
+            } else {
+                return -1;
+            }
+
+        }
+
+        public int getNextID() {
+            return -1;
+        }
+
+        public int getLastID() {
+
+            if (gDateList.Count != 0) {
+                return gDateList.Last.Value.gameDateID;
+            } else {
+                return -1;
+            }
+
+        }
+
         //Add specified payload to list
         public Boolean addEntry(gameDateEntry newDate) {
+
+            if (gDateList.Count == 0) {
+                gDateList.AddFirst(newDate);
+                return true;
+            }
 
             LinkedListNode<gameDateEntry> current = gDateList.First;
 
             while (current != null) {
 
-                if (current.Value.gameDateID == newDate.gameDateID) {
+                if (current.Value.gameDateID == newDate.gameDateID) {           //If updating an entry
                     current.Value = newDate;
-                    return true;
-                } else if (current.Value.gameDateID > newDate.gameDateID) {
+                    return true;                
+                } else if (current.Value.gameDateID > newDate.gameDateID) {     //Inserting within list
                     gDateList.AddBefore(current, newDate);
                     return true;
-                } else if (current == gDateList.Last) {
+                } else if (current == gDateList.Last) {                         //Inserting at end of list
                     gDateList.AddAfter(current, newDate);
                     return true;
                 }
@@ -54,7 +83,6 @@ namespace projectOverlord {
             while (current != null) {
 
                 if (current.Value.gameDateID == targetID) {
-
                     gDateList.Remove(current);
                     return true;
                 }

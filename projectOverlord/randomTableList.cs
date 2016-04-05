@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace projectOverlord
 {
-    //Table entry payload
+    //Table entry payload struct
     struct tableEntry {
-        public int entryID;
-        public string entry;
-        public int weight;
+        public int entryID;         //Numeric identifier
+        public string entry;        //
+        public int weight;          //
 
         //Payload constructor
         public tableEntry (int id, string ent, int wgt) {
@@ -20,18 +20,18 @@ namespace projectOverlord
         }
     }
 
-    //Table payload class
+    //Table payload class     ///      ///      ///      ///      ///
     class randomTable {
         private int tableID;
         private string title;
         private int totalWeight;
-        private LinkedList<tableEntry> userTable;
+        private LinkedList<tableEntry> userTable = new LinkedList<tableEntry>();
 
         private tableEntry error = new tableEntry(-1, "ERROR", -1);
 
         //Table constructor
         public randomTable(int newID) {
-            
+            tableID = newID;
         }
 
         public int getID() {
@@ -47,11 +47,29 @@ namespace projectOverlord
             return title;
         }
 
+        public int getFirstID() {
+            return userTable.First.Value.entryID;
+        }
+
+        public int getLastID() {
+            return userTable.Last.Value.entryID;
+        }
+
         //Add entry to table
         public Boolean addEntry(tableEntry newEntry) {
 
+            LinkedListNode<tableEntry> current = userTable.First;
 
-            return true;
+            while (current != null) {
+
+                if (newEntry.entryID == current.Value.entryID) {
+                    current.Value = newEntry;
+                    return true;
+                }
+            }
+
+            userTable.AddLast(newEntry);
+            return false;
         }
 
         //Remove entry with specified ID from table
@@ -94,24 +112,38 @@ namespace projectOverlord
             }
 
             LinkedListNode<tableEntry> current = userTable.First;
+            string[] outTable = new string[totalWeight];
+            int outIndex = 0;
+            Random random = new Random();
+            
 
             while (current != null) {
 
+                for (int i = 0; i < current.Value.weight; i++) {
+                    outTable[outIndex] = current.Value.entry;
+                    outIndex++;
+                }
 
                 current = current.Next;
             }
 
-
-
-
-            return "OH NO";
+            return outTable[random.Next(0, totalWeight)];
         }
     }
 
 
-    //Table Index class
+    //Table Index class     ///      ///      ///      ///      ///
     class randomTableList {
-        private LinkedList<randomTable> tableIndex;
+        private LinkedList<randomTable> tableIndex = new LinkedList<randomTable>();
+
+
+        public int getFirstID() {
+            return tableIndex.First.Value.getID();
+        }
+
+        public int getLastID() {
+            return tableIndex.Last.Value.getID();
+        }
 
         //Add table to index
         public Boolean addTable(randomTable newTable) {

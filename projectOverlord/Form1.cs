@@ -8,73 +8,51 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace projectOverlord
-{
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
+namespace projectOverlord {
+    public partial class Form1 : Form {
+
+        gameDateList testgDate = new gameDateList();
+        dateList testDate = new dateList();
+
+        public Form1() {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void Form1_Load(object sender, EventArgs e) {
 
         }
 
-        private void textBox51_TextChanged(object sender, EventArgs e)
-        {
-
+        //TEST
+        private void btnTestAssign_Click(object sender, EventArgs e) {
+            dateEntry newEntry = new dateEntry(Convert.ToInt32(txtGDateID.Text), 
+                                                txtGEntry.Text,
+                                                txtSessionEntry.Text, 
+                                                Convert.ToInt32(txtGDSID.Text), 
+                                                Convert.ToInt32(txtGDEID.Text));
+            testDate.addEntry(newEntry);
         }
 
-        private void textBox52_TextChanged(object sender, EventArgs e)
-        {
+        //TEST
+        private void btnTestRecall_Click(object sender, EventArgs e) {
+            dateEntry retrievedEntry = new dateEntry();
+            retrievedEntry = testDate.retrieveEntry(Convert.ToInt32(txtGDateID.Text));
 
+            txtGDateID.Text = retrievedEntry.dateID.ToString();
+            txtGEntry.Text = retrievedEntry.planEntry;
+            txtSessionEntry.Text = retrievedEntry.sessionEntry;
+            txtGDSID.Text = retrievedEntry.gameDateStartID.ToString();
+            txtGDEID.Text = retrievedEntry.gameDateEndID.ToString();
         }
 
-        private void textBox53_TextChanged(object sender, EventArgs e)
+        private void btnFirstID_Click(object sender, EventArgs e)
         {
-
+            txtGDateID.Text = testDate.getFirstID().ToString();
         }
 
-        private void textBox54_TextChanged(object sender, EventArgs e)
+        private void txtTestRemove_Click(object sender, EventArgs e)
         {
-
+            testDate.removeEntry(Convert.ToInt32(txtGDateID.Text));
         }
 
-        private void textBox55_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox56_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox58_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void button43_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
