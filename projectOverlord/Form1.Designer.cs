@@ -30,6 +30,17 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabTEST = new System.Windows.Forms.TabPage();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.listBox4 = new System.Windows.Forms.ListBox();
+            this.txtGDEID = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtGDSID = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtSessionEntry = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTestRemove = new System.Windows.Forms.Button();
+            this.btnFirstID = new System.Windows.Forms.Button();
             this.btnTestRecall = new System.Windows.Forms.Button();
             this.txtGEntry = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -206,6 +217,20 @@
             this.inputPfAddFeat = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabRand = new System.Windows.Forms.TabPage();
+            this.lstTableDisplay = new System.Windows.Forms.ListBox();
+            this.BTNRollCustomTable = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.TXTWeight = new System.Windows.Forms.TextBox();
+            this.TXTDescription = new System.Windows.Forms.TextBox();
+            this.BTNRemoveEntry = new System.Windows.Forms.Button();
+            this.BTNNewEntry = new System.Windows.Forms.Button();
+            this.LSTEntryList = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TXTTableNameInput = new System.Windows.Forms.TextBox();
+            this.BTNDeleteSelectedTable = new System.Windows.Forms.Button();
+            this.BTNSaveTable = new System.Windows.Forms.Button();
+            this.TableOutputTXTarea = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newCampaignToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -213,17 +238,14 @@
             this.saveCampaignToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveCampaignAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnFirstID = new System.Windows.Forms.Button();
-            this.txtTestRemove = new System.Windows.Forms.Button();
-            this.txtSessionEntry = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtGDSID = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtGDEID = new System.Windows.Forms.TextBox();
+            this.txtTableNumber = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnSelectTable = new System.Windows.Forms.Button();
+            this.btnTableNew = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabTEST.SuspendLayout();
             this.tabStat.SuspendLayout();
+            this.tabRand.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -240,6 +262,9 @@
             // 
             // tabTEST
             // 
+            this.tabTEST.Controls.Add(this.textBox2);
+            this.tabTEST.Controls.Add(this.textBox1);
+            this.tabTEST.Controls.Add(this.listBox4);
             this.tabTEST.Controls.Add(this.txtGDEID);
             this.tabTEST.Controls.Add(this.label7);
             this.tabTEST.Controls.Add(this.txtGDSID);
@@ -260,6 +285,96 @@
             this.tabTEST.TabIndex = 2;
             this.tabTEST.Text = "TEST AREA";
             this.tabTEST.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(242, 367);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 12;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(242, 328);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 11;
+            // 
+            // listBox4
+            // 
+            this.listBox4.FormattingEnabled = true;
+            this.listBox4.Location = new System.Drawing.Point(471, 328);
+            this.listBox4.Name = "listBox4";
+            this.listBox4.Size = new System.Drawing.Size(120, 95);
+            this.listBox4.TabIndex = 10;
+            // 
+            // txtGDEID
+            // 
+            this.txtGDEID.Location = new System.Drawing.Point(80, 216);
+            this.txtGDEID.Name = "txtGDEID";
+            this.txtGDEID.Size = new System.Drawing.Size(100, 20);
+            this.txtGDEID.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(83, 199);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(97, 13);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Game Date End ID";
+            // 
+            // txtGDSID
+            // 
+            this.txtGDSID.Location = new System.Drawing.Point(80, 174);
+            this.txtGDSID.Name = "txtGDSID";
+            this.txtGDSID.Size = new System.Drawing.Size(100, 20);
+            this.txtGDSID.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(83, 157);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(100, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Game Date Start ID";
+            // 
+            // txtSessionEntry
+            // 
+            this.txtSessionEntry.Location = new System.Drawing.Point(80, 131);
+            this.txtSessionEntry.Name = "txtSessionEntry";
+            this.txtSessionEntry.Size = new System.Drawing.Size(100, 20);
+            this.txtSessionEntry.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(83, 114);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Session Entry";
+            // 
+            // txtTestRemove
+            // 
+            this.txtTestRemove.Location = new System.Drawing.Point(204, 171);
+            this.txtTestRemove.Name = "txtTestRemove";
+            this.txtTestRemove.Size = new System.Drawing.Size(166, 23);
+            this.txtTestRemove.TabIndex = 7;
+            this.txtTestRemove.Text = "Remove from Data Structure";
+            this.txtTestRemove.UseVisualStyleBackColor = true;
+            this.txtTestRemove.Click += new System.EventHandler(this.txtTestRemove_Click);
+            // 
+            // btnFirstID
+            // 
+            this.btnFirstID.Location = new System.Drawing.Point(204, 128);
+            this.btnFirstID.Name = "btnFirstID";
+            this.btnFirstID.Size = new System.Drawing.Size(166, 23);
+            this.btnFirstID.TabIndex = 6;
+            this.btnFirstID.Text = "Return First ID";
+            this.btnFirstID.UseVisualStyleBackColor = true;
+            this.btnFirstID.Click += new System.EventHandler(this.btnFirstID_Click);
             // 
             // btnTestRecall
             // 
@@ -1905,6 +2020,24 @@
             // 
             // tabRand
             // 
+            this.tabRand.Controls.Add(this.btnTableNew);
+            this.tabRand.Controls.Add(this.btnSelectTable);
+            this.tabRand.Controls.Add(this.label8);
+            this.tabRand.Controls.Add(this.txtTableNumber);
+            this.tabRand.Controls.Add(this.lstTableDisplay);
+            this.tabRand.Controls.Add(this.BTNRollCustomTable);
+            this.tabRand.Controls.Add(this.label12);
+            this.tabRand.Controls.Add(this.label9);
+            this.tabRand.Controls.Add(this.TXTWeight);
+            this.tabRand.Controls.Add(this.TXTDescription);
+            this.tabRand.Controls.Add(this.BTNRemoveEntry);
+            this.tabRand.Controls.Add(this.BTNNewEntry);
+            this.tabRand.Controls.Add(this.LSTEntryList);
+            this.tabRand.Controls.Add(this.label11);
+            this.tabRand.Controls.Add(this.TXTTableNameInput);
+            this.tabRand.Controls.Add(this.BTNDeleteSelectedTable);
+            this.tabRand.Controls.Add(this.BTNSaveTable);
+            this.tabRand.Controls.Add(this.TableOutputTXTarea);
             this.tabRand.Location = new System.Drawing.Point(4, 22);
             this.tabRand.Name = "tabRand";
             this.tabRand.Padding = new System.Windows.Forms.Padding(3);
@@ -1912,6 +2045,128 @@
             this.tabRand.TabIndex = 1;
             this.tabRand.Text = "Random Tables";
             this.tabRand.UseVisualStyleBackColor = true;
+            // 
+            // lstTableDisplay
+            // 
+            this.lstTableDisplay.Enabled = false;
+            this.lstTableDisplay.FormattingEnabled = true;
+            this.lstTableDisplay.Location = new System.Drawing.Point(248, 14);
+            this.lstTableDisplay.Name = "lstTableDisplay";
+            this.lstTableDisplay.Size = new System.Drawing.Size(231, 524);
+            this.lstTableDisplay.TabIndex = 348;
+            // 
+            // BTNRollCustomTable
+            // 
+            this.BTNRollCustomTable.Location = new System.Drawing.Point(7, 177);
+            this.BTNRollCustomTable.Name = "BTNRollCustomTable";
+            this.BTNRollCustomTable.Size = new System.Drawing.Size(213, 43);
+            this.BTNRollCustomTable.TabIndex = 347;
+            this.BTNRollCustomTable.Text = "Roll Custom Table";
+            this.BTNRollCustomTable.UseVisualStyleBackColor = true;
+            this.BTNRollCustomTable.Click += new System.EventHandler(this.BTNRollCustomTable_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(179, 455);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(41, 13);
+            this.label12.TabIndex = 346;
+            this.label12.Text = "Weight";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 455);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(60, 13);
+            this.label9.TabIndex = 345;
+            this.label9.Text = "Description";
+            // 
+            // TXTWeight
+            // 
+            this.TXTWeight.Location = new System.Drawing.Point(169, 471);
+            this.TXTWeight.Name = "TXTWeight";
+            this.TXTWeight.Size = new System.Drawing.Size(51, 20);
+            this.TXTWeight.TabIndex = 344;
+            // 
+            // TXTDescription
+            // 
+            this.TXTDescription.Location = new System.Drawing.Point(7, 471);
+            this.TXTDescription.Name = "TXTDescription";
+            this.TXTDescription.Size = new System.Drawing.Size(123, 20);
+            this.TXTDescription.TabIndex = 343;
+            // 
+            // BTNRemoveEntry
+            // 
+            this.BTNRemoveEntry.Location = new System.Drawing.Point(124, 367);
+            this.BTNRemoveEntry.Name = "BTNRemoveEntry";
+            this.BTNRemoveEntry.Size = new System.Drawing.Size(96, 25);
+            this.BTNRemoveEntry.TabIndex = 342;
+            this.BTNRemoveEntry.Text = "Remove Entry";
+            this.BTNRemoveEntry.UseVisualStyleBackColor = true;
+            this.BTNRemoveEntry.Click += new System.EventHandler(this.BTNRemoveEntry_Click);
+            // 
+            // BTNNewEntry
+            // 
+            this.BTNNewEntry.Location = new System.Drawing.Point(7, 367);
+            this.BTNNewEntry.Name = "BTNNewEntry";
+            this.BTNNewEntry.Size = new System.Drawing.Size(72, 25);
+            this.BTNNewEntry.TabIndex = 341;
+            this.BTNNewEntry.Text = "New Entry";
+            this.BTNNewEntry.UseVisualStyleBackColor = true;
+            this.BTNNewEntry.Click += new System.EventHandler(this.BTNNewEntry_Click);
+            // 
+            // LSTEntryList
+            // 
+            this.LSTEntryList.FormattingEnabled = true;
+            this.LSTEntryList.Location = new System.Drawing.Point(7, 411);
+            this.LSTEntryList.Name = "LSTEntryList";
+            this.LSTEntryList.Size = new System.Drawing.Size(213, 21);
+            this.LSTEntryList.TabIndex = 340;
+            this.LSTEntryList.Text = "Input Values Here";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 301);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 13);
+            this.label11.TabIndex = 339;
+            this.label11.Text = "Table Name";
+            // 
+            // TXTTableNameInput
+            // 
+            this.TXTTableNameInput.Location = new System.Drawing.Point(10, 323);
+            this.TXTTableNameInput.Name = "TXTTableNameInput";
+            this.TXTTableNameInput.Size = new System.Drawing.Size(123, 20);
+            this.TXTTableNameInput.TabIndex = 338;
+            // 
+            // BTNDeleteSelectedTable
+            // 
+            this.BTNDeleteSelectedTable.Location = new System.Drawing.Point(124, 507);
+            this.BTNDeleteSelectedTable.Name = "BTNDeleteSelectedTable";
+            this.BTNDeleteSelectedTable.Size = new System.Drawing.Size(96, 35);
+            this.BTNDeleteSelectedTable.TabIndex = 337;
+            this.BTNDeleteSelectedTable.Text = "Delete Selected Table";
+            this.BTNDeleteSelectedTable.UseVisualStyleBackColor = true;
+            // 
+            // BTNSaveTable
+            // 
+            this.BTNSaveTable.Location = new System.Drawing.Point(7, 507);
+            this.BTNSaveTable.Name = "BTNSaveTable";
+            this.BTNSaveTable.Size = new System.Drawing.Size(72, 35);
+            this.BTNSaveTable.TabIndex = 336;
+            this.BTNSaveTable.Text = "Save Table";
+            this.BTNSaveTable.UseVisualStyleBackColor = true;
+            // 
+            // TableOutputTXTarea
+            // 
+            this.TableOutputTXTarea.Location = new System.Drawing.Point(485, 14);
+            this.TableOutputTXTarea.Name = "TableOutputTXTarea";
+            this.TableOutputTXTarea.Size = new System.Drawing.Size(232, 524);
+            this.TableOutputTXTarea.TabIndex = 335;
+            this.TableOutputTXTarea.Text = "";
             // 
             // menuStrip1
             // 
@@ -1965,73 +2220,42 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
-            // btnFirstID
+            // txtTableNumber
             // 
-            this.btnFirstID.Location = new System.Drawing.Point(204, 128);
-            this.btnFirstID.Name = "btnFirstID";
-            this.btnFirstID.Size = new System.Drawing.Size(166, 23);
-            this.btnFirstID.TabIndex = 6;
-            this.btnFirstID.Text = "Return First ID";
-            this.btnFirstID.UseVisualStyleBackColor = true;
-            this.btnFirstID.Click += new System.EventHandler(this.btnFirstID_Click);
+            this.txtTableNumber.Location = new System.Drawing.Point(102, 264);
+            this.txtTableNumber.Name = "txtTableNumber";
+            this.txtTableNumber.Size = new System.Drawing.Size(100, 20);
+            this.txtTableNumber.TabIndex = 349;
+            this.txtTableNumber.Text = "0";
             // 
-            // txtTestRemove
+            // label8
             // 
-            this.txtTestRemove.Location = new System.Drawing.Point(204, 171);
-            this.txtTestRemove.Name = "txtTestRemove";
-            this.txtTestRemove.Size = new System.Drawing.Size(166, 23);
-            this.txtTestRemove.TabIndex = 7;
-            this.txtTestRemove.Text = "Remove from Data Structure";
-            this.txtTestRemove.UseVisualStyleBackColor = true;
-            this.txtTestRemove.Click += new System.EventHandler(this.txtTestRemove_Click);
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(99, 248);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 13);
+            this.label8.TabIndex = 350;
+            this.label8.Text = "Table number";
             // 
-            // txtSessionEntry
+            // btnSelectTable
             // 
-            this.txtSessionEntry.Location = new System.Drawing.Point(80, 131);
-            this.txtSessionEntry.Name = "txtSessionEntry";
-            this.txtSessionEntry.Size = new System.Drawing.Size(100, 20);
-            this.txtSessionEntry.TabIndex = 9;
+            this.btnSelectTable.Location = new System.Drawing.Point(21, 262);
+            this.btnSelectTable.Name = "btnSelectTable";
+            this.btnSelectTable.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectTable.TabIndex = 351;
+            this.btnSelectTable.Text = "Select Table";
+            this.btnSelectTable.UseVisualStyleBackColor = true;
+            this.btnSelectTable.Click += new System.EventHandler(this.btnSelectTable_Click);
             // 
-            // label5
+            // btnTableNew
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(83, 114);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Session Entry";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(83, 157);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Game Date Start ID";
-            // 
-            // txtGDSID
-            // 
-            this.txtGDSID.Location = new System.Drawing.Point(80, 174);
-            this.txtGDSID.Name = "txtGDSID";
-            this.txtGDSID.Size = new System.Drawing.Size(100, 20);
-            this.txtGDSID.TabIndex = 9;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(83, 199);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 13);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Game Date End ID";
-            // 
-            // txtGDEID
-            // 
-            this.txtGDEID.Location = new System.Drawing.Point(80, 216);
-            this.txtGDEID.Name = "txtGDEID";
-            this.txtGDEID.Size = new System.Drawing.Size(100, 20);
-            this.txtGDEID.TabIndex = 9;
+            this.btnTableNew.Location = new System.Drawing.Point(124, 290);
+            this.btnTableNew.Name = "btnTableNew";
+            this.btnTableNew.Size = new System.Drawing.Size(75, 23);
+            this.btnTableNew.TabIndex = 352;
+            this.btnTableNew.Text = "New Table";
+            this.btnTableNew.UseVisualStyleBackColor = true;
+            this.btnTableNew.Click += new System.EventHandler(this.btnTableNew_Click);
             // 
             // Form1
             // 
@@ -2049,6 +2273,8 @@
             this.tabTEST.PerformLayout();
             this.tabStat.ResumeLayout(false);
             this.tabStat.PerformLayout();
+            this.tabRand.ResumeLayout(false);
+            this.tabRand.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -2251,6 +2477,27 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtSessionEntry;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ListBox listBox4;
+        private System.Windows.Forms.ListBox lstTableDisplay;
+        private System.Windows.Forms.Button BTNRollCustomTable;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox TXTWeight;
+        private System.Windows.Forms.TextBox TXTDescription;
+        private System.Windows.Forms.Button BTNRemoveEntry;
+        private System.Windows.Forms.Button BTNNewEntry;
+        private System.Windows.Forms.ComboBox LSTEntryList;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox TXTTableNameInput;
+        private System.Windows.Forms.Button BTNDeleteSelectedTable;
+        private System.Windows.Forms.Button BTNSaveTable;
+        private System.Windows.Forms.RichTextBox TableOutputTXTarea;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtTableNumber;
+        private System.Windows.Forms.Button btnSelectTable;
+        private System.Windows.Forms.Button btnTableNew;
 
     }
 }

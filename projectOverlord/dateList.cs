@@ -29,24 +29,64 @@ namespace projectOverlord {
     class dateList {
         private LinkedList<dateEntry> dList = new LinkedList<dateEntry>();
         /*private LinkedList<dateEntry> index;*/
-        private dateEntry dateError = new dateEntry(-1, "ERROR", "ERROR", -1, -1);
+        private dateEntry error = new dateEntry(-1, "<!>ERROR", "<!>ERROR", -1, -1);
 
-        public int getFirstID() {
+        //Get first payload in list
+        public dateEntry getFirst() {
 
             if (dList.Count != 0) {
-                return dList.First.Value.dateID;
+                return dList.First.Value;
             } else {
-                return -1;
+                return error;
             }
 
         }
 
-        public int getLastID() {
+        //Get payload stored next after specified dateID
+        public dateEntry getNext(int targetID) {
+            LinkedListNode<dateEntry> current = dList.First;
+
+            while (current != null) {
+
+                if (current.Value.dateID == targetID) {
+                    if (current.Next != null) {
+                        return current.Next.Value;
+                    } else {
+                        break;
+                    }
+                }
+
+                current = current.Next;
+            }
+            return error;
+        }
+
+        //Get payload stored next before specified dateID
+        public dateEntry getPrev(int targetID) {
+            LinkedListNode<dateEntry> current = dList.First;
+
+            while (current != null) {
+
+                if (current.Value.dateID == targetID) {
+                    if (current.Previous != null) {
+                        return current.Previous.Value;
+                    } else {
+                        break;
+                    }
+                }
+
+                current = current.Next;
+            }
+            return error;
+        }
+
+        //Get last payload in list
+        public dateEntry getLast() {
 
             if (dList.Count != 0) {
-                return dList.Last.Value.dateID;
+                return dList.Last.Value;
             } else {
-                return -1;
+                return error;
             }
 
         }
@@ -112,7 +152,7 @@ namespace projectOverlord {
                 current = current.Next;
             }
 
-            target = dateError;
+            target = error;
 
             return target;
         }

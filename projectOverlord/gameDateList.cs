@@ -21,28 +21,64 @@ namespace projectOverlord {
     class gameDateList {
         private LinkedList<gameDateEntry> gDateList = new LinkedList<gameDateEntry>();
         //private LinkedList<gameDateEntry> index;
-        private gameDateEntry gDateError = new gameDateEntry(-1, "ERROR");
+        private gameDateEntry error = new gameDateEntry(-1, "<!>ERROR");
 
-        public int getFirstID() {
+        //Get first payload in list
+        public gameDateEntry getFirst() {
 
             if (gDateList.Count != 0) {
-                return gDateList.First.Value.gameDateID;
+                return gDateList.First.Value;
             } else {
-                return -1;
+                return error;
             }
 
         }
 
-        public int getNextID() {
-            return -1;
+        //Get payload stored next after specified gameDateID
+        public gameDateEntry getNext(int targetID) {
+            LinkedListNode<gameDateEntry> current = gDateList.First;
+
+            while (current != null) {
+
+                if (current.Value.gameDateID == targetID) {
+                    if (current.Next != null) {
+                        return current.Next.Value;
+                    } else {
+                        break;
+                    }
+                }
+
+                current = current.Next;
+            }
+            return error;
         }
 
-        public int getLastID() {
+        //Get payload stored next before specified gameDateID
+        public gameDateEntry getPrev(int targetID) {
+            LinkedListNode<gameDateEntry> current = gDateList.First;
+
+            while (current != null) {
+
+                if (current.Value.gameDateID == targetID) {
+                    if (current.Previous != null) {
+                        return current.Previous.Value;
+                    } else {
+                        break;
+                    }
+                }
+
+                current = current.Next;
+            }
+            return error;
+        }
+
+        //Get last payload in list
+        public gameDateEntry getLast() {
 
             if (gDateList.Count != 0) {
-                return gDateList.Last.Value.gameDateID;
+                return gDateList.Last.Value;
             } else {
-                return -1;
+                return error;
             }
 
         }
@@ -96,21 +132,17 @@ namespace projectOverlord {
         //Retrieve payload with specified 
         public gameDateEntry retrieveEntry(int targetID) {
             LinkedListNode<gameDateEntry> current = gDateList.First;
-            gameDateEntry target;
 
             while (current != null) {
 
                 if (current.Value.gameDateID == targetID) {
-                    target = current.Value;
-                    return target;
+                    return current.Value;
                 }
 
                 current = current.Next;
             }
-
-            target = gDateError;
-
-            return target;
+            
+            return error;
         }
 
     }
