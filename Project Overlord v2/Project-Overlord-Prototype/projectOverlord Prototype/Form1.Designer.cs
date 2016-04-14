@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.TABpages = new System.Windows.Forms.TabControl();
             this.tabCalendar = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.TXTBOXGameStartingDate = new System.Windows.Forms.RichTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.TXTBOXCurrentIngameDate = new System.Windows.Forms.RichTextBox();
             this.BTNDeleteSession = new System.Windows.Forms.Button();
             this.BTNPrevious = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -235,6 +239,21 @@
             this.BTNRollD20 = new System.Windows.Forms.Button();
             this.TableListBox = new System.Windows.Forms.ComboBox();
             this.TableOutputTXTarea = new System.Windows.Forms.RichTextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtGDEID = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtGDSID = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtSessionEntry = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtTestRemove = new System.Windows.Forms.Button();
+            this.btnFirstID = new System.Windows.Forms.Button();
+            this.btnTestRecall = new System.Windows.Forms.Button();
+            this.txtGEntry = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtGDateID = new System.Windows.Forms.TextBox();
+            this.btnTestAssign = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newCampaignToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -243,14 +262,11 @@
             this.saveCampaignAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.TXTBOXCurrentIngameDate = new System.Windows.Forms.RichTextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.TXTBOXGameStartingDate = new System.Windows.Forms.RichTextBox();
             this.TABpages.SuspendLayout();
             this.tabCalendar.SuspendLayout();
             this.tabStat.SuspendLayout();
             this.tabRand.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -259,6 +275,7 @@
             this.TABpages.Controls.Add(this.tabCalendar);
             this.TABpages.Controls.Add(this.tabStat);
             this.TABpages.Controls.Add(this.tabRand);
+            this.TABpages.Controls.Add(this.tabPage1);
             this.TABpages.Location = new System.Drawing.Point(8, 27);
             this.TABpages.Name = "TABpages";
             this.TABpages.SelectedIndex = 0;
@@ -292,6 +309,40 @@
             this.tabCalendar.Text = "Notes & Calendar";
             this.tabCalendar.UseVisualStyleBackColor = true;
             this.tabCalendar.Click += new System.EventHandler(this.tabCalendar_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(14, 323);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(96, 13);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "Date Starting Point";
+            // 
+            // TXTBOXGameStartingDate
+            // 
+            this.TXTBOXGameStartingDate.Location = new System.Drawing.Point(17, 339);
+            this.TXTBOXGameStartingDate.Name = "TXTBOXGameStartingDate";
+            this.TXTBOXGameStartingDate.Size = new System.Drawing.Size(115, 26);
+            this.TXTBOXGameStartingDate.TabIndex = 18;
+            this.TXTBOXGameStartingDate.Text = "";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(14, 368);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(105, 13);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "Current Ingame Date";
+            // 
+            // TXTBOXCurrentIngameDate
+            // 
+            this.TXTBOXCurrentIngameDate.Location = new System.Drawing.Point(17, 384);
+            this.TXTBOXCurrentIngameDate.Name = "TXTBOXCurrentIngameDate";
+            this.TXTBOXCurrentIngameDate.Size = new System.Drawing.Size(115, 26);
+            this.TXTBOXCurrentIngameDate.TabIndex = 16;
+            this.TXTBOXCurrentIngameDate.Text = "";
             // 
             // BTNDeleteSession
             // 
@@ -2211,6 +2262,146 @@
             this.TableOutputTXTarea.TabIndex = 0;
             this.TableOutputTXTarea.Text = "";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.txtGDEID);
+            this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.txtGDSID);
+            this.tabPage1.Controls.Add(this.label16);
+            this.tabPage1.Controls.Add(this.txtSessionEntry);
+            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.txtTestRemove);
+            this.tabPage1.Controls.Add(this.btnFirstID);
+            this.tabPage1.Controls.Add(this.btnTestRecall);
+            this.tabPage1.Controls.Add(this.txtGEntry);
+            this.tabPage1.Controls.Add(this.label18);
+            this.tabPage1.Controls.Add(this.label19);
+            this.tabPage1.Controls.Add(this.txtGDateID);
+            this.tabPage1.Controls.Add(this.btnTestAssign);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(725, 557);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Test Area";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // txtGDEID
+            // 
+            this.txtGDEID.Location = new System.Drawing.Point(171, 323);
+            this.txtGDEID.Name = "txtGDEID";
+            this.txtGDEID.Size = new System.Drawing.Size(100, 20);
+            this.txtGDEID.TabIndex = 21;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(174, 306);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(97, 13);
+            this.label15.TabIndex = 18;
+            this.label15.Text = "Game Date End ID";
+            // 
+            // txtGDSID
+            // 
+            this.txtGDSID.Location = new System.Drawing.Point(171, 281);
+            this.txtGDSID.Name = "txtGDSID";
+            this.txtGDSID.Size = new System.Drawing.Size(100, 20);
+            this.txtGDSID.TabIndex = 22;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(174, 264);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(100, 13);
+            this.label16.TabIndex = 19;
+            this.label16.Text = "Game Date Start ID";
+            // 
+            // txtSessionEntry
+            // 
+            this.txtSessionEntry.Location = new System.Drawing.Point(171, 238);
+            this.txtSessionEntry.Name = "txtSessionEntry";
+            this.txtSessionEntry.Size = new System.Drawing.Size(100, 20);
+            this.txtSessionEntry.TabIndex = 23;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(174, 221);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(71, 13);
+            this.label17.TabIndex = 20;
+            this.label17.Text = "Session Entry";
+            // 
+            // txtTestRemove
+            // 
+            this.txtTestRemove.Location = new System.Drawing.Point(295, 278);
+            this.txtTestRemove.Name = "txtTestRemove";
+            this.txtTestRemove.Size = new System.Drawing.Size(166, 23);
+            this.txtTestRemove.TabIndex = 17;
+            this.txtTestRemove.Text = "Remove from Data Structure";
+            this.txtTestRemove.UseVisualStyleBackColor = true;
+            // 
+            // btnFirstID
+            // 
+            this.btnFirstID.Location = new System.Drawing.Point(295, 235);
+            this.btnFirstID.Name = "btnFirstID";
+            this.btnFirstID.Size = new System.Drawing.Size(166, 23);
+            this.btnFirstID.TabIndex = 16;
+            this.btnFirstID.Text = "Return First ID";
+            this.btnFirstID.UseVisualStyleBackColor = true;
+            // 
+            // btnTestRecall
+            // 
+            this.btnTestRecall.Location = new System.Drawing.Point(295, 194);
+            this.btnTestRecall.Name = "btnTestRecall";
+            this.btnTestRecall.Size = new System.Drawing.Size(166, 23);
+            this.btnTestRecall.TabIndex = 15;
+            this.btnTestRecall.Text = "Recall from Data Structure";
+            this.btnTestRecall.UseVisualStyleBackColor = true;
+            // 
+            // txtGEntry
+            // 
+            this.txtGEntry.Location = new System.Drawing.Point(171, 197);
+            this.txtGEntry.Name = "txtGEntry";
+            this.txtGEntry.Size = new System.Drawing.Size(100, 20);
+            this.txtGEntry.TabIndex = 14;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(174, 180);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(75, 13);
+            this.label18.TabIndex = 13;
+            this.label18.Text = "Planning Entry";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(171, 134);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(44, 13);
+            this.label19.TabIndex = 12;
+            this.label19.Text = "Date ID";
+            // 
+            // txtGDateID
+            // 
+            this.txtGDateID.Location = new System.Drawing.Point(171, 153);
+            this.txtGDateID.Name = "txtGDateID";
+            this.txtGDateID.Size = new System.Drawing.Size(100, 20);
+            this.txtGDateID.TabIndex = 11;
+            // 
+            // btnTestAssign
+            // 
+            this.btnTestAssign.Location = new System.Drawing.Point(295, 151);
+            this.btnTestAssign.Name = "btnTestAssign";
+            this.btnTestAssign.Size = new System.Drawing.Size(166, 23);
+            this.btnTestAssign.TabIndex = 10;
+            this.btnTestAssign.Text = "Assign to Data Structure";
+            this.btnTestAssign.UseVisualStyleBackColor = true;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2238,24 +2429,28 @@
             this.newCampaignToolStripMenuItem.Name = "newCampaignToolStripMenuItem";
             this.newCampaignToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.newCampaignToolStripMenuItem.Text = "New Campaign";
+            this.newCampaignToolStripMenuItem.Click += new System.EventHandler(this.newCampaignToolStripMenuItem_Click);
             // 
             // loadCampaignToolStripMenuItem
             // 
             this.loadCampaignToolStripMenuItem.Name = "loadCampaignToolStripMenuItem";
             this.loadCampaignToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.loadCampaignToolStripMenuItem.Text = "Load Campaign";
+            this.loadCampaignToolStripMenuItem.Click += new System.EventHandler(this.loadCampaignToolStripMenuItem_Click);
             // 
             // saveCampaignToolStripMenuItem
             // 
             this.saveCampaignToolStripMenuItem.Name = "saveCampaignToolStripMenuItem";
             this.saveCampaignToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.saveCampaignToolStripMenuItem.Text = "Save Campaign";
+            this.saveCampaignToolStripMenuItem.Click += new System.EventHandler(this.saveCampaignToolStripMenuItem_Click);
             // 
             // saveCampaignAsToolStripMenuItem
             // 
             this.saveCampaignAsToolStripMenuItem.Name = "saveCampaignAsToolStripMenuItem";
             this.saveCampaignAsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.saveCampaignAsToolStripMenuItem.Text = "Save Campaign As";
+            this.saveCampaignAsToolStripMenuItem.Click += new System.EventHandler(this.saveCampaignAsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -2268,40 +2463,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // TXTBOXCurrentIngameDate
-            // 
-            this.TXTBOXCurrentIngameDate.Location = new System.Drawing.Point(17, 384);
-            this.TXTBOXCurrentIngameDate.Name = "TXTBOXCurrentIngameDate";
-            this.TXTBOXCurrentIngameDate.Size = new System.Drawing.Size(115, 26);
-            this.TXTBOXCurrentIngameDate.TabIndex = 16;
-            this.TXTBOXCurrentIngameDate.Text = "";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(14, 368);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(105, 13);
-            this.label13.TabIndex = 17;
-            this.label13.Text = "Current Ingame Date";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(14, 323);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(96, 13);
-            this.label14.TabIndex = 19;
-            this.label14.Text = "Date Starting Point";
-            // 
-            // TXTBOXGameStartingDate
-            // 
-            this.TXTBOXGameStartingDate.Location = new System.Drawing.Point(17, 339);
-            this.TXTBOXGameStartingDate.Name = "TXTBOXGameStartingDate";
-            this.TXTBOXGameStartingDate.Size = new System.Drawing.Size(115, 26);
-            this.TXTBOXGameStartingDate.TabIndex = 18;
-            this.TXTBOXGameStartingDate.Text = "";
             // 
             // Form1
             // 
@@ -2321,6 +2482,8 @@
             this.tabStat.PerformLayout();
             this.tabRand.ResumeLayout(false);
             this.tabRand.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -2548,7 +2711,21 @@
         private System.Windows.Forms.RichTextBox TXTBOXGameStartingDate;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.RichTextBox TXTBOXCurrentIngameDate;
-
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox txtGDEID;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtGDSID;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtSessionEntry;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button txtTestRemove;
+        private System.Windows.Forms.Button btnFirstID;
+        private System.Windows.Forms.Button btnTestRecall;
+        private System.Windows.Forms.TextBox txtGEntry;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtGDateID;
+        private System.Windows.Forms.Button btnTestAssign;
     }
 }
 
