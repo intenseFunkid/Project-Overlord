@@ -8,10 +8,10 @@ namespace projectOverlord
 {
     //Pathfinder statistics payload struct
     public struct statBlockPF {
-        public int blockID;
-        public string playerName;
-        public string name;
-        public string raceClass;
+        public int blockID = -1;
+        public string playerName = "";
+        public string name = "New Character";
+        public string raceClass = "";
         public int STR = 10, CON = 10, DEX = 10,
                    INT = 10, WIS = 10, CHA = 10;
         public int AC = 0, touchAC = 0, flatAC = 0,

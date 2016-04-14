@@ -26,7 +26,7 @@ namespace projectOverlord
         private string title;
         private int totalWeight;
         private Boolean rollOnNewDay = false;
-        private LinkedList<tableEntry> userTable = new LinkedList<tableEntry>();
+        private List<tableEntry> userTable = new List<tableEntry>();
 
         private tableEntry error = new tableEntry("<!>ERROR", -1);
 
@@ -51,40 +51,21 @@ namespace projectOverlord
             return userTable.Count;
         }
 
+        public Boolean shouldRoll() {
+            return rollOnNewDay;
+        }
+
         public tableEntry getFirst() {
             if (userTable.Count != 0) {
-                return userTable.First.Value;
+                return userTable[0];
             } else {
                 return error;
             }
         }
 
-        public Boolean shouldRoll() {
-            return rollOnNewDay;
-        }
-
-        public tableEntry getNext(string targetEntry) {
-            LinkedListNode<tableEntry> current = userTable.First;
-
-            while (current != null) {
-
-                if (current.Value.entry == targetEntry)
-                {
-                    if (current.Next != null) {
-                        return current.Next.Value;
-                    } else {
-                        break;
-                    }
-                }
-
-                current = current.Next;
-            }
-            return error;
-        }
-
         public tableEntry getLast() {
             if (userTable.Count != 0) {
-                return userTable.Last.Value;
+                return userTable[userTable.Count -1];
             } else {
                 return error;
             }
@@ -93,50 +74,29 @@ namespace projectOverlord
         //Add entry to table
         public Boolean addEntry(tableEntry newEntry) {
 
-            LinkedListNode<tableEntry> current = userTable.First;
-            while (current != null) {
-                if (newEntry.entry == current.Value.entry) {
-                    current.Value = newEntry;
-                    calcWeight();
-                    return true;
-                }
-
-                current = current.Next;
-            }
-
-            userTable.AddLast(newEntry);
+            userTable.Add(newEntry);
             calcWeight();
             return true;
         }
 
-        //Remove entry with specified ID from table
+        //Remove entry with specified value from table
         public Boolean removeEntry(string targetEntry) {
-            LinkedListNode<tableEntry> current = userTable.First;
-
-            while (current != null) {
-
-                if (current.Value.entry == targetEntry) {
-                    userTable.Remove(current);
+            for (int i = 0; i < userTable.Count; i++) {
+                if (userTable[i].entry == targetEntry) {
+                    userTable.Remove(userTable[i]);
                     return true;
                 }
-
-                current = current.Next;
             }
 
             return false;
         }
 
-        //Retrieve entry with specified ID
+        //Retrieve entry with specified value
         public tableEntry retrieveEntry(string targetEntry) {
-            LinkedListNode<tableEntry> current = userTable.First;
-
-            while (current != null) {
-
-                if (current.Value.entry == targetEntry) {
-                    return current.Value;
+            for (int i = 0; i < userTable.Count; i++) {
+                if (userTable[i].entry == targetEntry) {
+                    return userTable[i];
                 }
-
-                current = current.Next;
             }
 
             return error;
@@ -148,33 +108,27 @@ namespace projectOverlord
                 return ("ERROR >> EMPTY TABLE");
             }
 
-            LinkedListNode<tableEntry> current = userTable.First;
             string[] outTable = new string[totalWeight];
             int outIndex = 0;
             Random random = new Random();
             
 
-            while (current != null) {
-
-                for (int i = 0; i < current.Value.weight; i++) {
-                    outTable[outIndex] = current.Value.entry;
+            for (int i = 0; i < userTable.Count; i++) {
+                for (int j = 0; j < userTable[i].weight; j++) {
+                    outTable[outIndex] = userTable[i].entry;
                     outIndex++;
                 }
-
-                current = current.Next;
             }
 
             return outTable[random.Next(0, totalWeight)];
         }
 
+        //Calculates total weight of table
         private void calcWeight () {
-            LinkedListNode<tableEntry> current = userTable.First;
             totalWeight = 0;
 
-            while (current != null) {
-                totalWeight += current.Value.weight;
-
-                current = current.Next;
+            for (int i = 0; i < userTable.Count; i++) {
+                totalWeight += userTable[i].weight;
             }
         }
     }
