@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.TABpages = new System.Windows.Forms.TabControl();
             this.tabCalendar = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.TXTBOXGameStartingDate = new System.Windows.Forms.RichTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.TXTBOXCurrentIngameDate = new System.Windows.Forms.RichTextBox();
             this.BTNDeleteSession = new System.Windows.Forms.Button();
             this.BTNPrevious = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -188,7 +192,7 @@
             this.chkPfSklAcro = new System.Windows.Forms.CheckBox();
             this.chkPfSklNature = new System.Windows.Forms.CheckBox();
             this.chkPfSklBluf = new System.Windows.Forms.CheckBox();
-            this.txtPfSklintimidate = new System.Windows.Forms.TextBox();
+            this.txtPfSklIntimidate = new System.Windows.Forms.TextBox();
             this.txtPfSklDiplomacy = new System.Windows.Forms.TextBox();
             this.txtPfSklPerception = new System.Windows.Forms.TextBox();
             this.chkPfSklintimidate = new System.Windows.Forms.CheckBox();
@@ -243,10 +247,6 @@
             this.saveCampaignAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.TXTBOXCurrentIngameDate = new System.Windows.Forms.RichTextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.TXTBOXGameStartingDate = new System.Windows.Forms.RichTextBox();
             this.TABpages.SuspendLayout();
             this.tabCalendar.SuspendLayout();
             this.tabStat.SuspendLayout();
@@ -293,12 +293,46 @@
             this.tabCalendar.UseVisualStyleBackColor = true;
             this.tabCalendar.Click += new System.EventHandler(this.tabCalendar_Click);
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(14, 323);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(96, 13);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "Date Starting Point";
+            // 
+            // TXTBOXGameStartingDate
+            // 
+            this.TXTBOXGameStartingDate.Location = new System.Drawing.Point(17, 339);
+            this.TXTBOXGameStartingDate.Name = "TXTBOXGameStartingDate";
+            this.TXTBOXGameStartingDate.Size = new System.Drawing.Size(115, 26);
+            this.TXTBOXGameStartingDate.TabIndex = 3;
+            this.TXTBOXGameStartingDate.Text = "";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(14, 368);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(105, 13);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "Current Ingame Date";
+            // 
+            // TXTBOXCurrentIngameDate
+            // 
+            this.TXTBOXCurrentIngameDate.Location = new System.Drawing.Point(17, 384);
+            this.TXTBOXCurrentIngameDate.Name = "TXTBOXCurrentIngameDate";
+            this.TXTBOXCurrentIngameDate.Size = new System.Drawing.Size(115, 26);
+            this.TXTBOXCurrentIngameDate.TabIndex = 4;
+            this.TXTBOXCurrentIngameDate.Text = "";
+            // 
             // BTNDeleteSession
             // 
             this.BTNDeleteSession.Location = new System.Drawing.Point(17, 115);
             this.BTNDeleteSession.Name = "BTNDeleteSession";
             this.BTNDeleteSession.Size = new System.Drawing.Size(75, 35);
-            this.BTNDeleteSession.TabIndex = 15;
+            this.BTNDeleteSession.TabIndex = 2;
             this.BTNDeleteSession.Text = "Delete Session";
             this.BTNDeleteSession.UseVisualStyleBackColor = true;
             // 
@@ -307,7 +341,7 @@
             this.BTNPrevious.Location = new System.Drawing.Point(17, 528);
             this.BTNPrevious.Name = "BTNPrevious";
             this.BTNPrevious.Size = new System.Drawing.Size(144, 25);
-            this.BTNPrevious.TabIndex = 14;
+            this.BTNPrevious.TabIndex = 8;
             this.BTNPrevious.Text = "Previous";
             this.BTNPrevious.UseVisualStyleBackColor = true;
             // 
@@ -363,7 +397,7 @@
             this.TXTSpecificDate.Location = new System.Drawing.Point(17, 66);
             this.TXTSpecificDate.Name = "TXTSpecificDate";
             this.TXTSpecificDate.Size = new System.Drawing.Size(100, 20);
-            this.TXTSpecificDate.TabIndex = 8;
+            this.TXTSpecificDate.TabIndex = 1;
             this.TXTSpecificDate.Text = "d/m/y";
             // 
             // BTNNextMonth
@@ -380,7 +414,7 @@
             this.TXTSessionNotes.Location = new System.Drawing.Point(180, 323);
             this.TXTSessionNotes.Name = "TXTSessionNotes";
             this.TXTSessionNotes.Size = new System.Drawing.Size(542, 110);
-            this.TXTSessionNotes.TabIndex = 5;
+            this.TXTSessionNotes.TabIndex = 9;
             this.TXTSessionNotes.Text = "";
             // 
             // BTNNextWeek_Ingame
@@ -388,7 +422,7 @@
             this.BTNNextWeek_Ingame.Location = new System.Drawing.Point(17, 466);
             this.BTNNextWeek_Ingame.Name = "BTNNextWeek_Ingame";
             this.BTNNextWeek_Ingame.Size = new System.Drawing.Size(144, 25);
-            this.BTNNextWeek_Ingame.TabIndex = 3;
+            this.BTNNextWeek_Ingame.TabIndex = 6;
             this.BTNNextWeek_Ingame.Text = "Next Week";
             this.BTNNextWeek_Ingame.UseVisualStyleBackColor = true;
             // 
@@ -397,7 +431,7 @@
             this.BTNNextDay_Ingame.Location = new System.Drawing.Point(17, 435);
             this.BTNNextDay_Ingame.Name = "BTNNextDay_Ingame";
             this.BTNNextDay_Ingame.Size = new System.Drawing.Size(144, 25);
-            this.BTNNextDay_Ingame.TabIndex = 2;
+            this.BTNNextDay_Ingame.TabIndex = 5;
             this.BTNNextDay_Ingame.Text = "Next Day";
             this.BTNNextDay_Ingame.UseVisualStyleBackColor = true;
             // 
@@ -406,7 +440,7 @@
             this.TXTIngameNotes.Location = new System.Drawing.Point(180, 455);
             this.TXTIngameNotes.Name = "TXTIngameNotes";
             this.TXTIngameNotes.Size = new System.Drawing.Size(542, 98);
-            this.TXTIngameNotes.TabIndex = 1;
+            this.TXTIngameNotes.TabIndex = 10;
             this.TXTIngameNotes.Text = "";
             // 
             // Calender
@@ -560,7 +594,7 @@
             this.tabStat.Controls.Add(this.chkPfSklAcro);
             this.tabStat.Controls.Add(this.chkPfSklNature);
             this.tabStat.Controls.Add(this.chkPfSklBluf);
-            this.tabStat.Controls.Add(this.txtPfSklintimidate);
+            this.tabStat.Controls.Add(this.txtPfSklIntimidate);
             this.tabStat.Controls.Add(this.txtPfSklDiplomacy);
             this.tabStat.Controls.Add(this.txtPfSklPerception);
             this.tabStat.Controls.Add(this.chkPfSklintimidate);
@@ -618,7 +652,7 @@
             this.LSTBOXCharacters.Location = new System.Drawing.Point(14, 16);
             this.LSTBOXCharacters.Name = "LSTBOXCharacters";
             this.LSTBOXCharacters.Size = new System.Drawing.Size(213, 21);
-            this.LSTBOXCharacters.TabIndex = 293;
+            this.LSTBOXCharacters.TabIndex = 1;
             // 
             // maskedTextBox1
             // 
@@ -652,13 +686,14 @@
             this.btnPfSklEngineering.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklEngineering.TabIndex = 289;
             this.btnPfSklEngineering.UseVisualStyleBackColor = true;
+            this.btnPfSklEngineering.Click += new System.EventHandler(this.btnPfSklEngineering_Click);
             // 
             // txtPfSklEngineering
             // 
             this.txtPfSklEngineering.Location = new System.Drawing.Point(578, 346);
             this.txtPfSklEngineering.Name = "txtPfSklEngineering";
             this.txtPfSklEngineering.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklEngineering.TabIndex = 288;
+            this.txtPfSklEngineering.TabIndex = 53;
             // 
             // chkPfSklEngineering
             // 
@@ -917,6 +952,7 @@
             this.btnPfSklHandleAnimal.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklHandleAnimal.TabIndex = 260;
             this.btnPfSklHandleAnimal.UseVisualStyleBackColor = true;
+            this.btnPfSklHandleAnimal.Click += new System.EventHandler(this.btnPfSklHandleAnimal_Click);
             // 
             // btnPfSklSurvival
             // 
@@ -925,6 +961,7 @@
             this.btnPfSklSurvival.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklSurvival.TabIndex = 259;
             this.btnPfSklSurvival.UseVisualStyleBackColor = true;
+            this.btnPfSklSurvival.Click += new System.EventHandler(this.btnPfSklSurvival_Click);
             // 
             // btnPfSklNobility
             // 
@@ -933,6 +970,7 @@
             this.btnPfSklNobility.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklNobility.TabIndex = 255;
             this.btnPfSklNobility.UseVisualStyleBackColor = true;
+            this.btnPfSklNobility.Click += new System.EventHandler(this.btnPfSklNobility_Click);
             // 
             // btnPfSklDisguise
             // 
@@ -941,6 +979,7 @@
             this.btnPfSklDisguise.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklDisguise.TabIndex = 253;
             this.btnPfSklDisguise.UseVisualStyleBackColor = true;
+            this.btnPfSklDisguise.Click += new System.EventHandler(this.btnPfSklDisguise_Click);
             // 
             // btnPfSklSleightofHand
             // 
@@ -949,6 +988,7 @@
             this.btnPfSklSleightofHand.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklSleightofHand.TabIndex = 250;
             this.btnPfSklSleightofHand.UseVisualStyleBackColor = true;
+            this.btnPfSklSleightofHand.Click += new System.EventHandler(this.btnPfSklSleightofHand_Click);
             // 
             // btnPfSklHistory
             // 
@@ -957,6 +997,7 @@
             this.btnPfSklHistory.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklHistory.TabIndex = 262;
             this.btnPfSklHistory.UseVisualStyleBackColor = true;
+            this.btnPfSklHistory.Click += new System.EventHandler(this.btnPfSklHistory_Click);
             // 
             // btnPfSklCraft
             // 
@@ -965,6 +1006,7 @@
             this.btnPfSklCraft.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklCraft.TabIndex = 251;
             this.btnPfSklCraft.UseVisualStyleBackColor = true;
+            this.btnPfSklCraft.Click += new System.EventHandler(this.btnPfSklCraft_Click);
             // 
             // btnPfSklProfession
             // 
@@ -973,6 +1015,7 @@
             this.btnPfSklProfession.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklProfession.TabIndex = 258;
             this.btnPfSklProfession.UseVisualStyleBackColor = true;
+            this.btnPfSklProfession.Click += new System.EventHandler(this.btnPfSklProfession_Click);
             // 
             // btnPfSklArcana
             // 
@@ -981,6 +1024,7 @@
             this.btnPfSklArcana.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklArcana.TabIndex = 252;
             this.btnPfSklArcana.UseVisualStyleBackColor = true;
+            this.btnPfSklArcana.Click += new System.EventHandler(this.btnPfSklArcana_Click);
             // 
             // btnPfSklAppr
             // 
@@ -989,6 +1033,7 @@
             this.btnPfSklAppr.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklAppr.TabIndex = 263;
             this.btnPfSklAppr.UseVisualStyleBackColor = true;
+            this.btnPfSklAppr.Click += new System.EventHandler(this.btnPfSklAppr_Click);
             // 
             // btnPfSklLinguistics
             // 
@@ -997,6 +1042,7 @@
             this.btnPfSklLinguistics.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklLinguistics.TabIndex = 261;
             this.btnPfSklLinguistics.UseVisualStyleBackColor = true;
+            this.btnPfSklLinguistics.Click += new System.EventHandler(this.btnPfSklLinguistics_Click);
             // 
             // btnPfSklHeal
             // 
@@ -1005,6 +1051,7 @@
             this.btnPfSklHeal.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklHeal.TabIndex = 254;
             this.btnPfSklHeal.UseVisualStyleBackColor = true;
+            this.btnPfSklHeal.Click += new System.EventHandler(this.btnPfSklHeal_Click);
             // 
             // btnPfSklSwim
             // 
@@ -1013,6 +1060,7 @@
             this.btnPfSklSwim.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklSwim.TabIndex = 256;
             this.btnPfSklSwim.UseVisualStyleBackColor = true;
+            this.btnPfSklSwim.Click += new System.EventHandler(this.btnPfSklSwim_Click);
             // 
             // btnPfSklEscapeArtist
             // 
@@ -1021,6 +1069,7 @@
             this.btnPfSklEscapeArtist.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklEscapeArtist.TabIndex = 257;
             this.btnPfSklEscapeArtist.UseVisualStyleBackColor = true;
+            this.btnPfSklEscapeArtist.Click += new System.EventHandler(this.btnPfSklEscapeArtist_Click);
             // 
             // btnPfSklPlanes
             // 
@@ -1029,6 +1078,7 @@
             this.btnPfSklPlanes.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklPlanes.TabIndex = 283;
             this.btnPfSklPlanes.UseVisualStyleBackColor = true;
+            this.btnPfSklPlanes.Click += new System.EventHandler(this.btnPfSklPlanes_Click);
             // 
             // btnPfSklSpellCraft
             // 
@@ -1037,6 +1087,7 @@
             this.btnPfSklSpellCraft.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklSpellCraft.TabIndex = 265;
             this.btnPfSklSpellCraft.UseVisualStyleBackColor = true;
+            this.btnPfSklSpellCraft.Click += new System.EventHandler(this.btnPfSklSpellCraft_Click);
             // 
             // btnPfSklDiplomacy
             // 
@@ -1045,6 +1096,7 @@
             this.btnPfSklDiplomacy.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklDiplomacy.TabIndex = 282;
             this.btnPfSklDiplomacy.UseVisualStyleBackColor = true;
+            this.btnPfSklDiplomacy.Click += new System.EventHandler(this.btnPfSklDiplomacy_Click);
             // 
             // btnPfSklLocal
             // 
@@ -1053,6 +1105,7 @@
             this.btnPfSklLocal.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklLocal.TabIndex = 281;
             this.btnPfSklLocal.UseVisualStyleBackColor = true;
+            this.btnPfSklLocal.Click += new System.EventHandler(this.btnPfSklLocal_Click);
             // 
             // btnPfSklRide
             // 
@@ -1061,6 +1114,7 @@
             this.btnPfSklRide.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklRide.TabIndex = 280;
             this.btnPfSklRide.UseVisualStyleBackColor = true;
+            this.btnPfSklRide.Click += new System.EventHandler(this.btnPfSklRide_Click);
             // 
             // btnPfSklBluf
             // 
@@ -1069,6 +1123,7 @@
             this.btnPfSklBluf.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklBluf.TabIndex = 279;
             this.btnPfSklBluf.UseVisualStyleBackColor = true;
+            this.btnPfSklBluf.Click += new System.EventHandler(this.btnPfSklBluf_Click);
             // 
             // btnPfSklDungeoneering
             // 
@@ -1077,6 +1132,7 @@
             this.btnPfSklDungeoneering.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklDungeoneering.TabIndex = 278;
             this.btnPfSklDungeoneering.UseVisualStyleBackColor = true;
+            this.btnPfSklDungeoneering.Click += new System.EventHandler(this.btnPfSklDungeoneering_Click);
             // 
             // btnPfSklPerception
             // 
@@ -1085,6 +1141,7 @@
             this.btnPfSklPerception.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklPerception.TabIndex = 271;
             this.btnPfSklPerception.UseVisualStyleBackColor = true;
+            this.btnPfSklPerception.Click += new System.EventHandler(this.btnPfSklPerception_Click);
             // 
             // btnPfSklFly
             // 
@@ -1093,6 +1150,7 @@
             this.btnPfSklFly.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklFly.TabIndex = 270;
             this.btnPfSklFly.UseVisualStyleBackColor = true;
+            this.btnPfSklFly.Click += new System.EventHandler(this.btnPfSklFly_Click);
             // 
             // btnPfSklReligion
             // 
@@ -1101,6 +1159,7 @@
             this.btnPfSklReligion.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklReligion.TabIndex = 269;
             this.btnPfSklReligion.UseVisualStyleBackColor = true;
+            this.btnPfSklReligion.Click += new System.EventHandler(this.btnPfSklReligion_Click);
             // 
             // btnPfSklStealth
             // 
@@ -1109,6 +1168,7 @@
             this.btnPfSklStealth.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklStealth.TabIndex = 268;
             this.btnPfSklStealth.UseVisualStyleBackColor = true;
+            this.btnPfSklStealth.Click += new System.EventHandler(this.btnPfSklStealth_Click);
             // 
             // btnPfSklDisableDevice
             // 
@@ -1117,6 +1177,7 @@
             this.btnPfSklDisableDevice.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklDisableDevice.TabIndex = 267;
             this.btnPfSklDisableDevice.UseVisualStyleBackColor = true;
+            this.btnPfSklDisableDevice.Click += new System.EventHandler(this.btnPfSklDisableDevice_Click);
             // 
             // btnPfSklNature
             // 
@@ -1125,6 +1186,7 @@
             this.btnPfSklNature.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklNature.TabIndex = 266;
             this.btnPfSklNature.UseVisualStyleBackColor = true;
+            this.btnPfSklNature.Click += new System.EventHandler(this.btnPfSklNature_Click);
             // 
             // btnPfSklSenseMotive
             // 
@@ -1133,6 +1195,7 @@
             this.btnPfSklSenseMotive.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklSenseMotive.TabIndex = 264;
             this.btnPfSklSenseMotive.UseVisualStyleBackColor = true;
+            this.btnPfSklSenseMotive.Click += new System.EventHandler(this.btnPfSklSenseMotive_Click);
             // 
             // btnPfSklClimb
             // 
@@ -1141,6 +1204,7 @@
             this.btnPfSklClimb.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklClimb.TabIndex = 272;
             this.btnPfSklClimb.UseVisualStyleBackColor = true;
+            this.btnPfSklClimb.Click += new System.EventHandler(this.btnPfSklClimb_Click);
             // 
             // btnPfSklGeography
             // 
@@ -1149,6 +1213,7 @@
             this.btnPfSklGeography.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklGeography.TabIndex = 273;
             this.btnPfSklGeography.UseVisualStyleBackColor = true;
+            this.btnPfSklGeography.Click += new System.EventHandler(this.btnPfSklGeography_Click);
             // 
             // btnPfSklPreform
             // 
@@ -1157,6 +1222,7 @@
             this.btnPfSklPreform.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklPreform.TabIndex = 274;
             this.btnPfSklPreform.UseVisualStyleBackColor = true;
+            this.btnPfSklPreform.Click += new System.EventHandler(this.btnPfSklPreform_Click);
             // 
             // btnPfSklAcro
             // 
@@ -1165,6 +1231,7 @@
             this.btnPfSklAcro.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklAcro.TabIndex = 275;
             this.btnPfSklAcro.UseVisualStyleBackColor = true;
+            this.btnPfSklAcro.Click += new System.EventHandler(this.btnPfSklAcro_Click);
             // 
             // btnPfSklUseMagicDevice
             // 
@@ -1173,6 +1240,7 @@
             this.btnPfSklUseMagicDevice.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklUseMagicDevice.TabIndex = 276;
             this.btnPfSklUseMagicDevice.UseVisualStyleBackColor = true;
+            this.btnPfSklUseMagicDevice.Click += new System.EventHandler(this.btnPfSklUseMagicDevice_Click);
             // 
             // btnPfSklIntimidate
             // 
@@ -1181,41 +1249,42 @@
             this.btnPfSklIntimidate.Size = new System.Drawing.Size(17, 23);
             this.btnPfSklIntimidate.TabIndex = 277;
             this.btnPfSklIntimidate.UseVisualStyleBackColor = true;
+            this.btnPfSklIntimidate.Click += new System.EventHandler(this.btnPfSklIntimidate_Click);
             // 
             // inputPfPName
             // 
             this.inputPfPName.Location = new System.Drawing.Point(6, 78);
             this.inputPfPName.Name = "inputPfPName";
             this.inputPfPName.Size = new System.Drawing.Size(176, 20);
-            this.inputPfPName.TabIndex = 249;
+            this.inputPfPName.TabIndex = 2;
             // 
             // inputPfRace
             // 
             this.inputPfRace.Location = new System.Drawing.Point(5, 182);
             this.inputPfRace.Name = "inputPfRace";
             this.inputPfRace.Size = new System.Drawing.Size(176, 20);
-            this.inputPfRace.TabIndex = 247;
+            this.inputPfRace.TabIndex = 4;
             // 
             // inputPfCName
             // 
             this.inputPfCName.Location = new System.Drawing.Point(5, 130);
             this.inputPfCName.Name = "inputPfCName";
             this.inputPfCName.Size = new System.Drawing.Size(176, 20);
-            this.inputPfCName.TabIndex = 248;
+            this.inputPfCName.TabIndex = 3;
             // 
             // txtPfSklHeal
             // 
             this.txtPfSklHeal.Location = new System.Drawing.Point(418, 372);
             this.txtPfSklHeal.Name = "txtPfSklHeal";
             this.txtPfSklHeal.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklHeal.TabIndex = 228;
+            this.txtPfSklHeal.TabIndex = 37;
             // 
             // txtPfSklSwim
             // 
             this.txtPfSklSwim.Location = new System.Drawing.Point(578, 216);
             this.txtPfSklSwim.Name = "txtPfSklSwim";
             this.txtPfSklSwim.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklSwim.TabIndex = 227;
+            this.txtPfSklSwim.TabIndex = 49;
             // 
             // chkPfSklHeal
             // 
@@ -1242,14 +1311,14 @@
             this.txtPfSklHandleAnimal.Location = new System.Drawing.Point(418, 346);
             this.txtPfSklHandleAnimal.Name = "txtPfSklHandleAnimal";
             this.txtPfSklHandleAnimal.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklHandleAnimal.TabIndex = 240;
+            this.txtPfSklHandleAnimal.TabIndex = 36;
             // 
             // txtPfSklSurvival
             // 
             this.txtPfSklSurvival.Location = new System.Drawing.Point(578, 190);
             this.txtPfSklSurvival.Name = "txtPfSklSurvival";
             this.txtPfSklSurvival.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklSurvival.TabIndex = 194;
+            this.txtPfSklSurvival.TabIndex = 48;
             // 
             // chkPfSklHandleAnimal
             // 
@@ -1276,21 +1345,21 @@
             this.txtPfSklFly.Location = new System.Drawing.Point(418, 320);
             this.txtPfSklFly.Name = "txtPfSklFly";
             this.txtPfSklFly.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklFly.TabIndex = 230;
+            this.txtPfSklFly.TabIndex = 35;
             // 
             // txtPfSklStealth
             // 
             this.txtPfSklStealth.Location = new System.Drawing.Point(578, 164);
             this.txtPfSklStealth.Name = "txtPfSklStealth";
             this.txtPfSklStealth.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklStealth.TabIndex = 238;
+            this.txtPfSklStealth.TabIndex = 47;
             // 
             // txtPfSklReligion
             // 
             this.txtPfSklReligion.Location = new System.Drawing.Point(578, 528);
             this.txtPfSklReligion.Name = "txtPfSklReligion";
             this.txtPfSklReligion.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklReligion.TabIndex = 241;
+            this.txtPfSklReligion.TabIndex = 60;
             // 
             // chkPfSklFly
             // 
@@ -1327,21 +1396,21 @@
             this.txtPfSklEscapeArtist.Location = new System.Drawing.Point(418, 294);
             this.txtPfSklEscapeArtist.Name = "txtPfSklEscapeArtist";
             this.txtPfSklEscapeArtist.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklEscapeArtist.TabIndex = 229;
+            this.txtPfSklEscapeArtist.TabIndex = 34;
             // 
             // txtPfSklSpellCraft
             // 
             this.txtPfSklSpellCraft.Location = new System.Drawing.Point(578, 138);
             this.txtPfSklSpellCraft.Name = "txtPfSklSpellCraft";
             this.txtPfSklSpellCraft.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklSpellCraft.TabIndex = 226;
+            this.txtPfSklSpellCraft.TabIndex = 46;
             // 
             // txtPfSklPlanes
             // 
             this.txtPfSklPlanes.Location = new System.Drawing.Point(578, 502);
             this.txtPfSklPlanes.Name = "txtPfSklPlanes";
             this.txtPfSklPlanes.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklPlanes.TabIndex = 232;
+            this.txtPfSklPlanes.TabIndex = 59;
             // 
             // chkPfSklEscapeArtist
             // 
@@ -1378,35 +1447,35 @@
             this.txtPfSklCraft.Location = new System.Drawing.Point(418, 190);
             this.txtPfSklCraft.Name = "txtPfSklCraft";
             this.txtPfSklCraft.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklCraft.TabIndex = 233;
+            this.txtPfSklCraft.TabIndex = 30;
             // 
             // txtPfSklProfession
             // 
             this.txtPfSklProfession.Location = new System.Drawing.Point(418, 502);
             this.txtPfSklProfession.Name = "txtPfSklProfession";
             this.txtPfSklProfession.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklProfession.TabIndex = 234;
+            this.txtPfSklProfession.TabIndex = 42;
             // 
             // txtPfSklDisguise
             // 
             this.txtPfSklDisguise.Location = new System.Drawing.Point(418, 268);
             this.txtPfSklDisguise.Name = "txtPfSklDisguise";
             this.txtPfSklDisguise.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklDisguise.TabIndex = 235;
+            this.txtPfSklDisguise.TabIndex = 33;
             // 
             // txtPfSklHistory
             // 
             this.txtPfSklHistory.Location = new System.Drawing.Point(578, 398);
             this.txtPfSklHistory.Name = "txtPfSklHistory";
             this.txtPfSklHistory.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklHistory.TabIndex = 236;
+            this.txtPfSklHistory.TabIndex = 55;
             // 
             // txtPfSklSleightofHand
             // 
             this.txtPfSklSleightofHand.Location = new System.Drawing.Point(578, 112);
             this.txtPfSklSleightofHand.Name = "txtPfSklSleightofHand";
             this.txtPfSklSleightofHand.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklSleightofHand.TabIndex = 237;
+            this.txtPfSklSleightofHand.TabIndex = 45;
             // 
             // chkPfSklCraft
             // 
@@ -1423,7 +1492,7 @@
             this.txtPfSklNobility.Location = new System.Drawing.Point(578, 476);
             this.txtPfSklNobility.Name = "txtPfSklNobility";
             this.txtPfSklNobility.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklNobility.TabIndex = 239;
+            this.txtPfSklNobility.TabIndex = 58;
             // 
             // chkPfSklProfession
             // 
@@ -1470,21 +1539,21 @@
             this.txtPfSklAppr.Location = new System.Drawing.Point(418, 112);
             this.txtPfSklAppr.Name = "txtPfSklAppr";
             this.txtPfSklAppr.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklAppr.TabIndex = 244;
+            this.txtPfSklAppr.TabIndex = 27;
             // 
             // txtPfSklClim
             // 
             this.txtPfSklClim.Location = new System.Drawing.Point(418, 164);
             this.txtPfSklClim.Name = "txtPfSklClim";
             this.txtPfSklClim.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklClim.TabIndex = 245;
+            this.txtPfSklClim.TabIndex = 29;
             // 
             // txtPfSklLinguistics
             // 
             this.txtPfSklLinguistics.Location = new System.Drawing.Point(418, 424);
             this.txtPfSklLinguistics.Name = "txtPfSklLinguistics";
             this.txtPfSklLinguistics.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklLinguistics.TabIndex = 246;
+            this.txtPfSklLinguistics.TabIndex = 39;
             // 
             // chkPfSklNobility
             // 
@@ -1501,28 +1570,28 @@
             this.txtPfSklPreform.Location = new System.Drawing.Point(418, 476);
             this.txtPfSklPreform.Name = "txtPfSklPreform";
             this.txtPfSklPreform.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklPreform.TabIndex = 243;
+            this.txtPfSklPreform.TabIndex = 41;
             // 
             // txtPfSklArcana
             // 
             this.txtPfSklArcana.Location = new System.Drawing.Point(578, 294);
             this.txtPfSklArcana.Name = "txtPfSklArcana";
             this.txtPfSklArcana.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklArcana.TabIndex = 242;
+            this.txtPfSklArcana.TabIndex = 51;
             // 
             // txtPfSklDisableDevice
             // 
             this.txtPfSklDisableDevice.Location = new System.Drawing.Point(418, 242);
             this.txtPfSklDisableDevice.Name = "txtPfSklDisableDevice";
             this.txtPfSklDisableDevice.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklDisableDevice.TabIndex = 231;
+            this.txtPfSklDisableDevice.TabIndex = 32;
             // 
             // txtPfSklGeography
             // 
             this.txtPfSklGeography.Location = new System.Drawing.Point(578, 372);
             this.txtPfSklGeography.Name = "txtPfSklGeography";
             this.txtPfSklGeography.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklGeography.TabIndex = 224;
+            this.txtPfSklGeography.TabIndex = 54;
             // 
             // chkPfSklAppr
             // 
@@ -1539,7 +1608,7 @@
             this.txtPfSklSenseMotive.Location = new System.Drawing.Point(578, 86);
             this.txtPfSklSenseMotive.Name = "txtPfSklSenseMotive";
             this.txtPfSklSenseMotive.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklSenseMotive.TabIndex = 223;
+            this.txtPfSklSenseMotive.TabIndex = 44;
             // 
             // chkPfSklClim
             // 
@@ -1566,7 +1635,7 @@
             this.txtPfSklNature.Location = new System.Drawing.Point(578, 450);
             this.txtPfSklNature.Name = "txtPfSklNature";
             this.txtPfSklNature.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklNature.TabIndex = 206;
+            this.txtPfSklNature.TabIndex = 57;
             // 
             // chkPfSklPreform
             // 
@@ -1613,133 +1682,133 @@
             this.inputPfInit.Location = new System.Drawing.Point(349, 349);
             this.inputPfInit.Name = "inputPfInit";
             this.inputPfInit.Size = new System.Drawing.Size(40, 20);
-            this.inputPfInit.TabIndex = 205;
+            this.inputPfInit.TabIndex = 25;
             // 
             // inputPfCMD
             // 
             this.inputPfCMD.Location = new System.Drawing.Point(349, 323);
             this.inputPfCMD.Name = "inputPfCMD";
             this.inputPfCMD.Size = new System.Drawing.Size(40, 20);
-            this.inputPfCMD.TabIndex = 204;
+            this.inputPfCMD.TabIndex = 24;
             // 
             // inputPfReach
             // 
             this.inputPfReach.Location = new System.Drawing.Point(349, 193);
             this.inputPfReach.Name = "inputPfReach";
             this.inputPfReach.Size = new System.Drawing.Size(40, 20);
-            this.inputPfReach.TabIndex = 203;
+            this.inputPfReach.TabIndex = 19;
             // 
             // inputPfSpeed
             // 
             this.inputPfSpeed.Location = new System.Drawing.Point(349, 167);
             this.inputPfSpeed.Name = "inputPfSpeed";
             this.inputPfSpeed.Size = new System.Drawing.Size(40, 20);
-            this.inputPfSpeed.TabIndex = 225;
+            this.inputPfSpeed.TabIndex = 18;
             // 
             // inputPfCMB
             // 
             this.inputPfCMB.Location = new System.Drawing.Point(349, 297);
             this.inputPfCMB.Name = "inputPfCMB";
             this.inputPfCMB.Size = new System.Drawing.Size(40, 20);
-            this.inputPfCMB.TabIndex = 201;
+            this.inputPfCMB.TabIndex = 23;
             // 
             // inputPfCha
             // 
             this.inputPfCha.Location = new System.Drawing.Point(230, 193);
             this.inputPfCha.Name = "inputPfCha";
             this.inputPfCha.Size = new System.Drawing.Size(40, 20);
-            this.inputPfCha.TabIndex = 200;
+            this.inputPfCha.TabIndex = 13;
             // 
             // inputPfWill
             // 
             this.inputPfWill.Location = new System.Drawing.Point(349, 141);
             this.inputPfWill.Name = "inputPfWill";
             this.inputPfWill.Size = new System.Drawing.Size(40, 20);
-            this.inputPfWill.TabIndex = 199;
+            this.inputPfWill.TabIndex = 17;
             // 
             // inputPfBAB
             // 
             this.inputPfBAB.Location = new System.Drawing.Point(349, 271);
             this.inputPfBAB.Name = "inputPfBAB";
             this.inputPfBAB.Size = new System.Drawing.Size(40, 20);
-            this.inputPfBAB.TabIndex = 198;
+            this.inputPfBAB.TabIndex = 22;
             // 
             // inputPfWis
             // 
             this.inputPfWis.Location = new System.Drawing.Point(230, 167);
             this.inputPfWis.Name = "inputPfWis";
             this.inputPfWis.Size = new System.Drawing.Size(40, 20);
-            this.inputPfWis.TabIndex = 197;
+            this.inputPfWis.TabIndex = 12;
             // 
             // inputPfRef
             // 
             this.inputPfRef.Location = new System.Drawing.Point(349, 115);
             this.inputPfRef.Name = "inputPfRef";
             this.inputPfRef.Size = new System.Drawing.Size(40, 20);
-            this.inputPfRef.TabIndex = 196;
+            this.inputPfRef.TabIndex = 16;
             // 
             // inputPfFFAC
             // 
             this.inputPfFFAC.Location = new System.Drawing.Point(349, 245);
             this.inputPfFFAC.Name = "inputPfFFAC";
             this.inputPfFFAC.Size = new System.Drawing.Size(40, 20);
-            this.inputPfFFAC.TabIndex = 195;
+            this.inputPfFFAC.TabIndex = 21;
             // 
             // inputPfInt
             // 
             this.inputPfInt.Location = new System.Drawing.Point(230, 141);
             this.inputPfInt.Name = "inputPfInt";
             this.inputPfInt.Size = new System.Drawing.Size(40, 20);
-            this.inputPfInt.TabIndex = 207;
+            this.inputPfInt.TabIndex = 11;
             // 
             // inputPfFort
             // 
             this.inputPfFort.Location = new System.Drawing.Point(349, 89);
             this.inputPfFort.Name = "inputPfFort";
             this.inputPfFort.Size = new System.Drawing.Size(40, 20);
-            this.inputPfFort.TabIndex = 208;
+            this.inputPfFort.TabIndex = 15;
             // 
             // inputPfTAC
             // 
             this.inputPfTAC.Location = new System.Drawing.Point(349, 219);
             this.inputPfTAC.Name = "inputPfTAC";
             this.inputPfTAC.Size = new System.Drawing.Size(40, 20);
-            this.inputPfTAC.TabIndex = 209;
+            this.inputPfTAC.TabIndex = 20;
             // 
             // inputPfCon
             // 
             this.inputPfCon.Location = new System.Drawing.Point(230, 115);
             this.inputPfCon.Name = "inputPfCon";
             this.inputPfCon.Size = new System.Drawing.Size(40, 20);
-            this.inputPfCon.TabIndex = 210;
+            this.inputPfCon.TabIndex = 10;
             // 
             // inputPfAC
             // 
             this.inputPfAC.Location = new System.Drawing.Point(349, 63);
             this.inputPfAC.Name = "inputPfAC";
             this.inputPfAC.Size = new System.Drawing.Size(40, 20);
-            this.inputPfAC.TabIndex = 211;
+            this.inputPfAC.TabIndex = 14;
             // 
             // inputPfDex
             // 
             this.inputPfDex.Location = new System.Drawing.Point(230, 89);
             this.inputPfDex.Name = "inputPfDex";
             this.inputPfDex.Size = new System.Drawing.Size(40, 20);
-            this.inputPfDex.TabIndex = 212;
+            this.inputPfDex.TabIndex = 9;
             // 
             // inputPfStr
             // 
             this.inputPfStr.Location = new System.Drawing.Point(230, 63);
             this.inputPfStr.Name = "inputPfStr";
             this.inputPfStr.Size = new System.Drawing.Size(40, 20);
-            this.inputPfStr.TabIndex = 213;
+            this.inputPfStr.TabIndex = 8;
             // 
             // txtPfSklAcro
             // 
             this.txtPfSklAcro.Location = new System.Drawing.Point(418, 86);
             this.txtPfSklAcro.Name = "txtPfSklAcro";
             this.txtPfSklAcro.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklAcro.TabIndex = 214;
+            this.txtPfSklAcro.TabIndex = 26;
             // 
             // chkPfSklSenseMotive
             // 
@@ -1756,7 +1825,7 @@
             this.txtPfSklBluf.Location = new System.Drawing.Point(418, 138);
             this.txtPfSklBluf.Name = "txtPfSklBluf";
             this.txtPfSklBluf.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklBluf.TabIndex = 215;
+            this.txtPfSklBluf.TabIndex = 28;
             // 
             // chkPfSklAcro
             // 
@@ -1788,26 +1857,27 @@
             this.chkPfSklBluf.Text = "Bluff";
             this.chkPfSklBluf.UseVisualStyleBackColor = true;
             // 
-            // txtPfSklintimidate
+            // txtPfSklIntimidate
             // 
-            this.txtPfSklintimidate.Location = new System.Drawing.Point(418, 398);
-            this.txtPfSklintimidate.Name = "txtPfSklintimidate";
-            this.txtPfSklintimidate.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklintimidate.TabIndex = 216;
+            this.txtPfSklIntimidate.Location = new System.Drawing.Point(418, 398);
+            this.txtPfSklIntimidate.Name = "txtPfSklIntimidate";
+            this.txtPfSklIntimidate.Size = new System.Drawing.Size(40, 20);
+            this.txtPfSklIntimidate.TabIndex = 38;
+            this.txtPfSklIntimidate.TextChanged += new System.EventHandler(this.txtPfSklintimidate_TextChanged);
             // 
             // txtPfSklDiplomacy
             // 
             this.txtPfSklDiplomacy.Location = new System.Drawing.Point(418, 216);
             this.txtPfSklDiplomacy.Name = "txtPfSklDiplomacy";
             this.txtPfSklDiplomacy.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklDiplomacy.TabIndex = 217;
+            this.txtPfSklDiplomacy.TabIndex = 31;
             // 
             // txtPfSklPerception
             // 
             this.txtPfSklPerception.Location = new System.Drawing.Point(418, 450);
             this.txtPfSklPerception.Name = "txtPfSklPerception";
             this.txtPfSklPerception.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklPerception.TabIndex = 218;
+            this.txtPfSklPerception.TabIndex = 40;
             // 
             // chkPfSklintimidate
             // 
@@ -1844,21 +1914,21 @@
             this.txtPfSklUseMagicDevice.Location = new System.Drawing.Point(578, 242);
             this.txtPfSklUseMagicDevice.Name = "txtPfSklUseMagicDevice";
             this.txtPfSklUseMagicDevice.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklUseMagicDevice.TabIndex = 219;
+            this.txtPfSklUseMagicDevice.TabIndex = 50;
             // 
             // txtPfSklRide
             // 
             this.txtPfSklRide.Location = new System.Drawing.Point(418, 528);
             this.txtPfSklRide.Name = "txtPfSklRide";
             this.txtPfSklRide.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklRide.TabIndex = 220;
+            this.txtPfSklRide.TabIndex = 43;
             // 
             // txtPfSklDungeoneering
             // 
             this.txtPfSklDungeoneering.Location = new System.Drawing.Point(578, 320);
             this.txtPfSklDungeoneering.Name = "txtPfSklDungeoneering";
             this.txtPfSklDungeoneering.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklDungeoneering.TabIndex = 221;
+            this.txtPfSklDungeoneering.TabIndex = 52;
             // 
             // chkPfSklUseMagicDevice
             // 
@@ -1895,7 +1965,7 @@
             this.txtPfSklLocal.Location = new System.Drawing.Point(578, 424);
             this.txtPfSklLocal.Name = "txtPfSklLocal";
             this.txtPfSklLocal.Size = new System.Drawing.Size(40, 20);
-            this.txtPfSklLocal.TabIndex = 222;
+            this.txtPfSklLocal.TabIndex = 56;
             // 
             // chkPfSklLocal
             // 
@@ -1930,7 +2000,7 @@
             this.btnPfRemoveFeat.Location = new System.Drawing.Point(6, 298);
             this.btnPfRemoveFeat.Name = "btnPfRemoveFeat";
             this.btnPfRemoveFeat.Size = new System.Drawing.Size(120, 23);
-            this.btnPfRemoveFeat.TabIndex = 157;
+            this.btnPfRemoveFeat.TabIndex = 272;
             this.btnPfRemoveFeat.Text = "Remove Feature";
             this.btnPfRemoveFeat.UseVisualStyleBackColor = true;
             // 
@@ -1948,7 +2018,7 @@
             this.btnPfAddItem.Location = new System.Drawing.Point(6, 381);
             this.btnPfAddItem.Name = "btnPfAddItem";
             this.btnPfAddItem.Size = new System.Drawing.Size(120, 23);
-            this.btnPfAddItem.TabIndex = 154;
+            this.btnPfAddItem.TabIndex = 9;
             this.btnPfAddItem.Text = "Add Item";
             this.btnPfAddItem.UseVisualStyleBackColor = true;
             // 
@@ -1957,7 +2027,7 @@
             this.btnPfAddFeat.Location = new System.Drawing.Point(6, 268);
             this.btnPfAddFeat.Name = "btnPfAddFeat";
             this.btnPfAddFeat.Size = new System.Drawing.Size(120, 23);
-            this.btnPfAddFeat.TabIndex = 153;
+            this.btnPfAddFeat.TabIndex = 234;
             this.btnPfAddFeat.Text = "Add Feature";
             this.btnPfAddFeat.UseVisualStyleBackColor = true;
             // 
@@ -1966,7 +2036,7 @@
             this.inputPfAddSpell.Location = new System.Drawing.Point(6, 469);
             this.inputPfAddSpell.Name = "inputPfAddSpell";
             this.inputPfAddSpell.Size = new System.Drawing.Size(120, 20);
-            this.inputPfAddSpell.TabIndex = 151;
+            this.inputPfAddSpell.TabIndex = 7;
             // 
             // TXTBOXknownSpells
             // 
@@ -1981,7 +2051,7 @@
             this.inputPfAddItem.Location = new System.Drawing.Point(6, 354);
             this.inputPfAddItem.Name = "inputPfAddItem";
             this.inputPfAddItem.Size = new System.Drawing.Size(120, 20);
-            this.inputPfAddItem.TabIndex = 150;
+            this.inputPfAddItem.TabIndex = 6;
             // 
             // LSTBOXitemsEquip
             // 
@@ -1996,7 +2066,7 @@
             this.inputPfAddFeat.Location = new System.Drawing.Point(6, 241);
             this.inputPfAddFeat.Name = "inputPfAddFeat";
             this.inputPfAddFeat.Size = new System.Drawing.Size(120, 20);
-            this.inputPfAddFeat.TabIndex = 152;
+            this.inputPfAddFeat.TabIndex = 5;
             // 
             // LSTBOXClassFeatLang
             // 
@@ -2041,14 +2111,16 @@
             this.BTNRollCustomTable.Location = new System.Drawing.Point(9, 186);
             this.BTNRollCustomTable.Name = "BTNRollCustomTable";
             this.BTNRollCustomTable.Size = new System.Drawing.Size(213, 43);
-            this.BTNRollCustomTable.TabIndex = 333;
+            this.BTNRollCustomTable.TabIndex = 4;
             this.BTNRollCustomTable.Text = "Roll Custom Table";
             this.BTNRollCustomTable.UseVisualStyleBackColor = true;
             // 
             // TXTTableEntries
             // 
+            this.TXTTableEntries.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.TXTTableEntries.Location = new System.Drawing.Point(238, 23);
             this.TXTTableEntries.Name = "TXTTableEntries";
+            this.TXTTableEntries.ReadOnly = true;
             this.TXTTableEntries.Size = new System.Drawing.Size(243, 528);
             this.TXTTableEntries.TabIndex = 332;
             this.TXTTableEntries.Text = "";
@@ -2076,21 +2148,21 @@
             this.TXTWeight.Location = new System.Drawing.Point(171, 480);
             this.TXTWeight.Name = "TXTWeight";
             this.TXTWeight.Size = new System.Drawing.Size(51, 20);
-            this.TXTWeight.TabIndex = 329;
+            this.TXTWeight.TabIndex = 10;
             // 
             // TXTDescription
             // 
             this.TXTDescription.Location = new System.Drawing.Point(9, 480);
             this.TXTDescription.Name = "TXTDescription";
             this.TXTDescription.Size = new System.Drawing.Size(123, 20);
-            this.TXTDescription.TabIndex = 328;
+            this.TXTDescription.TabIndex = 9;
             // 
             // BTNRemoveEntry
             // 
             this.BTNRemoveEntry.Location = new System.Drawing.Point(126, 376);
             this.BTNRemoveEntry.Name = "BTNRemoveEntry";
             this.BTNRemoveEntry.Size = new System.Drawing.Size(96, 25);
-            this.BTNRemoveEntry.TabIndex = 327;
+            this.BTNRemoveEntry.TabIndex = 7;
             this.BTNRemoveEntry.Text = "Remove Entry";
             this.BTNRemoveEntry.UseVisualStyleBackColor = true;
             // 
@@ -2099,7 +2171,7 @@
             this.BTNNewEntry.Location = new System.Drawing.Point(9, 376);
             this.BTNNewEntry.Name = "BTNNewEntry";
             this.BTNNewEntry.Size = new System.Drawing.Size(72, 25);
-            this.BTNNewEntry.TabIndex = 326;
+            this.BTNNewEntry.TabIndex = 6;
             this.BTNNewEntry.Text = "New Entry";
             this.BTNNewEntry.UseVisualStyleBackColor = true;
             // 
@@ -2109,7 +2181,7 @@
             this.LSTEntryList.Location = new System.Drawing.Point(9, 420);
             this.LSTEntryList.Name = "LSTEntryList";
             this.LSTEntryList.Size = new System.Drawing.Size(213, 21);
-            this.LSTEntryList.TabIndex = 325;
+            this.LSTEntryList.TabIndex = 8;
             this.LSTEntryList.Text = "Input Values Here";
             // 
             // label11
@@ -2136,14 +2208,14 @@
             this.TXTTableNameInput.Location = new System.Drawing.Point(12, 332);
             this.TXTTableNameInput.Name = "TXTTableNameInput";
             this.TXTTableNameInput.Size = new System.Drawing.Size(123, 20);
-            this.TXTTableNameInput.TabIndex = 301;
+            this.TXTTableNameInput.TabIndex = 5;
             // 
             // BTNDeleteSelectedTable
             // 
             this.BTNDeleteSelectedTable.Location = new System.Drawing.Point(126, 516);
             this.BTNDeleteSelectedTable.Name = "BTNDeleteSelectedTable";
             this.BTNDeleteSelectedTable.Size = new System.Drawing.Size(96, 35);
-            this.BTNDeleteSelectedTable.TabIndex = 300;
+            this.BTNDeleteSelectedTable.TabIndex = 12;
             this.BTNDeleteSelectedTable.Text = "Delete Selected Table";
             this.BTNDeleteSelectedTable.UseVisualStyleBackColor = true;
             // 
@@ -2152,7 +2224,7 @@
             this.BTNSaveTable.Location = new System.Drawing.Point(9, 516);
             this.BTNSaveTable.Name = "BTNSaveTable";
             this.BTNSaveTable.Size = new System.Drawing.Size(72, 35);
-            this.BTNSaveTable.TabIndex = 299;
+            this.BTNSaveTable.TabIndex = 11;
             this.BTNSaveTable.Text = "Save Table";
             this.BTNSaveTable.UseVisualStyleBackColor = true;
             // 
@@ -2182,18 +2254,20 @@
             this.BTNRollD100.Location = new System.Drawing.Point(126, 57);
             this.BTNRollD100.Name = "BTNRollD100";
             this.BTNRollD100.Size = new System.Drawing.Size(75, 23);
-            this.BTNRollD100.TabIndex = 296;
+            this.BTNRollD100.TabIndex = 2;
             this.BTNRollD100.Text = "Roll D100";
             this.BTNRollD100.UseVisualStyleBackColor = true;
+            this.BTNRollD100.Click += new System.EventHandler(this.BTNRollD100_Click);
             // 
             // BTNRollD20
             // 
             this.BTNRollD20.Location = new System.Drawing.Point(9, 57);
             this.BTNRollD20.Name = "BTNRollD20";
             this.BTNRollD20.Size = new System.Drawing.Size(75, 23);
-            this.BTNRollD20.TabIndex = 295;
+            this.BTNRollD20.TabIndex = 1;
             this.BTNRollD20.Text = "Roll D20";
             this.BTNRollD20.UseVisualStyleBackColor = true;
+            this.BTNRollD20.Click += new System.EventHandler(this.BTNRollD20_Click);
             // 
             // TableListBox
             // 
@@ -2201,15 +2275,17 @@
             this.TableListBox.Location = new System.Drawing.Point(9, 150);
             this.TableListBox.Name = "TableListBox";
             this.TableListBox.Size = new System.Drawing.Size(213, 21);
-            this.TableListBox.TabIndex = 294;
+            this.TableListBox.TabIndex = 3;
             // 
             // TableOutputTXTarea
             // 
             this.TableOutputTXTarea.Location = new System.Drawing.Point(487, 23);
             this.TableOutputTXTarea.Name = "TableOutputTXTarea";
+            this.TableOutputTXTarea.ReadOnly = true;
             this.TableOutputTXTarea.Size = new System.Drawing.Size(232, 528);
             this.TableOutputTXTarea.TabIndex = 0;
             this.TableOutputTXTarea.Text = "";
+            this.TableOutputTXTarea.TextChanged += new System.EventHandler(this.TableOutputTXTarea_TextChanged);
             // 
             // menuStrip1
             // 
@@ -2268,40 +2344,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // TXTBOXCurrentIngameDate
-            // 
-            this.TXTBOXCurrentIngameDate.Location = new System.Drawing.Point(17, 384);
-            this.TXTBOXCurrentIngameDate.Name = "TXTBOXCurrentIngameDate";
-            this.TXTBOXCurrentIngameDate.Size = new System.Drawing.Size(115, 26);
-            this.TXTBOXCurrentIngameDate.TabIndex = 16;
-            this.TXTBOXCurrentIngameDate.Text = "";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(14, 368);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(105, 13);
-            this.label13.TabIndex = 17;
-            this.label13.Text = "Current Ingame Date";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(14, 323);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(96, 13);
-            this.label14.TabIndex = 19;
-            this.label14.Text = "Date Starting Point";
-            // 
-            // TXTBOXGameStartingDate
-            // 
-            this.TXTBOXGameStartingDate.Location = new System.Drawing.Point(17, 339);
-            this.TXTBOXGameStartingDate.Name = "TXTBOXGameStartingDate";
-            this.TXTBOXGameStartingDate.Size = new System.Drawing.Size(115, 26);
-            this.TXTBOXGameStartingDate.TabIndex = 18;
-            this.TXTBOXGameStartingDate.Text = "";
             // 
             // Form1
             // 
@@ -2425,7 +2467,7 @@
         private System.Windows.Forms.CheckBox chkPfSklAcro;
         private System.Windows.Forms.CheckBox chkPfSklNature;
         private System.Windows.Forms.CheckBox chkPfSklBluf;
-        private System.Windows.Forms.TextBox txtPfSklintimidate;
+        private System.Windows.Forms.TextBox txtPfSklIntimidate;
         private System.Windows.Forms.TextBox txtPfSklDiplomacy;
         private System.Windows.Forms.TextBox txtPfSklPerception;
         private System.Windows.Forms.CheckBox chkPfSklintimidate;
