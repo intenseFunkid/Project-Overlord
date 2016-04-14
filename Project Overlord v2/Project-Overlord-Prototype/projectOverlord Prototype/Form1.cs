@@ -22,45 +22,9 @@ namespace projectOverlord
 
         }
 
-        //STUFF To Test - IAN
-        gameDateList testgDate = new gameDateList();    //Holds info for saving
-        
-        dateList testDate = new dateList();             //Holds info for saving
-        dateList testDate2 = new dateList();            //Holds info for loading
-
-
-        //TEST
-        private void btnTestAssign_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dateEntry newEntry = new dateEntry(Convert.ToInt32(txtGDateID.Text),
-                                                txtGEntry.Text,
-                                                txtSessionEntry.Text,
-                                                Convert.ToInt32(txtGDSID.Text),
-                                                Convert.ToInt32(txtGDEID.Text));
-            testDate.addEntry(newEntry);
-        }
-
-        //TEST
-        private void btnTestRecall_Click(object sender, EventArgs e)
-        {
-            dateEntry retrievedEntry = new dateEntry();
-            retrievedEntry = testDate.retrieveEntry(Convert.ToInt32(txtGDateID.Text));
-
-            txtGDateID.Text = retrievedEntry.dateID.ToString();
-            txtGEntry.Text = retrievedEntry.planEntry;
-            txtSessionEntry.Text = retrievedEntry.sessionEntry;
-            txtGDSID.Text = retrievedEntry.gameDateStartID.ToString();
-            txtGDEID.Text = retrievedEntry.gameDateEndID.ToString();
-        }
-
-        private void btnFirstID_Click(object sender, EventArgs e)
-        {
-            txtGDateID.Text = testDate.getFirst().dateID.ToString();
-        }
-
-        private void txtTestRemove_Click(object sender, EventArgs e)
-        {
-            testDate.removeEntry(Convert.ToInt32(txtGDateID.Text));
+            Close();
         }
 
         private void tabCalendar_Click(object sender, EventArgs e)
@@ -68,114 +32,366 @@ namespace projectOverlord
 
         }
 
-        //Main Campagin Menu Bar Events
-        //
-
-        private void newCampaignToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void loadCampaignToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //
-
-            //Set up Load Dialog Box
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "XML file|*.xml";
-            openFileDialog1.Title = "Select your Character";
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-
-                System.Xml.Serialization.XmlSerializer reader =
-                       new System.Xml.Serialization.XmlSerializer(typeof(serializationWrapper));
-
-                System.IO.StreamReader file = new System.IO.StreamReader
-                    (openFileDialog1.FileName);
-
-                gameDateList testgDate2 = new gameDateList();   //Holds info for loading
-                serializationWrapper myTester = (serializationWrapper)reader.Deserialize(file);
-                file.Close();
-
-                for (int x = 0; x < myTester.gameDateHolder.Count; x++)
-                {
-
-                }
-
-                for (int x = 0; x < myTester.gameDateHolder.Count; x++)
-                {
-                    System.Windows.Forms.MessageBox.Show(myTester.gameDateHolder[x].entry);
-
-                }
-                
-                for (int x = 0; x < myTester.charStatHolder.Count; x++)
-                {
-                    System.Windows.Forms.MessageBox.Show(myTester.charStatHolder[x].name + 
-                        myTester.charStatHolder[x].blockID);
-                }
-            }
-        }
-
-        private void saveCampaignToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnPfSklAcro_Click(object sender, EventArgs e)
         {
             
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklAcro.Text);
+            DiceRoller(check_bonus);
         }
-         
 
-        private void saveCampaignAsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnPfSklAppr_Click(object sender, EventArgs e)
         {
-            //TEST DATA FOR gameDateList Class
-            gameDateEntry BK_GDEntry1 = new gameDateEntry(0, "Test GD Entry 0");
-            gameDateEntry BK_GDEntry2 = new gameDateEntry(1, "Test GD Entry 1");
-            gameDateList BK_GDList1 = new gameDateList();
-            BK_GDList1.addEntry(BK_GDEntry1);
-            BK_GDList1.addEntry(BK_GDEntry2);
-
-            //TEST DATA FOR statBlockPF
-            statBlockPF BK_char1 = new statBlockPF();
-            BK_char1.blockID = 5;
-            BK_char1.name = "This Char Works!";
-            statBlockPF BK_char2 = new statBlockPF();
-            BK_char2.blockID = 12;
-            BK_char2.name = "This Char works too!";
-
-            //Setting up save dialog
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "XML File|*.xml";
-            saveFileDialog1.Title = "Save your Campaign";
-
-            //When ok button is pressed
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog1.OpenFile();
-
-                System.Xml.Serialization.XmlSerializer writer =
-                    new System.Xml.Serialization.XmlSerializer(typeof(serializationWrapper));
-                gameDateEntry index = BK_GDList1.getFirst();
-
-                serializationWrapper myTester = new serializationWrapper();
-
-                while (index.gameDateID < BK_GDList1.getLast().gameDateID)
-                {
-                    myTester.gameDateHolder.Add(index);
-                    index = BK_GDList1.getNext(index.gameDateID);
-                }
-
-                myTester.gameDateHolder.Add(index);
-
-                myTester.charStatHolder.Add(BK_char1);
-                myTester.charStatHolder.Add(BK_char2);
-                writer.Serialize(fs, myTester);
-                fs.Close();
-            }
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklAppr.Text);
+            DiceRoller(check_bonus);
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnPfSklBluf_Click(object sender, EventArgs e)
         {
-            Close();
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklBluf.Text);
+            DiceRoller(check_bonus);
         }
 
-        
+        private void btnPfSklClimb_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklClim.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklCraft_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklCraft.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklDisguise_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklDisguise.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklHandleAnimal_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklHandleAnimal.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklProfession_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklProfession.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklLinguistics_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklLinguistics.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklHeal_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklHeal.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklEscapeArtist_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklEscapeArtist.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklDiplomacy_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklDiplomacy.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklRide_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklRide.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklPerception_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklPerception.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklFly_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklFly.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklDisableDevice_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklDisableDevice.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklPreform_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklPreform.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklIntimidate_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklIntimidate.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklPlanes_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklPlanes.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklSurvival_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklSurvival.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklNobility_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklNobility.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklSleightofHand_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklSleightofHand.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklHistory_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklHistory.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklArcana_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklArcana.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklSwim_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklSwim.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklEngineering_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklEngineering.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklSpellCraft_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklSpellCraft.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklLocal_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklLocal.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklDungeoneering_Click(object sender, EventArgs e)
+        {
+
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklDungeoneering.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklReligion_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklReligion.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklStealth_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklStealth.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklNature_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklNature.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklSenseMotive_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklSenseMotive.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklGeography_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklGeography.Text);
+            DiceRoller(check_bonus);
+        }
+
+        private void btnPfSklUseMagicDevice_Click(object sender, EventArgs e)
+        {
+            // obtain the skillcheck bonus from the box
+            int check_bonus;
+            // convert this to an integer for roll use
+            check_bonus = Convert.ToInt32(this.txtPfSklUseMagicDevice.Text);
+            DiceRoller(check_bonus);
+        }
+
+
+
+
+
+
+        void DiceRoller(int check_bonus)
+        {
+            // set up the random dice roller
+            // C# uses random.Next as its roller, which is truley random each time, regardless of "seeding"
+            Random random = new Random();
+            int DiceRoller = random.Next(1, 20);
+            // add the bonus to the roll
+            DiceRoller = DiceRoller + check_bonus;
+            // output the results to the user through a dialogue box
+            System.Windows.Forms.MessageBox.Show("you rolled " + DiceRoller);
+
+        }
+
+        private void txtPfSklintimidate_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BTNRollD20_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int DiceRoller = random.Next(1, 20);
+            TableOutputTXTarea.AppendText("you rolled a D20: " + DiceRoller + "\r\n");
+        }
+
+        private void BTNRollD100_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int DiceRoller = random.Next(1, 100);
+            TableOutputTXTarea.AppendText("you rolled a D100: " + DiceRoller + "\r\n");
+            
+        }
+
+        private void TableOutputTXTarea_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }
