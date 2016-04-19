@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace projectOverlord
 {
-    struct statBlockPF {
-        int blockID;
+    //Pathfinder statistics payload struct
+    public struct statBlockPF {
+        public int blockID;
+        public string name;
+        public int STR, CON, DEX, INT, WIS, CHA;
+        
+
     }
 
     class charStatList {
-        LinkedList<statBlockPF> list;
+        LinkedList<statBlockPF> charList;
 
         
     }
