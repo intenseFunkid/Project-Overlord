@@ -392,6 +392,92 @@ namespace projectOverlord
 
         }
 
+        private void BTNnewChar_Click(object sender, EventArgs e)
+        {
+            //variable declarations for use in storing character information
+
+            string playername = this.inputPfPName.Text;
+            string charactername = this.inputPfCName.Text;
+            string race_level = this.inputPfRace.Text;
+            int levels= Convert.ToInt32(this.txtPfSklUseMagicDevice.Text);
+            int str = Convert.ToInt32(this.inputPfStr.Text);
+            int dex = Convert.ToInt32(this.inputPfDex.Text);
+            int con = Convert.ToInt32(this.inputPfCon.Text);
+            int intel = Convert.ToInt32(this.inputPfInt.Text);
+            int wis = Convert.ToInt32(this.inputPfWis.Text);
+            int cha = Convert.ToInt32(this.inputPfCha.Text);
+            int ac = Convert.ToInt32(this.inputPfAC.Text);
+            int fort = Convert.ToInt32(this.inputPfFort.Text);
+            int reflex = Convert.ToInt32(this.inputPfRef.Text);
+            int will = Convert.ToInt32(this.inputPfWill.Text);
+            int speed = Convert.ToInt32(this.inputPfSpeed.Text);
+            int reach = Convert.ToInt32(this.inputPfReach.Text);
+            int touchac = Convert.ToInt32(this.inputPfTAC.Text);
+            int flatfooted_ac = Convert.ToInt32(this.inputPfFFAC.Text);
+            int BAB = Convert.ToInt32(this.inputPfBAB.Text);
+            int CMB = Convert.ToInt32(this.inputPfCMB.Text);
+            int CMD = Convert.ToInt32(this.inputPfCMD.Text);
+            int initiative = Convert.ToInt32(this.inputPfInit.Text);
+            int acrobatics = Convert.ToInt32(this.txtPfSklAcro.Text);
+            int appraise = Convert.ToInt32(this.txtPfSklAppr.Text);
+            int bluff = Convert.ToInt32(this.txtPfSklBluf.Text);
+            int climb = Convert.ToInt32(this.txtPfSklClim.Text);
+            int craft = Convert.ToInt32(this.txtPfSklCraft.Text);
+            int diplomacy = Convert.ToInt32(this.txtPfSklDiplomacy.Text);
+            int disabledevice = Convert.ToInt32(this.txtPfSklDisableDevice.Text);
+            int disguise = Convert.ToInt32(this.txtPfSklDisguise.Text);
+            int escapeartist = Convert.ToInt32(this.txtPfSklEscapeArtist.Text);
+            int fly = Convert.ToInt32(this.txtPfSklFly.Text);
+            int handleanimal = Convert.ToInt32(this.txtPfSklHandleAnimal.Text);
+            int heal = Convert.ToInt32(this.txtPfSklHeal.Text);
+            int intimidate = Convert.ToInt32(this.txtPfSklIntimidate.Text);
+            int linguistics = Convert.ToInt32(this.txtPfSklLinguistics.Text);
+            int perception = Convert.ToInt32(this.txtPfSklPerception.Text);
+            int preform = Convert.ToInt32(this.txtPfSklPreform.Text);
+            int profession = Convert.ToInt32(this.txtPfSklProfession.Text);
+            int ride = Convert.ToInt32(this.txtPfSklRide.Text);
+            int sensemotive = Convert.ToInt32(this.txtPfSklSenseMotive.Text);
+            int sleightofhand = Convert.ToInt32(this.txtPfSklSleightofHand.Text);
+            int spellcraft = Convert.ToInt32(this.txtPfSklSpellCraft.Text);
+            int stealth = Convert.ToInt32(this.txtPfSklStealth.Text);
+            int survival = Convert.ToInt32(this.txtPfSklSurvival.Text);
+            int swim = Convert.ToInt32(this.txtPfSklSwim.Text);
+            int usemagicdevice = Convert.ToInt32(this.txtPfSklUseMagicDevice.Text);
+            int arcana = Convert.ToInt32(this.txtPfSklArcana.Text);
+            int dungeoneering = Convert.ToInt32(this.txtPfSklDungeoneering.Text);
+            int engineering = Convert.ToInt32(this.txtPfSklEngineering.Text);
+            int geography = Convert.ToInt32(this.txtPfSklGeography.Text);
+            int history = Convert.ToInt32(this.txtPfSklHistory.Text);
+            int local = Convert.ToInt32(this.txtPfSklLocal.Text);
+            int nature = Convert.ToInt32(this.txtPfSklNature.Text);
+            int nobility = Convert.ToInt32(this.txtPfSklNobility.Text);
+            int planes = Convert.ToInt32(this.txtPfSklPlanes.Text);
+            int religion = Convert.ToInt32(this.txtPfSklReligion.Text);
+
+
+
+
+
+
+
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
        
     }
 }
