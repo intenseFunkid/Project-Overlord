@@ -645,6 +645,7 @@
             this.BTNnewChar.TabIndex = 294;
             this.BTNnewChar.Text = "New Character";
             this.BTNnewChar.UseVisualStyleBackColor = true;
+            this.BTNnewChar.Click += new System.EventHandler(this.BTNnewChar_Click);
             // 
             // LSTBOXCharacters
             // 
@@ -1985,6 +1986,7 @@
             this.btnPfRemoveSpell.TabIndex = 156;
             this.btnPfRemoveSpell.Text = "Remove Spell";
             this.btnPfRemoveSpell.UseVisualStyleBackColor = true;
+            this.btnPfRemoveSpell.Click += new System.EventHandler(this.btnPfRemoveSpell_Click);
             // 
             // btnPfRemoveItem
             // 
@@ -1994,6 +1996,7 @@
             this.btnPfRemoveItem.TabIndex = 158;
             this.btnPfRemoveItem.Text = "Remove Item";
             this.btnPfRemoveItem.UseVisualStyleBackColor = true;
+            this.btnPfRemoveItem.Click += new System.EventHandler(this.btnPfRemoveItem_Click);
             // 
             // btnPfRemoveFeat
             // 
@@ -2003,6 +2006,7 @@
             this.btnPfRemoveFeat.TabIndex = 272;
             this.btnPfRemoveFeat.Text = "Remove Feature";
             this.btnPfRemoveFeat.UseVisualStyleBackColor = true;
+            this.btnPfRemoveFeat.Click += new System.EventHandler(this.btnPfRemoveFeat_Click);
             // 
             // btnPfAddSpell
             // 
@@ -2012,6 +2016,7 @@
             this.btnPfAddSpell.TabIndex = 155;
             this.btnPfAddSpell.Text = "Add Spell";
             this.btnPfAddSpell.UseVisualStyleBackColor = true;
+            this.btnPfAddSpell.Click += new System.EventHandler(this.btnPfAddSpell_Click);
             // 
             // btnPfAddItem
             // 
@@ -2021,6 +2026,7 @@
             this.btnPfAddItem.TabIndex = 9;
             this.btnPfAddItem.Text = "Add Item";
             this.btnPfAddItem.UseVisualStyleBackColor = true;
+            this.btnPfAddItem.Click += new System.EventHandler(this.btnPfAddItem_Click);
             // 
             // btnPfAddFeat
             // 
@@ -2030,6 +2036,7 @@
             this.btnPfAddFeat.TabIndex = 234;
             this.btnPfAddFeat.Text = "Add Feature";
             this.btnPfAddFeat.UseVisualStyleBackColor = true;
+            this.btnPfAddFeat.Click += new System.EventHandler(this.btnPfAddFeat_Click);
             // 
             // inputPfAddSpell
             // 
@@ -2075,6 +2082,7 @@
             this.LSTBOXClassFeatLang.Name = "LSTBOXClassFeatLang";
             this.LSTBOXClassFeatLang.Size = new System.Drawing.Size(120, 82);
             this.LSTBOXClassFeatLang.TabIndex = 147;
+            this.LSTBOXClassFeatLang.SelectedIndexChanged += new System.EventHandler(this.LSTBOXClassFeatLang_SelectedIndexChanged);
             // 
             // tabRand
             // 
@@ -2354,7 +2362,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Project Overlord";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.TABpages.ResumeLayout(false);
             this.tabCalendar.ResumeLayout(false);
