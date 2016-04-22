@@ -8,7 +8,7 @@ namespace projectOverlord {
 
     //Payload struct
     public struct dateEntry {
-        public int dateID;             //yyyymmdd
+        public DateTime dateID;             //yyyymmdd
         public string planEntry;       //Planning notes
         public string sessionEntry;    //Session notes
 
@@ -16,7 +16,7 @@ namespace projectOverlord {
         public int gameDateEndID;  
     
         //Payload Constructor
-        public dateEntry(int id, string pent, string sent, int gstart, int gend) {
+        public dateEntry(DateTime id, string pent, string sent, int gstart, int gend) {
             dateID = id;
             planEntry = pent;
             sessionEntry = sent;
@@ -29,7 +29,11 @@ namespace projectOverlord {
     class dateList {
         private LinkedList<dateEntry> dList = new LinkedList<dateEntry>();
         /*private LinkedList<dateEntry> index;*/
-        private dateEntry error = new dateEntry(-1, "<!>ERROR", "<!>ERROR", -1, -1);
+        private dateEntry error = new dateEntry(new DateTime(), "<!>ERROR", "<!>ERROR", -1, -1);
+
+        public void clearList() {
+            dList.Clear();
+        }
 
         //Get first payload in list
         public dateEntry getFirst() {
@@ -43,7 +47,7 @@ namespace projectOverlord {
         }
 
         //Get payload stored next after specified dateID
-        public dateEntry getNext(int targetID) {
+        public dateEntry getNext(DateTime targetID) {
             LinkedListNode<dateEntry> current = dList.First;
 
             while (current != null) {
@@ -62,7 +66,8 @@ namespace projectOverlord {
         }
 
         //Get payload stored next before specified dateID
-        public dateEntry getPrev(int targetID) {
+        public dateEntry getPrev(DateTime targetID)
+        {
             LinkedListNode<dateEntry> current = dList.First;
 
             while (current != null) {
@@ -121,7 +126,8 @@ namespace projectOverlord {
         }
 
         //Remove payload with specified ID from list
-        public Boolean removeEntry (int targetID) {
+        public Boolean removeEntry(DateTime targetID)
+        {
             LinkedListNode<dateEntry> current = dList.First;
 
             while (current != null) {
@@ -138,7 +144,8 @@ namespace projectOverlord {
         }
 
         //Retrieve payload with specified
-        public dateEntry retrieveEntry(int targetID) {
+        public dateEntry retrieveEntry(DateTime targetID)
+        {
             LinkedListNode<dateEntry> current = dList.First;
             dateEntry target;
 

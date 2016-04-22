@@ -30,6 +30,10 @@ namespace projectOverlord
 
         private tableEntry error = new tableEntry("<!>ERROR", -1);
 
+        public void clearTable() {
+            userTable.Clear();
+        }
+
         //Table constructor
         public randomTable(int newID) {
             tableID = newID;
@@ -142,6 +146,10 @@ namespace projectOverlord
         private randomTable error = new randomTable(-1);
         private randomTable activeTable;
 
+
+        public void clearList() {
+            tableIndex.Clear();
+        }
 
         public randomTable getFirst() {
             activeTable = tableIndex.First.Value;

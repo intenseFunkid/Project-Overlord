@@ -23,6 +23,10 @@ namespace projectOverlord {
         //private LinkedList<gameDateEntry> index;
         private gameDateEntry error = new gameDateEntry(-1, "<!>ERROR");
 
+        public void clearList() {
+            gDateList.Clear();
+        }
+
         //Get first payload in list
         public gameDateEntry getFirst() {
 

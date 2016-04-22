@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace projectOverlord
 {
     //Pathfinder statistics payload struct
-    public struct statBlockPF {
+    public class statBlockPF {
         public int blockID = -1;
         public string playerName = "";
         public string name = "New Character";
@@ -32,6 +32,10 @@ namespace projectOverlord
         public List<string> equipment = new List<string>();
         public List<string> spells = new List<string>();
 
+        public statBlockPF() {
+
+        }
+
         public statBlockPF(int id, string newName, string pName, string race) {
             blockID = id;
             name = newName;
@@ -45,6 +49,10 @@ namespace projectOverlord
         LinkedList<statBlockPF> charList;
 
         private statBlockPF error = new statBlockPF(-1, "<!>ERROR", "<!>ERROR", "<!>ERROR");
+
+        public void clearList () {
+            charList.Clear();
+        }
 
         //Get first payload in list
         public statBlockPF getFirst() {
