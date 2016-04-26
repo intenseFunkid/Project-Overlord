@@ -431,7 +431,7 @@ namespace projectOverlord
 
             statBlockPF temp = new statBlockPF(0, charactername, playername, race_level);
 
-            temp.STR = Convert.ToInt32(this.inputPfStr.Text);
+            /*temp.STR = Convert.ToInt32(this.inputPfStr.Text);
             temp.DEX = Convert.ToInt32(this.inputPfDex.Text);
             temp.CON = Convert.ToInt32(this.inputPfCon.Text);
             temp.INT = Convert.ToInt32(this.inputPfInt.Text);
@@ -462,7 +462,8 @@ namespace projectOverlord
             temp.sklHand = Convert.ToInt32(this.txtPfSklHandleAnimal.Text);
             temp.sklHeal = Convert.ToInt32(this.txtPfSklHeal.Text);
             temp.sklInti = Convert.ToInt32(this.txtPfSklIntimidate.Text);
-            temp.sklLing = Convert.ToInt32(this.txtPfSklLinguistics.Text); temp.sklPerc = Convert.ToInt32(this.txtPfSklPerception.Text);
+            temp.sklLing = Convert.ToInt32(this.txtPfSklLinguistics.Text); 
+            temp.sklPerc = Convert.ToInt32(this.txtPfSklPerception.Text);
             temp.sklPerf = Convert.ToInt32(this.txtPfSklPreform.Text);
             temp.sklProf = Convert.ToInt32(this.txtPfSklProfession.Text);
             temp.sklRide = Convert.ToInt32(this.txtPfSklRide.Text);
@@ -482,8 +483,35 @@ namespace projectOverlord
             temp.knwNatu = Convert.ToInt32(this.txtPfSklNature.Text);
             temp.knwNobi = Convert.ToInt32(this.txtPfSklNobility.Text);
             temp.knwPlan = Convert.ToInt32(this.txtPfSklPlanes.Text);
-            temp.knwReli = Convert.ToInt32(this.txtPfSklReligion.Text);
+            temp.knwReli = Convert.ToInt32(this.txtPfSklReligion.Text);*/
 
+
+            string selected;
+            LSTBOXClassFeatLang.BeginUpdate();
+            //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
+            for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
+            {
+                LSTBOXClassFeatLang.SetSelected(i, true);
+
+                selected = LSTBOXClassFeatLang.SelectedItem.ToString();
+
+                temp.classFeat.Add(LSTBOXClassFeatLang.SelectedItem.ToString());
+
+                System.Windows.Forms.MessageBox.Show(selected);
+
+                //LSTBOXClassFeatLang.Items.Remove(selected);
+  
+
+            }
+            LSTBOXClassFeatLang.EndUpdate();
+
+            
+
+
+
+
+
+            // return the class to the save buttons call
             return temp;
         }
 
@@ -546,6 +574,14 @@ namespace projectOverlord
             string selected = TXTBOXknownSpells.SelectedItem.ToString();
 
             TXTBOXknownSpells.Items.Remove(selected);
+        }
+
+        private void BTNSaveChar_Click(object sender, EventArgs e)
+        {
+            
+
+            Save_Character();
+           
         }
 
         

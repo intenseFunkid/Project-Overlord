@@ -50,6 +50,7 @@
             this.TXTIngameNotes = new System.Windows.Forms.RichTextBox();
             this.Calender = new System.Windows.Forms.MonthCalendar();
             this.tabStat = new System.Windows.Forms.TabPage();
+            this.BTNSaveChar = new System.Windows.Forms.Button();
             this.BTNDeleteChar = new System.Windows.Forms.Button();
             this.BTNnewChar = new System.Windows.Forms.Button();
             this.LSTBOXCharacters = new System.Windows.Forms.ComboBox();
@@ -247,6 +248,8 @@
             this.saveCampaignAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.TABpages.SuspendLayout();
             this.tabCalendar.SuspendLayout();
             this.tabStat.SuspendLayout();
@@ -452,6 +455,7 @@
             // 
             // tabStat
             // 
+            this.tabStat.Controls.Add(this.BTNSaveChar);
             this.tabStat.Controls.Add(this.BTNDeleteChar);
             this.tabStat.Controls.Add(this.BTNnewChar);
             this.tabStat.Controls.Add(this.LSTBOXCharacters);
@@ -628,9 +632,19 @@
             this.tabStat.Text = "Character Statistics";
             this.tabStat.UseVisualStyleBackColor = true;
             // 
+            // BTNSaveChar
+            // 
+            this.BTNSaveChar.Location = new System.Drawing.Point(259, 14);
+            this.BTNSaveChar.Name = "BTNSaveChar";
+            this.BTNSaveChar.Size = new System.Drawing.Size(130, 23);
+            this.BTNSaveChar.TabIndex = 295;
+            this.BTNSaveChar.Text = "Save Character";
+            this.BTNSaveChar.UseVisualStyleBackColor = true;
+            this.BTNSaveChar.Click += new System.EventHandler(this.BTNSaveChar_Click);
+            // 
             // BTNDeleteChar
             // 
-            this.BTNDeleteChar.Location = new System.Drawing.Point(371, 15);
+            this.BTNDeleteChar.Location = new System.Drawing.Point(585, 14);
             this.BTNDeleteChar.Name = "BTNDeleteChar";
             this.BTNDeleteChar.Size = new System.Drawing.Size(130, 23);
             this.BTNDeleteChar.TabIndex = 294;
@@ -639,7 +653,7 @@
             // 
             // BTNnewChar
             // 
-            this.BTNnewChar.Location = new System.Drawing.Point(235, 15);
+            this.BTNnewChar.Location = new System.Drawing.Point(422, 14);
             this.BTNnewChar.Name = "BTNnewChar";
             this.BTNnewChar.Size = new System.Drawing.Size(130, 23);
             this.BTNnewChar.TabIndex = 294;
@@ -2086,6 +2100,8 @@
             // 
             // tabRand
             // 
+            this.tabRand.Controls.Add(this.label16);
+            this.tabRand.Controls.Add(this.label15);
             this.tabRand.Controls.Add(this.BTNRollCustomTable);
             this.tabRand.Controls.Add(this.TXTTableEntries);
             this.tabRand.Controls.Add(this.label12);
@@ -2126,10 +2142,10 @@
             // TXTTableEntries
             // 
             this.TXTTableEntries.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.TXTTableEntries.Location = new System.Drawing.Point(238, 23);
+            this.TXTTableEntries.Location = new System.Drawing.Point(238, 46);
             this.TXTTableEntries.Name = "TXTTableEntries";
             this.TXTTableEntries.ReadOnly = true;
-            this.TXTTableEntries.Size = new System.Drawing.Size(243, 528);
+            this.TXTTableEntries.Size = new System.Drawing.Size(243, 494);
             this.TXTTableEntries.TabIndex = 332;
             this.TXTTableEntries.Text = "";
             // 
@@ -2167,7 +2183,7 @@
             // 
             // BTNRemoveEntry
             // 
-            this.BTNRemoveEntry.Location = new System.Drawing.Point(126, 376);
+            this.BTNRemoveEntry.Location = new System.Drawing.Point(126, 515);
             this.BTNRemoveEntry.Name = "BTNRemoveEntry";
             this.BTNRemoveEntry.Size = new System.Drawing.Size(96, 25);
             this.BTNRemoveEntry.TabIndex = 7;
@@ -2176,7 +2192,7 @@
             // 
             // BTNNewEntry
             // 
-            this.BTNNewEntry.Location = new System.Drawing.Point(9, 376);
+            this.BTNNewEntry.Location = new System.Drawing.Point(17, 515);
             this.BTNNewEntry.Name = "BTNNewEntry";
             this.BTNNewEntry.Size = new System.Drawing.Size(72, 25);
             this.BTNNewEntry.TabIndex = 6;
@@ -2220,7 +2236,7 @@
             // 
             // BTNDeleteSelectedTable
             // 
-            this.BTNDeleteSelectedTable.Location = new System.Drawing.Point(126, 516);
+            this.BTNDeleteSelectedTable.Location = new System.Drawing.Point(126, 366);
             this.BTNDeleteSelectedTable.Name = "BTNDeleteSelectedTable";
             this.BTNDeleteSelectedTable.Size = new System.Drawing.Size(96, 35);
             this.BTNDeleteSelectedTable.TabIndex = 12;
@@ -2229,7 +2245,7 @@
             // 
             // BTNSaveTable
             // 
-            this.BTNSaveTable.Location = new System.Drawing.Point(9, 516);
+            this.BTNSaveTable.Location = new System.Drawing.Point(12, 366);
             this.BTNSaveTable.Name = "BTNSaveTable";
             this.BTNSaveTable.Size = new System.Drawing.Size(72, 35);
             this.BTNSaveTable.TabIndex = 11;
@@ -2287,10 +2303,10 @@
             // 
             // TableOutputTXTarea
             // 
-            this.TableOutputTXTarea.Location = new System.Drawing.Point(487, 23);
+            this.TableOutputTXTarea.Location = new System.Drawing.Point(487, 46);
             this.TableOutputTXTarea.Name = "TableOutputTXTarea";
             this.TableOutputTXTarea.ReadOnly = true;
-            this.TableOutputTXTarea.Size = new System.Drawing.Size(232, 528);
+            this.TableOutputTXTarea.Size = new System.Drawing.Size(232, 494);
             this.TableOutputTXTarea.TabIndex = 0;
             this.TableOutputTXTarea.Text = "";
             this.TableOutputTXTarea.TextChanged += new System.EventHandler(this.TableOutputTXTarea_TextChanged);
@@ -2352,6 +2368,28 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(234, 17);
+            this.label15.Name = "label15";
+            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label15.Size = new System.Drawing.Size(133, 20);
+            this.label15.TabIndex = 333;
+            this.label15.Text = "Table Information";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(483, 17);
+            this.label16.Name = "label16";
+            this.label16.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label16.Size = new System.Drawing.Size(94, 20);
+            this.label16.TabIndex = 334;
+            this.label16.Text = "Roll Results";
             // 
             // Form1
             // 
@@ -2598,6 +2636,9 @@
         private System.Windows.Forms.RichTextBox TXTBOXGameStartingDate;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.RichTextBox TXTBOXCurrentIngameDate;
+        private System.Windows.Forms.Button BTNSaveChar;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
 
     }
 }
