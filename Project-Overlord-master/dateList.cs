@@ -29,7 +29,7 @@ namespace projectOverlord {
     class dateList {
         private LinkedList<dateEntry> dList = new LinkedList<dateEntry>();
         /*private LinkedList<dateEntry> index;*/
-        private dateEntry error = new dateEntry(new DateTime(), "<!>ERROR", "<!>ERROR", -1, -1);
+        private dateEntry error = new dateEntry(new DateTime(1800, 1, 1), "<!>ERROR", "<!>ERROR", -1, -1);
 
         public void clearList() {
             dList.Clear();
@@ -96,6 +96,10 @@ namespace projectOverlord {
 
         }
         
+        public int getCount() {
+            return dList.Count;
+        }
+
         //Add specified payload to list
         public Boolean addEntry (dateEntry newDate) {
 

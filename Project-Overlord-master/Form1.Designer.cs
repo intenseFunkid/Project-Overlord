@@ -31,24 +31,28 @@
             this.components = new System.ComponentModel.Container();
             this.TABpages = new System.Windows.Forms.TabControl();
             this.tabCalendar = new System.Windows.Forms.TabPage();
-            this.label14 = new System.Windows.Forms.Label();
-            this.TXTBOXGameStartingDate = new System.Windows.Forms.RichTextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.TXTBOXCurrentIngameDate = new System.Windows.Forms.RichTextBox();
-            this.BTNDeleteSession = new System.Windows.Forms.Button();
-            this.BTNPrevious = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.BTNsessionPrev = new System.Windows.Forms.Button();
+            this.BTNsessionNext = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.TXTSpecificDate = new System.Windows.Forms.TextBox();
+            this.numgameDateSessionEnd = new System.Windows.Forms.NumericUpDown();
+            this.NUMgameDatesessionStart = new System.Windows.Forms.NumericUpDown();
+            this.TXTgameDateTotal = new System.Windows.Forms.TextBox();
+            this.NUMgameDate = new System.Windows.Forms.NumericUpDown();
+            this.TXTnotesGameDate = new System.Windows.Forms.RichTextBox();
+            this.DTdateSelector = new System.Windows.Forms.DateTimePicker();
+            this.label13 = new System.Windows.Forms.Label();
+            this.BTNDeleteSession = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.BTNNextMonth = new System.Windows.Forms.Button();
-            this.TXTSessionNotes = new System.Windows.Forms.RichTextBox();
+            this.TXTnotesPlanning = new System.Windows.Forms.RichTextBox();
             this.BTNNextWeek_Ingame = new System.Windows.Forms.Button();
             this.BTNNextDay_Ingame = new System.Windows.Forms.Button();
-            this.TXTIngameNotes = new System.Windows.Forms.RichTextBox();
-            this.Calender = new System.Windows.Forms.MonthCalendar();
+            this.TXTnotesSession = new System.Windows.Forms.RichTextBox();
+            this.Calendar = new System.Windows.Forms.MonthCalendar();
             this.tabStat = new System.Windows.Forms.TabPage();
             this.BTNDeleteChar = new System.Windows.Forms.Button();
             this.BTNnewChar = new System.Windows.Forms.Button();
@@ -262,8 +266,13 @@
             this.saveCampaignAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.BTNsessionFirst = new System.Windows.Forms.Button();
+            this.BTNsessionLast = new System.Windows.Forms.Button();
             this.TABpages.SuspendLayout();
             this.tabCalendar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numgameDateSessionEnd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUMgameDatesessionStart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUMgameDate)).BeginInit();
             this.tabStat.SuspendLayout();
             this.tabRand.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -284,24 +293,30 @@
             // 
             // tabCalendar
             // 
-            this.tabCalendar.Controls.Add(this.label14);
-            this.tabCalendar.Controls.Add(this.TXTBOXGameStartingDate);
-            this.tabCalendar.Controls.Add(this.label13);
-            this.tabCalendar.Controls.Add(this.TXTBOXCurrentIngameDate);
-            this.tabCalendar.Controls.Add(this.BTNDeleteSession);
-            this.tabCalendar.Controls.Add(this.BTNPrevious);
-            this.tabCalendar.Controls.Add(this.label7);
-            this.tabCalendar.Controls.Add(this.label6);
+            this.tabCalendar.Controls.Add(this.BTNsessionLast);
+            this.tabCalendar.Controls.Add(this.BTNsessionFirst);
+            this.tabCalendar.Controls.Add(this.BTNsessionPrev);
+            this.tabCalendar.Controls.Add(this.BTNsessionNext);
             this.tabCalendar.Controls.Add(this.label5);
             this.tabCalendar.Controls.Add(this.label4);
             this.tabCalendar.Controls.Add(this.label3);
-            this.tabCalendar.Controls.Add(this.TXTSpecificDate);
+            this.tabCalendar.Controls.Add(this.numgameDateSessionEnd);
+            this.tabCalendar.Controls.Add(this.NUMgameDatesessionStart);
+            this.tabCalendar.Controls.Add(this.TXTgameDateTotal);
+            this.tabCalendar.Controls.Add(this.NUMgameDate);
+            this.tabCalendar.Controls.Add(this.TXTnotesGameDate);
+            this.tabCalendar.Controls.Add(this.DTdateSelector);
+            this.tabCalendar.Controls.Add(this.label13);
+            this.tabCalendar.Controls.Add(this.BTNDeleteSession);
+            this.tabCalendar.Controls.Add(this.label20);
+            this.tabCalendar.Controls.Add(this.label7);
+            this.tabCalendar.Controls.Add(this.label6);
             this.tabCalendar.Controls.Add(this.BTNNextMonth);
-            this.tabCalendar.Controls.Add(this.TXTSessionNotes);
+            this.tabCalendar.Controls.Add(this.TXTnotesPlanning);
             this.tabCalendar.Controls.Add(this.BTNNextWeek_Ingame);
             this.tabCalendar.Controls.Add(this.BTNNextDay_Ingame);
-            this.tabCalendar.Controls.Add(this.TXTIngameNotes);
-            this.tabCalendar.Controls.Add(this.Calender);
+            this.tabCalendar.Controls.Add(this.TXTnotesSession);
+            this.tabCalendar.Controls.Add(this.Calendar);
             this.tabCalendar.Location = new System.Drawing.Point(4, 22);
             this.tabCalendar.Name = "tabCalendar";
             this.tabCalendar.Size = new System.Drawing.Size(725, 557);
@@ -310,162 +325,250 @@
             this.tabCalendar.UseVisualStyleBackColor = true;
             this.tabCalendar.Click += new System.EventHandler(this.tabCalendar_Click);
             // 
-            // label14
+            // BTNsessionPrev
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(14, 323);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(96, 13);
-            this.label14.TabIndex = 19;
-            this.label14.Text = "Date Starting Point";
+            this.BTNsessionPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTNsessionPrev.Location = new System.Drawing.Point(43, 9);
+            this.BTNsessionPrev.Name = "BTNsessionPrev";
+            this.BTNsessionPrev.Size = new System.Drawing.Size(22, 191);
+            this.BTNsessionPrev.TabIndex = 26;
+            this.BTNsessionPrev.Text = "<";
+            this.BTNsessionPrev.UseVisualStyleBackColor = true;
+            this.BTNsessionPrev.Click += new System.EventHandler(this.BTNsessionPrev_Click);
             // 
-            // TXTBOXGameStartingDate
+            // BTNsessionNext
             // 
-            this.TXTBOXGameStartingDate.Location = new System.Drawing.Point(17, 339);
-            this.TXTBOXGameStartingDate.Name = "TXTBOXGameStartingDate";
-            this.TXTBOXGameStartingDate.Size = new System.Drawing.Size(115, 26);
-            this.TXTBOXGameStartingDate.TabIndex = 18;
-            this.TXTBOXGameStartingDate.Text = "";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(14, 368);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(105, 13);
-            this.label13.TabIndex = 17;
-            this.label13.Text = "Current Ingame Date";
-            // 
-            // TXTBOXCurrentIngameDate
-            // 
-            this.TXTBOXCurrentIngameDate.Location = new System.Drawing.Point(17, 384);
-            this.TXTBOXCurrentIngameDate.Name = "TXTBOXCurrentIngameDate";
-            this.TXTBOXCurrentIngameDate.Size = new System.Drawing.Size(115, 26);
-            this.TXTBOXCurrentIngameDate.TabIndex = 16;
-            this.TXTBOXCurrentIngameDate.Text = "";
-            // 
-            // BTNDeleteSession
-            // 
-            this.BTNDeleteSession.Location = new System.Drawing.Point(505, 92);
-            this.BTNDeleteSession.Name = "BTNDeleteSession";
-            this.BTNDeleteSession.Size = new System.Drawing.Size(118, 25);
-            this.BTNDeleteSession.TabIndex = 15;
-            this.BTNDeleteSession.Text = "Delete Session";
-            this.BTNDeleteSession.UseVisualStyleBackColor = true;
-            // 
-            // BTNPrevious
-            // 
-            this.BTNPrevious.Location = new System.Drawing.Point(17, 528);
-            this.BTNPrevious.Name = "BTNPrevious";
-            this.BTNPrevious.Size = new System.Drawing.Size(144, 25);
-            this.BTNPrevious.TabIndex = 14;
-            this.BTNPrevious.Text = "Previous";
-            this.BTNPrevious.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(261, 167);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 13);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Session Notes";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(259, 295);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Ingame Notes";
+            this.BTNsessionNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTNsessionNext.Location = new System.Drawing.Point(304, 9);
+            this.BTNsessionNext.Name = "BTNsessionNext";
+            this.BTNsessionNext.Size = new System.Drawing.Size(22, 191);
+            this.BTNsessionNext.TabIndex = 26;
+            this.BTNsessionNext.Text = ">";
+            this.BTNsessionNext.UseVisualStyleBackColor = true;
+            this.BTNsessionNext.Click += new System.EventHandler(this.BTNsessionNext_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(5, 290);
+            this.label5.Location = new System.Drawing.Point(490, 106);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 20);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Ingame Controls";
+            this.label5.Size = new System.Drawing.Size(137, 13);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Last Day in Current Session";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(501, 11);
+            this.label4.Location = new System.Drawing.Point(491, 75);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(129, 20);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Session Controls";
+            this.label4.Size = new System.Drawing.Size(136, 13);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "First Day in Current Session";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(509, 50);
+            this.label3.Location = new System.Drawing.Point(488, 46);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Specific Date";
+            this.label3.Size = new System.Drawing.Size(139, 13);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Total Days Passed In-Game";
             // 
-            // TXTSpecificDate
+            // numgameDateSessionEnd
             // 
-            this.TXTSpecificDate.Location = new System.Drawing.Point(512, 66);
-            this.TXTSpecificDate.Name = "TXTSpecificDate";
-            this.TXTSpecificDate.Size = new System.Drawing.Size(100, 20);
-            this.TXTSpecificDate.TabIndex = 8;
-            this.TXTSpecificDate.Text = "d/m/y";
+            this.numgameDateSessionEnd.Location = new System.Drawing.Point(633, 104);
+            this.numgameDateSessionEnd.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.numgameDateSessionEnd.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numgameDateSessionEnd.Name = "numgameDateSessionEnd";
+            this.numgameDateSessionEnd.Size = new System.Drawing.Size(75, 20);
+            this.numgameDateSessionEnd.TabIndex = 24;
+            this.numgameDateSessionEnd.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // NUMgameDatesessionStart
+            // 
+            this.NUMgameDatesessionStart.Location = new System.Drawing.Point(633, 73);
+            this.NUMgameDatesessionStart.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.NUMgameDatesessionStart.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUMgameDatesessionStart.Name = "NUMgameDatesessionStart";
+            this.NUMgameDatesessionStart.Size = new System.Drawing.Size(75, 20);
+            this.NUMgameDatesessionStart.TabIndex = 24;
+            this.NUMgameDatesessionStart.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // TXTgameDateTotal
+            // 
+            this.TXTgameDateTotal.Enabled = false;
+            this.TXTgameDateTotal.Location = new System.Drawing.Point(633, 43);
+            this.TXTgameDateTotal.Name = "TXTgameDateTotal";
+            this.TXTgameDateTotal.Size = new System.Drawing.Size(75, 20);
+            this.TXTgameDateTotal.TabIndex = 23;
+            // 
+            // NUMgameDate
+            // 
+            this.NUMgameDate.Location = new System.Drawing.Point(383, 44);
+            this.NUMgameDate.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.NUMgameDate.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUMgameDate.Name = "NUMgameDate";
+            this.NUMgameDate.Size = new System.Drawing.Size(102, 20);
+            this.NUMgameDate.TabIndex = 22;
+            this.NUMgameDate.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUMgameDate.ValueChanged += new System.EventHandler(this.NUMgameDate_ValueChanged);
+            // 
+            // TXTnotesGameDate
+            // 
+            this.TXTnotesGameDate.Location = new System.Drawing.Point(488, 219);
+            this.TXTnotesGameDate.Name = "TXTnotesGameDate";
+            this.TXTnotesGameDate.Size = new System.Drawing.Size(220, 324);
+            this.TXTnotesGameDate.TabIndex = 3;
+            this.TXTnotesGameDate.Text = "";
+            this.TXTnotesGameDate.Leave += new System.EventHandler(this.TXTnotesGameDate_Leave);
+            // 
+            // DTdateSelector
+            // 
+            this.DTdateSelector.Location = new System.Drawing.Point(71, 180);
+            this.DTdateSelector.Name = "DTdateSelector";
+            this.DTdateSelector.Size = new System.Drawing.Size(227, 20);
+            this.DTdateSelector.TabIndex = 20;
+            this.DTdateSelector.ValueChanged += new System.EventHandler(this.DTdateSelector_ValueChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(380, 28);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(110, 13);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "Current In-Game Date";
+            // 
+            // BTNDeleteSession
+            // 
+            this.BTNDeleteSession.Location = new System.Drawing.Point(488, 180);
+            this.BTNDeleteSession.Name = "BTNDeleteSession";
+            this.BTNDeleteSession.Size = new System.Drawing.Size(220, 20);
+            this.BTNDeleteSession.TabIndex = 15;
+            this.BTNDeleteSession.Text = "Delete Current Session";
+            this.BTNDeleteSession.UseVisualStyleBackColor = true;
+            this.BTNDeleteSession.Click += new System.EventHandler(this.BTNDeleteSession_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(485, 203);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(152, 13);
+            this.label20.TabIndex = 13;
+            this.label20.Text = "Notes for Current In-Game Day";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(14, 203);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(171, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Planning Notes for Current Session";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(250, 203);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Session Notes";
             // 
             // BTNNextMonth
             // 
-            this.BTNNextMonth.Location = new System.Drawing.Point(17, 497);
+            this.BTNNextMonth.Location = new System.Drawing.Point(383, 131);
             this.BTNNextMonth.Name = "BTNNextMonth";
-            this.BTNNextMonth.Size = new System.Drawing.Size(144, 25);
+            this.BTNNextMonth.Size = new System.Drawing.Size(102, 25);
             this.BTNNextMonth.TabIndex = 7;
-            this.BTNNextMonth.Text = "Next Month";
+            this.BTNNextMonth.Text = "Advance 30 Days";
             this.BTNNextMonth.UseVisualStyleBackColor = true;
+            this.BTNNextMonth.Click += new System.EventHandler(this.BTNNextMonth_Click);
             // 
-            // TXTSessionNotes
+            // TXTnotesPlanning
             // 
-            this.TXTSessionNotes.Location = new System.Drawing.Point(262, 183);
-            this.TXTSessionNotes.Name = "TXTSessionNotes";
-            this.TXTSessionNotes.Size = new System.Drawing.Size(454, 110);
-            this.TXTSessionNotes.TabIndex = 5;
-            this.TXTSessionNotes.Text = "";
+            this.TXTnotesPlanning.Location = new System.Drawing.Point(17, 219);
+            this.TXTnotesPlanning.Name = "TXTnotesPlanning";
+            this.TXTnotesPlanning.Size = new System.Drawing.Size(220, 324);
+            this.TXTnotesPlanning.TabIndex = 1;
+            this.TXTnotesPlanning.Text = "";
+            this.TXTnotesPlanning.TextChanged += new System.EventHandler(this.TXTnotesPlanning_TextChanged);
+            this.TXTnotesPlanning.Leave += new System.EventHandler(this.TXTnotesPlanning_Leave);
             // 
             // BTNNextWeek_Ingame
             // 
-            this.BTNNextWeek_Ingame.Location = new System.Drawing.Point(17, 466);
+            this.BTNNextWeek_Ingame.Location = new System.Drawing.Point(383, 100);
             this.BTNNextWeek_Ingame.Name = "BTNNextWeek_Ingame";
-            this.BTNNextWeek_Ingame.Size = new System.Drawing.Size(144, 25);
+            this.BTNNextWeek_Ingame.Size = new System.Drawing.Size(102, 25);
             this.BTNNextWeek_Ingame.TabIndex = 3;
-            this.BTNNextWeek_Ingame.Text = "Next Week";
+            this.BTNNextWeek_Ingame.Text = "Advance 7 Days";
             this.BTNNextWeek_Ingame.UseVisualStyleBackColor = true;
+            this.BTNNextWeek_Ingame.Click += new System.EventHandler(this.BTNNextWeek_Ingame_Click);
             // 
             // BTNNextDay_Ingame
             // 
-            this.BTNNextDay_Ingame.Location = new System.Drawing.Point(17, 435);
+            this.BTNNextDay_Ingame.Location = new System.Drawing.Point(383, 69);
             this.BTNNextDay_Ingame.Name = "BTNNextDay_Ingame";
-            this.BTNNextDay_Ingame.Size = new System.Drawing.Size(144, 25);
+            this.BTNNextDay_Ingame.Size = new System.Drawing.Size(102, 25);
             this.BTNNextDay_Ingame.TabIndex = 2;
-            this.BTNNextDay_Ingame.Text = "Next Day";
+            this.BTNNextDay_Ingame.Text = "Advance 1 Day";
             this.BTNNextDay_Ingame.UseVisualStyleBackColor = true;
+            this.BTNNextDay_Ingame.Click += new System.EventHandler(this.BTNNextDay_Ingame_Click);
             // 
-            // TXTIngameNotes
+            // TXTnotesSession
             // 
-            this.TXTIngameNotes.Location = new System.Drawing.Point(264, 316);
-            this.TXTIngameNotes.Name = "TXTIngameNotes";
-            this.TXTIngameNotes.Size = new System.Drawing.Size(454, 98);
-            this.TXTIngameNotes.TabIndex = 1;
-            this.TXTIngameNotes.Text = "";
+            this.TXTnotesSession.Location = new System.Drawing.Point(253, 219);
+            this.TXTnotesSession.Name = "TXTnotesSession";
+            this.TXTnotesSession.Size = new System.Drawing.Size(220, 324);
+            this.TXTnotesSession.TabIndex = 2;
+            this.TXTnotesSession.Text = "";
+            this.TXTnotesSession.TextChanged += new System.EventHandler(this.TXTnotesSession_TextChanged);
+            this.TXTnotesSession.Leave += new System.EventHandler(this.TXTnotesSession_Leave);
             // 
-            // Calender
+            // Calendar
             // 
-            this.Calender.Location = new System.Drawing.Point(17, 9);
-            this.Calender.Name = "Calender";
-            this.Calender.TabIndex = 0;
-            this.Calender.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.Calender_DateChanged);
+            this.Calendar.Location = new System.Drawing.Point(71, 9);
+            this.Calendar.MaxSelectionCount = 1;
+            this.Calendar.Name = "Calendar";
+            this.Calendar.TabIndex = 0;
+            this.Calendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.Calendar_DateChanged);
             // 
             // tabStat
             // 
@@ -2464,6 +2567,28 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // BTNsessionFirst
+            // 
+            this.BTNsessionFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTNsessionFirst.Location = new System.Drawing.Point(16, 9);
+            this.BTNsessionFirst.Name = "BTNsessionFirst";
+            this.BTNsessionFirst.Size = new System.Drawing.Size(21, 191);
+            this.BTNsessionFirst.TabIndex = 27;
+            this.BTNsessionFirst.Text = "<";
+            this.BTNsessionFirst.UseVisualStyleBackColor = true;
+            this.BTNsessionFirst.Click += new System.EventHandler(this.BTNsessionFirst_Click);
+            // 
+            // BTNsessionLast
+            // 
+            this.BTNsessionLast.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTNsessionLast.Location = new System.Drawing.Point(332, 9);
+            this.BTNsessionLast.Name = "BTNsessionLast";
+            this.BTNsessionLast.Size = new System.Drawing.Size(21, 191);
+            this.BTNsessionLast.TabIndex = 27;
+            this.BTNsessionLast.Text = ">";
+            this.BTNsessionLast.UseVisualStyleBackColor = true;
+            this.BTNsessionLast.Click += new System.EventHandler(this.BTNsessionLast_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2478,6 +2603,9 @@
             this.TABpages.ResumeLayout(false);
             this.tabCalendar.ResumeLayout(false);
             this.tabCalendar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numgameDateSessionEnd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUMgameDatesessionStart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUMgameDate)).EndInit();
             this.tabStat.ResumeLayout(false);
             this.tabStat.PerformLayout();
             this.tabRand.ResumeLayout(false);
@@ -2674,15 +2802,11 @@
         private System.Windows.Forms.Button btnPfSklUseMagicDevice;
         private System.Windows.Forms.Button BTNNextWeek_Ingame;
         private System.Windows.Forms.Button BTNNextDay_Ingame;
-        private System.Windows.Forms.RichTextBox TXTIngameNotes;
-        private System.Windows.Forms.MonthCalendar Calender;
+        private System.Windows.Forms.RichTextBox TXTnotesSession;
+        private System.Windows.Forms.MonthCalendar Calendar;
         private System.Windows.Forms.Button BTNNextMonth;
-        private System.Windows.Forms.RichTextBox TXTSessionNotes;
-        private System.Windows.Forms.TextBox TXTSpecificDate;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox TXTnotesPlanning;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox TableListBox;
@@ -2705,12 +2829,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox TXTWeight;
         private System.Windows.Forms.TextBox TXTDescription;
-        private System.Windows.Forms.Button BTNPrevious;
         private System.Windows.Forms.Button BTNDeleteSession;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.RichTextBox TXTBOXGameStartingDate;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.RichTextBox TXTBOXCurrentIngameDate;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TextBox txtGDEID;
         private System.Windows.Forms.Label label15;
@@ -2726,6 +2845,21 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtGDateID;
         private System.Windows.Forms.Button btnTestAssign;
+        private System.Windows.Forms.DateTimePicker DTdateSelector;
+        private System.Windows.Forms.RichTextBox TXTnotesGameDate;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.NumericUpDown NUMgameDate;
+        private System.Windows.Forms.NumericUpDown numgameDateSessionEnd;
+        private System.Windows.Forms.NumericUpDown NUMgameDatesessionStart;
+        private System.Windows.Forms.TextBox TXTgameDateTotal;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button BTNsessionPrev;
+        private System.Windows.Forms.Button BTNsessionNext;
+        private System.Windows.Forms.Button BTNsessionLast;
+        private System.Windows.Forms.Button BTNsessionFirst;
     }
 }
 
