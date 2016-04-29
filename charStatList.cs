@@ -32,6 +32,10 @@ namespace projectOverlord
         public List<string> equipment = new List<string>();
         public List<string> spells = new List<string>();
 
+        public statBlockPF() {
+
+        }
+
         public statBlockPF(int id, string newName, string pName, string race) {
             blockID = id;
             name = newName;
@@ -42,9 +46,13 @@ namespace projectOverlord
     }
 
     class charStatList {
-        LinkedList<statBlockPF> charList;
+        LinkedList<statBlockPF> charList = new LinkedList<statBlockPF>();
 
         private statBlockPF error = new statBlockPF(-1, "<!>ERROR", "<!>ERROR", "<!>ERROR");
+
+        public void clearList () {
+            charList.Clear();
+        }
 
         //Get first payload in list
         public statBlockPF getFirst() {

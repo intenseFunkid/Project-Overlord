@@ -220,6 +220,8 @@
             this.inputPfAddFeat = new System.Windows.Forms.TextBox();
             this.LSTBOXClassFeatLang = new System.Windows.Forms.ListBox();
             this.tabRand = new System.Windows.Forms.TabPage();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.BTNRollCustomTable = new System.Windows.Forms.Button();
             this.TXTTableEntries = new System.Windows.Forms.RichTextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -248,8 +250,6 @@
             this.saveCampaignAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.TABpages.SuspendLayout();
             this.tabCalendar.SuspendLayout();
             this.tabStat.SuspendLayout();
@@ -650,6 +650,7 @@
             this.BTNDeleteChar.TabIndex = 294;
             this.BTNDeleteChar.Text = "Delete Character";
             this.BTNDeleteChar.UseVisualStyleBackColor = true;
+            this.BTNDeleteChar.Click += new System.EventHandler(this.BTNDeleteChar_Click);
             // 
             // BTNnewChar
             // 
@@ -668,6 +669,7 @@
             this.LSTBOXCharacters.Name = "LSTBOXCharacters";
             this.LSTBOXCharacters.Size = new System.Drawing.Size(213, 21);
             this.LSTBOXCharacters.TabIndex = 1;
+            this.LSTBOXCharacters.SelectedIndexChanged += new System.EventHandler(this.LSTBOXCharacters_SelectedIndexChanged);
             // 
             // maskedTextBox1
             // 
@@ -1878,7 +1880,6 @@
             this.txtPfSklIntimidate.Name = "txtPfSklIntimidate";
             this.txtPfSklIntimidate.Size = new System.Drawing.Size(40, 20);
             this.txtPfSklIntimidate.TabIndex = 38;
-            this.txtPfSklIntimidate.TextChanged += new System.EventHandler(this.txtPfSklintimidate_TextChanged);
             // 
             // txtPfSklDiplomacy
             // 
@@ -2096,7 +2097,7 @@
             this.LSTBOXClassFeatLang.Name = "LSTBOXClassFeatLang";
             this.LSTBOXClassFeatLang.Size = new System.Drawing.Size(120, 82);
             this.LSTBOXClassFeatLang.TabIndex = 147;
-            this.LSTBOXClassFeatLang.SelectedIndexChanged += new System.EventHandler(this.LSTBOXClassFeatLang_SelectedIndexChanged);
+           
             // 
             // tabRand
             // 
@@ -2130,6 +2131,28 @@
             this.tabRand.Text = "Random Tables";
             this.tabRand.UseVisualStyleBackColor = true;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(483, 17);
+            this.label16.Name = "label16";
+            this.label16.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label16.Size = new System.Drawing.Size(94, 20);
+            this.label16.TabIndex = 334;
+            this.label16.Text = "Roll Results";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(234, 17);
+            this.label15.Name = "label15";
+            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label15.Size = new System.Drawing.Size(133, 20);
+            this.label15.TabIndex = 333;
+            this.label15.Text = "Table Information";
+            // 
             // BTNRollCustomTable
             // 
             this.BTNRollCustomTable.Location = new System.Drawing.Point(9, 186);
@@ -2138,6 +2161,7 @@
             this.BTNRollCustomTable.TabIndex = 4;
             this.BTNRollCustomTable.Text = "Roll Custom Table";
             this.BTNRollCustomTable.UseVisualStyleBackColor = true;
+            this.BTNRollCustomTable.Click += new System.EventHandler(this.BTNRollCustomTable_Click);
             // 
             // TXTTableEntries
             // 
@@ -2183,21 +2207,23 @@
             // 
             // BTNRemoveEntry
             // 
-            this.BTNRemoveEntry.Location = new System.Drawing.Point(126, 515);
+            this.BTNRemoveEntry.Location = new System.Drawing.Point(126, 376);
             this.BTNRemoveEntry.Name = "BTNRemoveEntry";
             this.BTNRemoveEntry.Size = new System.Drawing.Size(96, 25);
             this.BTNRemoveEntry.TabIndex = 7;
             this.BTNRemoveEntry.Text = "Remove Entry";
             this.BTNRemoveEntry.UseVisualStyleBackColor = true;
+            this.BTNRemoveEntry.Click += new System.EventHandler(this.BTNRemoveEntry_Click);
             // 
             // BTNNewEntry
             // 
-            this.BTNNewEntry.Location = new System.Drawing.Point(17, 515);
+            this.BTNNewEntry.Location = new System.Drawing.Point(9, 376);
             this.BTNNewEntry.Name = "BTNNewEntry";
             this.BTNNewEntry.Size = new System.Drawing.Size(72, 25);
             this.BTNNewEntry.TabIndex = 6;
             this.BTNNewEntry.Text = "New Entry";
             this.BTNNewEntry.UseVisualStyleBackColor = true;
+            this.BTNNewEntry.Click += new System.EventHandler(this.BTNNewEntry_Click);
             // 
             // LSTEntryList
             // 
@@ -2236,21 +2262,23 @@
             // 
             // BTNDeleteSelectedTable
             // 
-            this.BTNDeleteSelectedTable.Location = new System.Drawing.Point(126, 366);
+            this.BTNDeleteSelectedTable.Location = new System.Drawing.Point(126, 516);
             this.BTNDeleteSelectedTable.Name = "BTNDeleteSelectedTable";
             this.BTNDeleteSelectedTable.Size = new System.Drawing.Size(96, 35);
             this.BTNDeleteSelectedTable.TabIndex = 12;
             this.BTNDeleteSelectedTable.Text = "Delete Selected Table";
             this.BTNDeleteSelectedTable.UseVisualStyleBackColor = true;
+            this.BTNDeleteSelectedTable.Click += new System.EventHandler(this.BTNDeleteSelectedTable_Click);
             // 
             // BTNSaveTable
             // 
-            this.BTNSaveTable.Location = new System.Drawing.Point(12, 366);
+            this.BTNSaveTable.Location = new System.Drawing.Point(9, 516);
             this.BTNSaveTable.Name = "BTNSaveTable";
             this.BTNSaveTable.Size = new System.Drawing.Size(72, 35);
             this.BTNSaveTable.TabIndex = 11;
             this.BTNSaveTable.Text = "Save Table";
             this.BTNSaveTable.UseVisualStyleBackColor = true;
+            this.BTNSaveTable.Click += new System.EventHandler(this.BTNSaveTable_Click);
             // 
             // DiceRollers
             // 
@@ -2295,11 +2323,13 @@
             // 
             // TableListBox
             // 
+            this.TableListBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TableListBox.FormattingEnabled = true;
             this.TableListBox.Location = new System.Drawing.Point(9, 150);
             this.TableListBox.Name = "TableListBox";
             this.TableListBox.Size = new System.Drawing.Size(213, 21);
             this.TableListBox.TabIndex = 3;
+            this.TableListBox.SelectedIndexChanged += new System.EventHandler(this.TableListBox_SelectedIndexChanged);
             // 
             // TableOutputTXTarea
             // 
@@ -2309,7 +2339,6 @@
             this.TableOutputTXTarea.Size = new System.Drawing.Size(232, 494);
             this.TableOutputTXTarea.TabIndex = 0;
             this.TableOutputTXTarea.Text = "";
-            this.TableOutputTXTarea.TextChanged += new System.EventHandler(this.TableOutputTXTarea_TextChanged);
             // 
             // menuStrip1
             // 
@@ -2338,24 +2367,28 @@
             this.newCampaignToolStripMenuItem.Name = "newCampaignToolStripMenuItem";
             this.newCampaignToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.newCampaignToolStripMenuItem.Text = "New Campaign";
+            this.newCampaignToolStripMenuItem.Click += new System.EventHandler(this.newCampaignToolStripMenuItem_Click);
             // 
             // loadCampaignToolStripMenuItem
             // 
             this.loadCampaignToolStripMenuItem.Name = "loadCampaignToolStripMenuItem";
             this.loadCampaignToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.loadCampaignToolStripMenuItem.Text = "Load Campaign";
+            this.loadCampaignToolStripMenuItem.Click += new System.EventHandler(this.loadCampaignToolStripMenuItem_Click);
             // 
             // saveCampaignToolStripMenuItem
             // 
             this.saveCampaignToolStripMenuItem.Name = "saveCampaignToolStripMenuItem";
             this.saveCampaignToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.saveCampaignToolStripMenuItem.Text = "Save Campaign";
+            this.saveCampaignToolStripMenuItem.Click += new System.EventHandler(this.saveCampaignToolStripMenuItem_Click);
             // 
             // saveCampaignAsToolStripMenuItem
             // 
             this.saveCampaignAsToolStripMenuItem.Name = "saveCampaignAsToolStripMenuItem";
             this.saveCampaignAsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.saveCampaignAsToolStripMenuItem.Text = "Save Campaign As";
+            this.saveCampaignAsToolStripMenuItem.Click += new System.EventHandler(this.saveCampaignAsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -2369,28 +2402,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(234, 17);
-            this.label15.Name = "label15";
-            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label15.Size = new System.Drawing.Size(133, 20);
-            this.label15.TabIndex = 333;
-            this.label15.Text = "Table Information";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(483, 17);
-            this.label16.Name = "label16";
-            this.label16.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label16.Size = new System.Drawing.Size(94, 20);
-            this.label16.TabIndex = 334;
-            this.label16.Text = "Roll Results";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2401,6 +2412,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Project Overlord";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.TABpages.ResumeLayout(false);
             this.tabCalendar.ResumeLayout(false);
@@ -2639,7 +2651,6 @@
         private System.Windows.Forms.Button BTNSaveChar;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-
     }
 }
 

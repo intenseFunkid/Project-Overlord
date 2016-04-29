@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace projectOverlord
 {
@@ -16,26 +16,607 @@ namespace projectOverlord
         public Form1()
         {
             InitializeComponent();
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            //Calendar working objects
+            //dateList activeDateList = new dateList();
+            //dateEntry activeDateEntry = new dateEntry(001, "", "", 001, 001);
+            //gameDateList activeGDateList = new gameDateList();
+            //gameDateEntry activeGameDate = new gameDateEntry(001, "");
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        //Create Each Linked List
+        charStatList characterLL = new charStatList();
+        dateList dateLL = new dateList();
+        gameDateList gameDateLL = new gameDateList();
+        randomTableList tableLL = new randomTableList();
+
+        //Path variable for de/serializing
+        String saveLocation = "";
+
+        /**************************************
+         * 
+         *      CALENDAR EVENTS
+         * 
+         **************************************/
+
+        //STUFF To Test - IAN
+        //gameDateList testgDate = new gameDateList();    //Holds info for saving
+
+        //dateList testDate = new dateList();             //Holds info for saving
+        //dateList testDate2 = new dateList();            //Holds info for loading
+
+
+        //TEST
+        /*private void btnTestAssign_Click(object sender, EventArgs e)
         {
-            Close();
+            dateEntry newEntry = new dateEntry(Convert.ToInt32(txtGDateID.Text),
+                                                txtGEntry.Text,
+                                                txtSessionEntry.Text,
+                                                Convert.ToInt32(txtGDSID.Text),
+                                                Convert.ToInt32(txtGDEID.Text));
+            testDate.addEntry(newEntry);
         }
+        
+        //TEST
+        private void btnTestRecall_Click(object sender, EventArgs e)
+        {
+            dateEntry retrievedEntry = new dateEntry();
+            retrievedEntry = testDate.retrieveEntry(Convert.ToInt32(txtGDateID.Text));
 
+            txtGDateID.Text = retrievedEntry.dateID.ToString();
+            txtGEntry.Text = retrievedEntry.planEntry;
+            txtSessionEntry.Text = retrievedEntry.sessionEntry;
+            txtGDSID.Text = retrievedEntry.gameDateStartID.ToString();
+            txtGDEID.Text = retrievedEntry.gameDateEndID.ToString();
+        }
+        //TEST
+        private void btnFirstID_Click(object sender, EventArgs e)
+        {
+            txtGDateID.Text = testDate.getFirst().dateID.ToString();
+        }
+        //TEST
+        private void txtTestRemove_Click(object sender, EventArgs e)
+        {
+            testDate.removeEntry(Convert.ToInt32(txtGDateID.Text));
+        }
+        */
         private void tabCalendar_Click(object sender, EventArgs e)
         {
 
         }
 
+        private void Calender_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+        }
+
+        /************************************
+        *
+        *       Main Campagin Menu Bar Events
+        *
+        **************************************/
+
+        private void newCampaignToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Give option to cancel, save current campaign, or continue without saving current campaign
+            yesNoCancelSaveDialog("new");
+        }
+
+        private void loadCampaignToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Ask if they want to save current Campaign
+            yesNoCancelSaveDialog("load");
+        }
+
+        private void saveCampaignToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Calls save function with path string
+            saveCampaign(saveLocation);
+        }
+
+        private void saveCampaignAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveCampagainAs();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Ask if you would like to save 
+            yesNoCancelExitDialog();
+        }
+
+        //Sets Red X to ask if user wants to save
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.WindowsShutDown
+                || e.CloseReason == CloseReason.ApplicationExitCall
+                || e.CloseReason == CloseReason.TaskManagerClosing)
+            {
+                //Save Campaign
+                return;
+            }
+            else
+            {
+                e.Cancel = true;
+                yesNoCancelExitDialog();
+            }
+        }
+
+        /************************************************
+        *
+        *       Functions for Menu Bar Events
+        *
+        *************************************************/
+
+        //Save function
+        public void saveCampaign(String path)
+        {
+            if (path == "") //Path is unset
+            {
+                saveCampagainAs();
+            }
+            else //Path is set
+            {
+                //Checks if File Exists to Save To
+                if (File.Exists(path))
+                {
+                    //Calls function which saves all form data to data structures
+                    saveAllDataStructures();
+
+                    //Handles opening of file
+                    FileStream fs = new FileStream(path, FileMode.Open);
+
+                    System.Xml.Serialization.XmlSerializer writer =
+                        new System.Xml.Serialization.XmlSerializer(typeof(serializationWrapper));
+
+                    //Indexer objects for moving through data structures
+                    gameDateEntry gameDateIndex = gameDateLL.getFirst();
+                    statBlockPF statBlockIndex = characterLL.getFirst();
+                    dateEntry dateIndex = dateLL.getFirst();
+
+                    //Declare & Initialize serializationWrapper object to save to xml file
+                    serializationWrapper wrapper = new serializationWrapper();
+
+                    //Save gameDateLL into serialization object
+                    while (gameDateIndex.gameDateID < gameDateLL.getLast().gameDateID)
+                    {
+                        wrapper.gameDateHolder.Add(gameDateIndex);
+                        gameDateIndex = gameDateLL.getNext(gameDateIndex.gameDateID);
+                    }
+                    //Save last object of gameDateList
+                    wrapper.gameDateHolder.Add(gameDateIndex);
+
+                    //Save characterLL into serialization object
+                    while (statBlockIndex.blockID != characterLL.getLast().blockID)
+                    {
+                        wrapper.charStatHolder.Add(statBlockIndex);
+                        statBlockIndex = characterLL.getNext(statBlockIndex.blockID);
+                    }
+                    //Save last object of characterLL
+                    wrapper.charStatHolder.Add(statBlockIndex);
+
+                    //Save dateLL into serialization object
+                    while (dateIndex.dateID != dateLL.getLast().dateID)
+                    {
+                        wrapper.dateHolder.Add(dateIndex);
+                        dateIndex = dateLL.getNext(dateIndex.dateID);
+                    }
+                    //Save last object of dateLL
+                    wrapper.dateHolder.Add(dateIndex);
+
+                    /*
+                            Need to save random tables class still
+                    */
+
+
+                    //Write to file and close it
+                    writer.Serialize(fs, wrapper);
+                    fs.Close();
+                }
+                else //File does NOT exist to save to
+                {
+                    saveCampagainAs();
+                }
+            }
+        }
+
+        public void saveCampagainAs()
+        {
+            //Setting up save dialog
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "XML File|*.xml";
+            saveFileDialog1.Title = "Save your Campaign";
+
+            //Valid File Name is Entered
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    saveLocation = saveFileDialog1.FileName;
+                    
+                    //Calls function which saves all form data to data structures
+                    saveAllDataStructures();
+
+                    //Creating filestream object
+                    System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog1.OpenFile();
+
+                    //Creating XmlSerialization object which reads serializationWrapper class objects
+                    System.Xml.Serialization.XmlSerializer writer =
+                        new System.Xml.Serialization.XmlSerializer(typeof(serializationWrapper));
+
+                    //Indexer objects for moving through data structures
+                    gameDateEntry gameDateIndex = gameDateLL.getFirst();
+                    statBlockPF statBlockIndex = characterLL.getFirst();
+                    dateEntry dateIndex = dateLL.getFirst();
+
+                    //Declare & Initialize serializationWrapper object to save to xml file
+                    serializationWrapper wrapper = new serializationWrapper();
+
+                    //Save gameDateLL into serialization object
+                    while (gameDateIndex.gameDateID < gameDateLL.getLast().gameDateID)
+                    {
+                        wrapper.gameDateHolder.Add(gameDateIndex);
+                        gameDateIndex = gameDateLL.getNext(gameDateIndex.gameDateID);
+                    }
+                    //Save last object of gameDateList
+                    wrapper.gameDateHolder.Add(gameDateIndex);
+
+                    //Save characterLL into serialization object
+                    while (statBlockIndex.blockID != characterLL.getLast().blockID)
+                    {
+                        wrapper.charStatHolder.Add(statBlockIndex);
+                        statBlockIndex = characterLL.getNext(statBlockIndex.blockID);
+                    }
+                    //Save last object of characterLL
+                    wrapper.charStatHolder.Add(statBlockIndex);
+
+                    //Save dateLL into serialization object
+                    while (dateIndex.dateID != dateLL.getLast().dateID)
+                    {
+                        wrapper.dateHolder.Add(dateIndex);
+                        dateIndex = dateLL.getNext(dateIndex.dateID);
+                    }
+                    //Save last object of dateLL
+                    wrapper.dateHolder.Add(dateIndex);
+
+                    /*
+                            Need to save random tables class still
+                    */
+
+                    //Save serialization object to file
+                    writer.Serialize(fs, wrapper);
+                    //Close file
+                    fs.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Error Serializing Data", "Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        public void loadCampaign()
+        {
+            //Set up Load Dialog Box
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "XML file|*.xml";
+            openFileDialog1.Title = "Select your Campaign";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    System.Xml.Serialization.XmlSerializer reader =
+                        new System.Xml.Serialization.XmlSerializer(typeof(serializationWrapper));
+
+                    System.IO.StreamReader file = new System.IO.StreamReader
+                        (openFileDialog1.FileName);
+
+                    //TEST DATA
+                    //gameDateList testgDate2 = new gameDateList();   //Holds info for loading
+
+                    //Read XML file and assign to serializationWrapper object
+                    serializationWrapper wrapper = (serializationWrapper)reader.Deserialize(file);
+                    file.Close();
+
+                    //Loads objects into dateLL
+                    for (int x = 0; x < wrapper.dateHolder.Count; x++)
+                    {
+                        dateLL.addEntry(wrapper.dateHolder[x]);
+                    }
+
+                    //Loads obects into gameDateLL
+                    for (int x = 0; x < wrapper.gameDateHolder.Count; x++)
+                    {
+                        //System.Windows.Forms.MessageBox.Show(wrapper.gameDateHolder[x].entry);
+                        gameDateLL.addEntry(wrapper.gameDateHolder[x]);
+                    }
+
+                    //Loads objects into characterLL
+                    for (int x = 0; x < wrapper.charStatHolder.Count; x++)
+                    {
+                        //System.Windows.Forms.MessageBox.Show(wrapper.charStatHolder[x].name +
+                            //   wrapper.charStatHolder[x].blockID);
+                        characterLL.addEntry(wrapper.charStatHolder[x]);
+                    }
+
+                    //Loads objects into tableLL
+
+                    try
+                    {
+                        saveLocation = openFileDialog1.FileName;
+
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show("Error: Saving Path Failure" + exc.Message);
+                    }
+                }
+                catch (FileNotFoundException exc)
+                {
+                    MessageBox.Show("Error: File not Found!\n\n" + exc.Message);
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show("Error: Could not read file from disk.\n\nOriginal Error: " + exc.Message);
+                }
+            }
+        }
+
+        public void yesNoCancelExitDialog()
+        {
+            switch (MessageBox.Show("Do you want to save before closing?",
+                "Save Before Closing",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question))
+            {
+                case DialogResult.Yes:
+                    saveCampaign(saveLocation);
+                    Application.Exit();
+                    break;
+                case DialogResult.No:
+                    Application.Exit();
+                    break;
+                case DialogResult.Cancel:
+                    break;
+            }
+        }
+
+        public void yesNoCancelSaveDialog(string decision)
+        {
+            switch (MessageBox.Show("Do you want to save before closing your current campaign?",
+                "Save Before Closing Current Campagin",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question))
+            {
+                case DialogResult.Yes:
+                    //Save all data from form to data structures
+                    saveAllDataStructures();
+
+                    //Save all data structures to file
+                    saveCampaign(saveLocation);
+
+                    //Clear all data structures
+                    clearAllDataStructures();
+
+                    //Empty all fields on form
+                    emptyEntireForm();
+
+                    if (decision == "load")
+                    {
+                        //Load data structure from file
+                        loadCampaign();
+
+                        //Load data structure into fields
+
+                    }
+                    break;
+
+                case DialogResult.No:
+                    //Clears all data structures
+                    clearAllDataStructures();
+
+                    //Empties all fields on form
+                    emptyEntireForm();
+
+                    if (decision == "load")
+                    {
+                        //Load data structure from file
+                        loadCampaign();
+
+                        //Load data structure into fields
+
+                    }
+                    break;
+
+                case DialogResult.Cancel:
+                    break;
+            }
+        }
+
+        public void saveAllDataStructures()
+        {
+            //Saves form data to CharacterLL
+            //characterLL.addEntry(Save_Character());
+
+            //Saves form data to dateLL
+
+            //Saves form data to gameDateLL
+
+            //Saves form data to tableLL
+
+        }
+
+        public void clearAllDataStructures()
+        {
+            characterLL.clearList();
+            dateLL.clearList();
+            gameDateLL.clearList();
+            tableLL.clearList();
+        }
+
+        public void emptyEntireForm()
+        {
+            //Random Tables Page
+            TableListBox.Items.Clear();
+            TXTTableNameInput.Clear();
+            TXTDescription.Clear();
+            TXTWeight.Clear();
+            TXTTableEntries.Clear();
+            TableOutputTXTarea.Clear();
+
+            //Character Statistics Page
+            LSTBOXCharacters.Items.Clear();
+            inputPfPName.Clear();
+            inputPfCName.Clear();
+            inputPfRace.Clear();
+            inputPfStr.Clear();
+            inputPfDex.Clear();
+            inputPfCon.Clear();
+            inputPfInt.Clear();
+            inputPfWis.Clear();
+            inputPfCha.Clear();
+            inputPfAC.Clear();
+            inputPfFort.Clear();
+            inputPfRef.Clear();
+            inputPfWill.Clear();
+            inputPfSpeed.Clear();
+            inputPfReach.Clear();
+            inputPfTAC.Clear();
+            inputPfFFAC.Clear();
+            inputPfBAB.Clear();
+            inputPfCMB.Clear();
+            inputPfCMD.Clear();
+            inputPfInit.Clear();
+            txtPfSklAcro.Clear();
+            txtPfSklAppr.Clear();
+            txtPfSklBluf.Clear();
+            txtPfSklClim.Clear();
+            txtPfSklCraft.Clear();
+            txtPfSklDiplomacy.Clear();
+            txtPfSklDisableDevice.Clear();
+            txtPfSklDisguise.Clear();
+            txtPfSklEscapeArtist.Clear();
+            txtPfSklFly.Clear();
+            txtPfSklHandleAnimal.Clear();
+            txtPfSklHeal.Clear();
+            txtPfSklIntimidate.Clear();
+            txtPfSklLinguistics.Clear();
+            txtPfSklPerception.Clear();
+            txtPfSklPreform.Clear();
+            txtPfSklProfession.Clear();
+            txtPfSklRide.Clear();
+            txtPfSklSenseMotive.Clear();
+            txtPfSklSleightofHand.Clear();
+            txtPfSklSpellCraft.Clear();
+            txtPfSklStealth.Clear();
+            txtPfSklSurvival.Clear();
+            txtPfSklSwim.Clear();
+            txtPfSklUseMagicDevice.Clear();
+            txtPfSklArcana.Clear();
+            txtPfSklDungeoneering.Clear();
+            txtPfSklEngineering.Clear();
+            txtPfSklGeography.Clear();
+            txtPfSklHistory.Clear();
+            txtPfSklLocal.Clear();
+            txtPfSklNature.Clear();
+            txtPfSklNobility.Clear();
+            txtPfSklPlanes.Clear();
+            txtPfSklReligion.Clear();
+            inputPfAddFeat.Clear();
+            inputPfAddItem.Clear();
+            inputPfAddSpell.Clear();
+            LSTBOXClassFeatLang.Items.Clear();
+            LSTBOXitemsEquip.Items.Clear();
+            TXTBOXknownSpells.Items.Clear();
+
+            //Clear Calendar Page
+        }
+
+        void ClearCharStat()
+        {
+            //Character Statistics Page
+           
+            inputPfPName.Clear();
+            inputPfCName.Clear();
+            inputPfRace.Clear();
+            inputPfStr.Clear();
+            inputPfDex.Clear();
+            inputPfCon.Clear();
+            inputPfInt.Clear();
+            inputPfWis.Clear();
+            inputPfCha.Clear();
+            inputPfAC.Clear();
+            inputPfFort.Clear();
+            inputPfRef.Clear();
+            inputPfWill.Clear();
+            inputPfSpeed.Clear();
+            inputPfReach.Clear();
+            inputPfTAC.Clear();
+            inputPfFFAC.Clear();
+            inputPfBAB.Clear();
+            inputPfCMB.Clear();
+            inputPfCMD.Clear();
+            inputPfInit.Clear();
+            txtPfSklAcro.Clear();
+            txtPfSklAppr.Clear();
+            txtPfSklBluf.Clear();
+            txtPfSklClim.Clear();
+            txtPfSklCraft.Clear();
+            txtPfSklDiplomacy.Clear();
+            txtPfSklDisableDevice.Clear();
+            txtPfSklDisguise.Clear();
+            txtPfSklEscapeArtist.Clear();
+            txtPfSklFly.Clear();
+            txtPfSklHandleAnimal.Clear();
+            txtPfSklHeal.Clear();
+            txtPfSklIntimidate.Clear();
+            txtPfSklLinguistics.Clear();
+            txtPfSklPerception.Clear();
+            txtPfSklPreform.Clear();
+            txtPfSklProfession.Clear();
+            txtPfSklRide.Clear();
+            txtPfSklSenseMotive.Clear();
+            txtPfSklSleightofHand.Clear();
+            txtPfSklSpellCraft.Clear();
+            txtPfSklStealth.Clear();
+            txtPfSklSurvival.Clear();
+            txtPfSklSwim.Clear();
+            txtPfSklUseMagicDevice.Clear();
+            txtPfSklArcana.Clear();
+            txtPfSklDungeoneering.Clear();
+            txtPfSklEngineering.Clear();
+            txtPfSklGeography.Clear();
+            txtPfSklHistory.Clear();
+            txtPfSklLocal.Clear();
+            txtPfSklNature.Clear();
+            txtPfSklNobility.Clear();
+            txtPfSklPlanes.Clear();
+            txtPfSklReligion.Clear();
+            inputPfAddFeat.Clear();
+            inputPfAddItem.Clear();
+            inputPfAddSpell.Clear();
+            LSTBOXClassFeatLang.Items.Clear();
+            LSTBOXitemsEquip.Items.Clear();
+            TXTBOXknownSpells.Items.Clear();
+        }
+
+        /***********************************************
+        *
+        *       Character Button Roller Events &
+        *           Dice Roller Function
+        *
+        *************************************************/
+
         private void btnPfSklAcro_Click(object sender, EventArgs e)
         {
-            
+
             // obtain the skillcheck bonus from the box
             string check_bonus;
             // convert this to an integer for roll use
@@ -174,7 +755,7 @@ namespace projectOverlord
             // obtain the skillcheck bonus from the box
             string check_bonus;
             // convert this to an integer for roll use
-            check_bonus =this.txtPfSklDisableDevice.Text;
+            check_bonus = this.txtPfSklDisableDevice.Text;
             DiceRoller(check_bonus);
         }
 
@@ -183,7 +764,7 @@ namespace projectOverlord
             // obtain the skillcheck bonus from the box
             string check_bonus;
             // convert this to an integer for roll use
-            check_bonus =this.txtPfSklPreform.Text;
+            check_bonus = this.txtPfSklPreform.Text;
             DiceRoller(check_bonus);
         }
 
@@ -350,11 +931,6 @@ namespace projectOverlord
             DiceRoller(check_bonus);
         }
 
-
-
-
-
-
         void DiceRoller(string check_bonus)
         {
 
@@ -363,7 +939,7 @@ namespace projectOverlord
             try
             {
                 int result = int.Parse(check_bonus);
-                
+               
             }
             catch
             {
@@ -371,7 +947,7 @@ namespace projectOverlord
             }
 
             int temp_check_bonus = Convert.ToInt32(check_bonus);
-           
+
             // set up the random dice roller
             // C# uses random.Next as its roller, which is truley random each time, regardless of "seeding"
             Random random = new Random();
@@ -383,108 +959,83 @@ namespace projectOverlord
 
         }
 
-        private void txtPfSklintimidate_TextChanged(object sender, EventArgs e)
-        {
+        /*********************************************
+        *
+        *       New Character, Save Character
+        *           Feats, Items, Spells
+        *
+        *********************************************/
 
-        }
-
-        private void BTNRollD20_Click(object sender, EventArgs e)
-        {
-            Random random = new Random();
-            int DiceRoller = random.Next(1, 20);
-            TableOutputTXTarea.AppendText("you rolled a D20: " + DiceRoller + "\r\n");
-        }
-
-        private void BTNRollD100_Click(object sender, EventArgs e)
-        {
-            Random random = new Random();
-            int DiceRoller = random.Next(1, 100);
-            TableOutputTXTarea.AppendText("you rolled a D100: " + DiceRoller + "\r\n");
-            
-        }
-
-        private void TableOutputTXTarea_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BTNnewChar_Click(object sender, EventArgs e)
-        {
-            //variable declarations for use in storing character information
-            
-
-        }
-
-
-
+        
 
         private statBlockPF Save_Character()
         {
             // pulling needed information to call the constructor for a statblockPF
 
             string playername = this.inputPfPName.Text;
+          
             string charactername = this.inputPfCName.Text;
             string race_level = this.inputPfRace.Text;
-
+            
+           
             // statblock is created with the above information, error checking will be implemented to ensure the required information
             // is available
 
-            statBlockPF temp = new statBlockPF(0, charactername, playername, race_level);
+            statBlockPF temp = new statBlockPF(characterLL.getLast().blockID + 1, charactername, playername, race_level);
 
-            /*temp.STR = Convert.ToInt32(this.inputPfStr.Text);
-            temp.DEX = Convert.ToInt32(this.inputPfDex.Text);
-            temp.CON = Convert.ToInt32(this.inputPfCon.Text);
-            temp.INT = Convert.ToInt32(this.inputPfInt.Text);
-            temp.WIS = Convert.ToInt32(this.inputPfWis.Text);
-            temp.CHA = Convert.ToInt32(this.inputPfCha.Text);
-            temp.AC = Convert.ToInt32(this.inputPfAC.Text);
-            temp.fort = Convert.ToInt32(this.inputPfFort.Text);
-            temp.reflex = Convert.ToInt32(this.inputPfRef.Text);
-            temp.will = Convert.ToInt32(this.inputPfWill.Text);
-            temp.speed = Convert.ToInt32(this.inputPfSpeed.Text);
-            temp.reach = Convert.ToInt32(this.inputPfReach.Text);
-            temp.touchAC = Convert.ToInt32(this.inputPfTAC.Text);
-            temp.flatAC = Convert.ToInt32(this.inputPfFFAC.Text);
-            temp.BAB = Convert.ToInt32(this.inputPfBAB.Text);
-            temp.CMB = Convert.ToInt32(this.inputPfCMB.Text);
-            temp.CMD = Convert.ToInt32(this.inputPfCMD.Text);
-            temp.initiaitive = Convert.ToInt32(this.inputPfInit.Text);
-            temp.sklAcro = Convert.ToInt32(this.txtPfSklAcro.Text);
-            temp.sklAppr = Convert.ToInt32(this.txtPfSklAppr.Text);
-            temp.sklBluf = Convert.ToInt32(this.txtPfSklBluf.Text);
-            temp.sklClim = Convert.ToInt32(this.txtPfSklClim.Text);
-            temp.sklCraf = Convert.ToInt32(this.txtPfSklCraft.Text);
-            temp.sklDipl = Convert.ToInt32(this.txtPfSklDiplomacy.Text);
-            temp.sklDisa = Convert.ToInt32(this.txtPfSklDisableDevice.Text);
-            temp.sklDisg = Convert.ToInt32(this.txtPfSklDisguise.Text);
-            temp.sklEsca = Convert.ToInt32(this.txtPfSklEscapeArtist.Text);
-            temp.sklFly = Convert.ToInt32(this.txtPfSklFly.Text);
-            temp.sklHand = Convert.ToInt32(this.txtPfSklHandleAnimal.Text);
-            temp.sklHeal = Convert.ToInt32(this.txtPfSklHeal.Text);
-            temp.sklInti = Convert.ToInt32(this.txtPfSklIntimidate.Text);
-            temp.sklLing = Convert.ToInt32(this.txtPfSklLinguistics.Text); 
-            temp.sklPerc = Convert.ToInt32(this.txtPfSklPerception.Text);
-            temp.sklPerf = Convert.ToInt32(this.txtPfSklPreform.Text);
-            temp.sklProf = Convert.ToInt32(this.txtPfSklProfession.Text);
-            temp.sklRide = Convert.ToInt32(this.txtPfSklRide.Text);
-            temp.sklSens = Convert.ToInt32(this.txtPfSklSenseMotive.Text);
-            temp.sklSlei = Convert.ToInt32(this.txtPfSklSleightofHand.Text);
-            temp.sklSpel = Convert.ToInt32(this.txtPfSklSpellCraft.Text);
-            temp.sklStel = Convert.ToInt32(this.txtPfSklStealth.Text);
-            temp.sklSurv = Convert.ToInt32(this.txtPfSklSurvival.Text);
-            temp.sklSwim = Convert.ToInt32(this.txtPfSklSwim.Text);
-            temp.sklUseD = Convert.ToInt32(this.txtPfSklUseMagicDevice.Text);
-            temp.knwArca = Convert.ToInt32(this.txtPfSklArcana.Text);
-            temp.knwDung = Convert.ToInt32(this.txtPfSklDungeoneering.Text);
-            temp.knwEngi = Convert.ToInt32(this.txtPfSklEngineering.Text);
-            temp.knwGeog = Convert.ToInt32(this.txtPfSklGeography.Text);
-            temp.knwHist = Convert.ToInt32(this.txtPfSklHistory.Text);
-            temp.knwLoca = Convert.ToInt32(this.txtPfSklLocal.Text);
-            temp.knwNatu = Convert.ToInt32(this.txtPfSklNature.Text);
-            temp.knwNobi = Convert.ToInt32(this.txtPfSklNobility.Text);
-            temp.knwPlan = Convert.ToInt32(this.txtPfSklPlanes.Text);
-            temp.knwReli = Convert.ToInt32(this.txtPfSklReligion.Text);*/
-
+            temp.STR = Convert.ToInt32(BTNSaveChecking(this.inputPfStr.Text));
+            temp.DEX = Convert.ToInt32(BTNSaveChecking(this.inputPfDex.Text));
+            temp.CON = Convert.ToInt32(BTNSaveChecking(this.inputPfCon.Text));
+            temp.INT = Convert.ToInt32(BTNSaveChecking(this.inputPfInt.Text));
+            temp.WIS = Convert.ToInt32(BTNSaveChecking(this.inputPfWis.Text));
+            temp.CHA = Convert.ToInt32(BTNSaveChecking(this.inputPfCha.Text));
+            temp.AC = Convert.ToInt32(BTNSaveChecking(this.inputPfAC.Text));
+            temp.fort = Convert.ToInt32(BTNSaveChecking(this.inputPfFort.Text));
+            temp.reflex = Convert.ToInt32(BTNSaveChecking(this.inputPfRef.Text));
+            temp.will = Convert.ToInt32(BTNSaveChecking(this.inputPfWill.Text));
+            temp.speed = Convert.ToInt32(BTNSaveChecking(this.inputPfSpeed.Text));
+            temp.reach = Convert.ToInt32(BTNSaveChecking(this.inputPfReach.Text));
+            temp.touchAC = Convert.ToInt32(BTNSaveChecking(this.inputPfTAC.Text));
+            temp.flatAC = Convert.ToInt32(BTNSaveChecking(this.inputPfFFAC.Text));
+            temp.BAB = Convert.ToInt32(BTNSaveChecking(this.inputPfBAB.Text));
+            temp.CMB = Convert.ToInt32(BTNSaveChecking(this.inputPfCMB.Text));
+            temp.CMD = Convert.ToInt32(BTNSaveChecking(this.inputPfCMD.Text));
+            temp.initiaitive = Convert.ToInt32(BTNSaveChecking(this.inputPfInit.Text));
+            temp.sklAcro = Convert.ToInt32(BTNSaveChecking(this.txtPfSklAcro.Text));
+            temp.sklAppr = Convert.ToInt32(BTNSaveChecking(this.txtPfSklAppr.Text));
+            temp.sklBluf = Convert.ToInt32(BTNSaveChecking(this.txtPfSklBluf.Text));
+            temp.sklClim = Convert.ToInt32(BTNSaveChecking(this.txtPfSklClim.Text));
+            temp.sklCraf = Convert.ToInt32(BTNSaveChecking(this.txtPfSklCraft.Text));
+            temp.sklDipl = Convert.ToInt32(BTNSaveChecking(this.txtPfSklDiplomacy.Text));
+            temp.sklDisa = Convert.ToInt32(BTNSaveChecking(this.txtPfSklDisableDevice.Text));
+            temp.sklDisg = Convert.ToInt32(BTNSaveChecking(this.txtPfSklDisguise.Text));
+            temp.sklEsca = Convert.ToInt32(BTNSaveChecking(this.txtPfSklEscapeArtist.Text));
+            temp.sklFly = Convert.ToInt32(BTNSaveChecking(this.txtPfSklFly.Text));
+            temp.sklHand = Convert.ToInt32(BTNSaveChecking(this.txtPfSklHandleAnimal.Text));
+            temp.sklHeal = Convert.ToInt32(BTNSaveChecking(this.txtPfSklHeal.Text));
+            temp.sklInti = Convert.ToInt32(BTNSaveChecking(this.txtPfSklIntimidate.Text));
+            temp.sklLing = Convert.ToInt32(BTNSaveChecking(this.txtPfSklLinguistics.Text));
+            temp.sklPerc = Convert.ToInt32(BTNSaveChecking(this.txtPfSklPerception.Text));
+            temp.sklPerf = Convert.ToInt32(BTNSaveChecking(this.txtPfSklPreform.Text));
+            temp.sklProf = Convert.ToInt32(BTNSaveChecking(this.txtPfSklProfession.Text));
+            temp.sklRide = Convert.ToInt32(BTNSaveChecking(this.txtPfSklRide.Text));
+            temp.sklSens = Convert.ToInt32(BTNSaveChecking(this.txtPfSklSenseMotive.Text));
+            temp.sklSlei = Convert.ToInt32(BTNSaveChecking(this.txtPfSklSleightofHand.Text));
+            temp.sklSpel = Convert.ToInt32(BTNSaveChecking(this.txtPfSklSpellCraft.Text));
+            temp.sklStel = Convert.ToInt32(BTNSaveChecking(this.txtPfSklStealth.Text));
+            temp.sklSurv = Convert.ToInt32(BTNSaveChecking(this.txtPfSklSurvival.Text));
+            temp.sklSwim = Convert.ToInt32(BTNSaveChecking(this.txtPfSklSwim.Text));
+            temp.sklUseD = Convert.ToInt32(BTNSaveChecking(this.txtPfSklUseMagicDevice.Text));
+            temp.knwArca = Convert.ToInt32(BTNSaveChecking(this.txtPfSklArcana.Text));
+            temp.knwDung = Convert.ToInt32(BTNSaveChecking(this.txtPfSklDungeoneering.Text));
+            temp.knwEngi = Convert.ToInt32(BTNSaveChecking(this.txtPfSklEngineering.Text));
+            temp.knwGeog = Convert.ToInt32(BTNSaveChecking(this.txtPfSklGeography.Text));
+            temp.knwHist = Convert.ToInt32(BTNSaveChecking(this.txtPfSklHistory.Text));
+            temp.knwLoca = Convert.ToInt32(BTNSaveChecking(this.txtPfSklLocal.Text));
+            temp.knwNatu = Convert.ToInt32(BTNSaveChecking(this.txtPfSklNature.Text));
+            temp.knwNobi = Convert.ToInt32(BTNSaveChecking(this.txtPfSklNobility.Text));
+            temp.knwPlan = Convert.ToInt32(BTNSaveChecking(this.txtPfSklPlanes.Text));
+            temp.knwReli = Convert.ToInt32(BTNSaveChecking(this.txtPfSklReligion.Text));
 
             string selected;
             LSTBOXClassFeatLang.BeginUpdate();
@@ -497,28 +1048,239 @@ namespace projectOverlord
 
                 temp.classFeat.Add(LSTBOXClassFeatLang.SelectedItem.ToString());
 
-                System.Windows.Forms.MessageBox.Show(selected);
+                //System.Windows.Forms.MessageBox.Show(selected);
 
                 //LSTBOXClassFeatLang.Items.Remove(selected);
-  
+
 
             }
             LSTBOXClassFeatLang.EndUpdate();
 
-            
+            LSTBOXitemsEquip.BeginUpdate();
+            //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
+            for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
+            {
+                LSTBOXitemsEquip.SetSelected(i, true);
+
+                selected = LSTBOXitemsEquip.SelectedItem.ToString();
+
+                temp.equipment.Add(LSTBOXitemsEquip.SelectedItem.ToString());
+
+               // System.Windows.Forms.MessageBox.Show(selected);
+
+                //LSTBOXClassFeatLang.Items.Remove(selected);
+
+
+            }
+            LSTBOXitemsEquip.EndUpdate();
+
+            TXTBOXknownSpells.BeginUpdate();
+            //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
+            for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
+            {
+                TXTBOXknownSpells.SetSelected(i, true);
+
+                selected = TXTBOXknownSpells.SelectedItem.ToString();
+
+                temp.spells.Add(TXTBOXknownSpells.SelectedItem.ToString());
+
+                //System.Windows.Forms.MessageBox.Show(selected);
+
+                //LSTBOXClassFeatLang.Items.Remove(selected);
+
+
+            }
+            TXTBOXknownSpells.EndUpdate();
 
 
 
-
+            //update the list box with a new entry
+            LSTBOXCharacters.BeginUpdate();
+            LSTBOXCharacters.Items.Add(charactername);
+            LSTBOXCharacters.EndUpdate();
 
             // return the class to the save buttons call
             return temp;
         }
 
-        private void LSTBOXClassFeatLang_SelectedIndexChanged(object sender, EventArgs e)
+        private void Load_Character(statBlockPF temp_load_in)
         {
+            string playername = this.inputPfPName.Text;
+
+            string charactername = this.inputPfCName.Text;
+            string race_level = this.inputPfRace.Text;
+
+
+            // statblock is created with the above information, error checking will be implemented to ensure the required information
+            // is available
+
+
+            this.inputPfStr.Text = Convert.ToString(temp_load_in.STR);
+            
+            this.inputPfDex.Text =Convert.ToString(temp_load_in.DEX );
+            
+            this.inputPfCon.Text =Convert.ToString(temp_load_in.CON );
+            
+            this.inputPfInt.Text =Convert.ToString(temp_load_in.INT );
+            
+            this.inputPfWis.Text =Convert.ToString(temp_load_in.WIS );
+            
+            this.inputPfCha.Text =Convert.ToString(temp_load_in.CHA );
+            
+            this.inputPfAC.Text = Convert.ToString(temp_load_in.AC );
+            
+            this.inputPfFort.Text =Convert.ToString(temp_load_in.fort);
+            
+            this.inputPfRef.Text = Convert.ToString(temp_load_in.reflex);
+            
+            this.inputPfWill.Text =Convert.ToString(temp_load_in.will );
+            
+            this.inputPfSpeed.Text =Convert.ToString(temp_load_in.speed);
+            
+            this.inputPfReach.Text = Convert.ToString(temp_load_in.reach );
+            
+            this.inputPfTAC.Text =Convert.ToString(temp_load_in.touchAC);
+            
+            this.inputPfFFAC.Text = Convert.ToString(temp_load_in.flatAC );
+            
+            this.inputPfBAB.Text = Convert.ToString(temp_load_in.BAB);
+             
+            this.inputPfCMB.Text = Convert.ToString(temp_load_in.CMB);
+             
+            this.inputPfCMD.Text = Convert.ToString(temp_load_in.CMD);
+             
+            this.inputPfInit.Text = Convert.ToString(temp_load_in.initiaitive);
+             
+            this.txtPfSklAcro.Text =Convert.ToString(temp_load_in.sklAcro);
+            
+            this.txtPfSklAppr.Text =Convert.ToString(temp_load_in.sklAppr);
+             
+            this.txtPfSklBluf.Text =Convert.ToString(temp_load_in.sklBluf);
+             
+            this.txtPfSklClim.Text =Convert.ToString(temp_load_in.sklClim);
+             
+            this.txtPfSklCraft.Text =Convert.ToString(temp_load_in.sklCraf);
+             
+            this.txtPfSklDiplomacy.Text =Convert.ToString(temp_load_in.sklDipl);
+             
+            this.txtPfSklDisableDevice.Text =Convert.ToString(temp_load_in.sklDisa);
+             
+            this.txtPfSklDisguise.Text = Convert.ToString(temp_load_in.sklDisg);
+             
+            this.txtPfSklEscapeArtist.Text = Convert.ToString(temp_load_in.sklEsca);
+             
+            this.txtPfSklFly.Text = Convert.ToString(temp_load_in.sklFly);
+             
+            this.txtPfSklHandleAnimal.Text = Convert.ToString(temp_load_in.sklHand);
+             
+            this.txtPfSklHeal.Text = Convert.ToString(temp_load_in.sklHeal);
+             
+            this.txtPfSklIntimidate.Text = Convert.ToString(temp_load_in.sklInti);
+            
+            this.txtPfSklLinguistics.Text = Convert.ToString(temp_load_in.sklLing);
+             
+            this.txtPfSklPerception.Text = Convert.ToString(temp_load_in.sklPerc);
+             
+            this.txtPfSklPreform.Text =Convert.ToString(temp_load_in.sklPerf);
+             
+            this.txtPfSklProfession.Text = Convert.ToString(temp_load_in.sklProf);
+            
+            this.txtPfSklRide.Text = Convert.ToString(temp_load_in.sklRide);
+            
+            this.txtPfSklSenseMotive.Text = Convert.ToString(temp_load_in.sklSens);
+            
+            this.txtPfSklSleightofHand.Text = Convert.ToString(temp_load_in.sklSlei);
+             
+            this.txtPfSklSpellCraft.Text = Convert.ToString(temp_load_in.sklSpel);
+            
+            this.txtPfSklStealth.Text = Convert.ToString(temp_load_in.sklStel );
+            
+            this.txtPfSklSurvival.Text = Convert.ToString(temp_load_in.sklSurv );
+             
+            this.txtPfSklSwim.Text =Convert.ToString(temp_load_in.sklSwim);
+             
+            this.txtPfSklUseMagicDevice.Text = Convert.ToString(temp_load_in.sklUseD);
+            
+            this.txtPfSklArcana.Text = Convert.ToString(temp_load_in.knwArca);
+            
+            this.txtPfSklDungeoneering.Text = Convert.ToString(temp_load_in.knwDung);
+            
+            this.txtPfSklEngineering.Text = Convert.ToString(temp_load_in.knwEngi);
+             
+            this.txtPfSklGeography.Text = Convert.ToString(temp_load_in.knwGeog);
+             
+            this.txtPfSklHistory.Text = Convert.ToString(temp_load_in.knwHist);
+             
+            this.txtPfSklLocal.Text = Convert.ToString(temp_load_in.knwLoca);
+             
+            this.txtPfSklNature.Text = Convert.ToString(temp_load_in.knwNatu);
+            
+            this.txtPfSklNobility.Text = Convert.ToString(temp_load_in.knwNobi);
+            
+            this.txtPfSklPlanes.Text = Convert.ToString(temp_load_in.knwPlan);
+
+            this.txtPfSklReligion.Text = Convert.ToString(temp_load_in.knwReli);
+
+
+
+            string selected;
+            LSTBOXClassFeatLang.BeginUpdate();
+            //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
+            for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
+            {
+
+                LSTBOXClassFeatLang.Items.Add(
+
+                selected = LSTBOXClassFeatLang.SelectedItem.ToString();
+
+                temp.classFeat.Add(LSTBOXClassFeatLang.SelectedItem.ToString());
+
+
+            }
+            LSTBOXClassFeatLang.EndUpdate();
+
+            LSTBOXitemsEquip.BeginUpdate();
+            //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
+            for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
+            {
+                LSTBOXitemsEquip.SetSelected(i, true);
+
+                selected = LSTBOXitemsEquip.SelectedItem.ToString();
+
+                temp.equipment.Add(LSTBOXitemsEquip.SelectedItem.ToString());
+
+            }
+            LSTBOXitemsEquip.EndUpdate();
+
+            TXTBOXknownSpells.BeginUpdate();
+            //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
+            for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
+            {
+                TXTBOXknownSpells.SetSelected(i, true);
+
+                selected = TXTBOXknownSpells.SelectedItem.ToString();
+
+                temp.spells.Add(TXTBOXknownSpells.SelectedItem.ToString());
+
+                //System.Windows.Forms.MessageBox.Show(selected);
+
+                //LSTBOXClassFeatLang.Items.Remove(selected);
+
+
+            }
+            TXTBOXknownSpells.EndUpdate();
+
+
+
+            //update the list box with a new entry
+            LSTBOXCharacters.BeginUpdate();
+            LSTBOXCharacters.Items.Add(charactername);
+            LSTBOXCharacters.EndUpdate();
 
         }
+        
+
+      
 
         private void btnPfAddFeat_Click(object sender, EventArgs e)
         {
@@ -532,11 +1294,16 @@ namespace projectOverlord
 
         private void btnPfRemoveFeat_Click(object sender, EventArgs e)
         {
+            try{
             //this function is to remove a feat to the feature & language list box
             string selected = LSTBOXClassFeatLang.SelectedItem.ToString();
 
             LSTBOXClassFeatLang.Items.Remove(selected);
-
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("you have not selected an entry to remove");
+            }
         }
 
         private void btnPfAddItem_Click(object sender, EventArgs e)
@@ -550,6 +1317,20 @@ namespace projectOverlord
             this.inputPfAddItem.Text = "";
         }
 
+        private void btnPfRemoveItem_Click(object sender, EventArgs e)
+        {
+            //this function is to remove equipment to the list box
+            try
+            {
+                string selected = LSTBOXitemsEquip.SelectedItem.ToString();
+                LSTBOXitemsEquip.Items.Remove(selected);
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("you have not selected an entry to remove");
+            }
+        }
+
         private void btnPfAddSpell_Click(object sender, EventArgs e)
         {
             //this function is to add spells to the list box
@@ -560,34 +1341,302 @@ namespace projectOverlord
             this.inputPfAddSpell.Text = "";
         }
 
-        private void btnPfRemoveItem_Click(object sender, EventArgs e)
-        {
-            //this function is to remove equipment to the list box
-            string selected = LSTBOXitemsEquip.SelectedItem.ToString();
-
-            LSTBOXitemsEquip.Items.Remove(selected);
-        }
-
         private void btnPfRemoveSpell_Click(object sender, EventArgs e)
         {
+            try{
             //this function is to remove spells to the list box
             string selected = TXTBOXknownSpells.SelectedItem.ToString();
 
             TXTBOXknownSpells.Items.Remove(selected);
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("you have not selected an entry to remove");
+            }
+        }
+
+        private void LSTBOXCharacters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            //on select the character information will change
+
+            int index = LSTBOXCharacters.FindString(LSTBOXCharacters.SelectedItem.ToString());
+
+            LSTBOXCharacters.SelectedIndex = index;
+
+            string selected = LSTBOXCharacters.SelectedItem.ToString();
+
+            ClearCharStat();
+            
+            int Scanning_ID = characterLL.getFirst().blockID;
+            int Last_ID = characterLL.getLast().blockID;
+            for (; Scanning_ID < Last_ID; Scanning_ID++)
+                if (index == Scanning_ID)
+                {
+
+                    Load_Character(characterLL.retrieveEntry(index));
+                   
+                }
+        }
+
+        private void BTNDeleteChar_Click(object sender, EventArgs e)
+        {
+            int index = LSTBOXCharacters.FindString(LSTBOXCharacters.SelectedItem.ToString());
+            string selected = LSTBOXCharacters.SelectedItem.ToString();
+
+            LSTBOXCharacters.SelectedIndex = index;
+
+
+            int Scanning_ID = characterLL.getFirst().blockID;
+            int Last_ID = characterLL.getLast().blockID;
+            for (; Scanning_ID < Last_ID; Scanning_ID++)
+                if (index == Scanning_ID)
+                {
+                    characterLL.removeEntry(index);
+                    MessageBox.Show("we're deleting a character entry");
+                    LSTBOXCharacters.BeginUpdate();
+                    LSTBOXCharacters.Items.Remove(selected);
+                    LSTBOXCharacters.EndUpdate();
+                }
+
+
+
+        }
+
+        private bool BTNCharacterInfoSaveChecking(string character_info)
+        {
+
+
+            if (this.inputPfPName.Text == "" || this.inputPfCName.Text == "" || this.inputPfRace.Text == "")
+            {
+                System.Windows.Forms.MessageBox.Show("Character information is incomplete, please ensure that Player Name," +
+                      "Character Name and the Race & Class are written in");
+                return false;
+            }
+            else { return true; }
+
+        }
+        private void BTNnewChar_Click(object sender, EventArgs e)
+        {
+            //variable declarations for use in storing character information
+            string playername = this.inputPfPName.Text;
+            string charactername = this.inputPfCName.Text;
+            string race_level = this.inputPfRace.Text;
+            if (BTNCharacterInfoSaveChecking(playername) == false
+               || BTNCharacterInfoSaveChecking(charactername) == false
+               || BTNCharacterInfoSaveChecking(race_level) == false)
+            {
+                return;
+            }
+
+            else
+            {
+                Save_Character();
+                ClearCharStat();
+            }
+
         }
 
         private void BTNSaveChar_Click(object sender, EventArgs e)
         {
-            
+            // check to make sure none of the characters essential information has been left out, if all pass, continues as normal.
 
-            Save_Character();
-           
+            string playername = this.inputPfPName.Text;
+            string charactername = this.inputPfCName.Text;
+            string race_level = this.inputPfRace.Text;
+            if (BTNCharacterInfoSaveChecking(playername) == false
+               || BTNCharacterInfoSaveChecking(charactername) == false
+               || BTNCharacterInfoSaveChecking(race_level) == false)
+            {
+                return;
+            }
+
+            else
+            {
+
+                characterLL.addEntry(Save_Character());
+            }
+        }
+
+        private string BTNSaveChecking(string number_check)
+        {
+            try
+            {
+                int result = int.Parse(number_check);
+
+            }
+            catch
+            {
+                number_check = "0";
+            }
+
+            return number_check;
+        }
+        /**********************************
+        *
+        *       Random Tables Events
+        *
+        **********************************/
+
+        private void BTNRollD20_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int DiceRoller = random.Next(1, 20);
+            TableOutputTXTarea.Clear();
+            TableOutputTXTarea.AppendText("you rolled a D20: " + DiceRoller + "\r\n");
+        }
+
+        private void BTNRollD100_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int DiceRoller = random.Next(1, 100);
+            TableOutputTXTarea.Clear();
+            TableOutputTXTarea.AppendText("you rolled a D100: " + DiceRoller + "\r\n");
+
+        }
+
+        private void BTNNewEntry_Click(object sender, EventArgs e)
+        {
+            //if a table is not selected - Fail
+            if (TableListBox.Text == "")
+            {
+                MessageBox.Show("Please Select a Table from the dropdown menu" +
+                    "\n or create one if you have not already!", "Error!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else //Table is selected
+            {
+                int weight;
+                //if description or weight are empty - Fail
+                if (TXTDescription.Text == "" || TXTWeight.Text == "")
+                {
+                    MessageBox.Show("Please Enter a Description & Weight", "Error!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (Int32.TryParse(TXTWeight.Text, out weight) == false)
+                {
+                    MessageBox.Show("Please enter a number for weight!", "Error!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else // create new entry in selected table
+                {
+                    //Figure out which table is selected
+                    int index = TableListBox.SelectedIndex;
+                    string description = TXTDescription.Text;
+                    weight = Convert.ToInt32(TXTWeight.Text);
+                    tableLL.updateTable(index, description, weight);
+                }
+            }
+        }
+
+        private void BTNRemoveEntry_Click(object sender, EventArgs e)
+        {
+            //If empty - do nothing
+            if (LSTEntryList.Text != null) //Wrong condition hmmm.
+            {
+
+            }
+            //else remove currently selected from LSTEntryList
+            else
+            {
+
+            }
+        }
+
+        private void BTNSaveTable_Click(object sender, EventArgs e)
+        {
+            //Table Name is Present
+            if (TXTTableNameInput.Text != "")
+            {
+                randomTable insert;
+                if (tableLL.getFirst() == null) //TableLL is empty
+                {
+                    insert = new randomTable(0);
+                }
+                else
+                {
+                    insert = new randomTable(tableLL.getLast().getID() + 1);
+                }
+
+                insert.setTitle(TXTTableNameInput.Text);
+                tableLL.addTable(insert);
+                TableListBox.Items.Add(TXTTableNameInput.Text);
+                TableListBox.SelectedIndex = insert.getID();
+                TXTTableNameInput.Clear();
+            }
+            //Table Name Missing - Error
+            else
+            {
+                MessageBox.Show("Please Enter a Name for Your Table First!", "Error!", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BTNDeleteSelectedTable_Click(object sender, EventArgs e)
+        {
+            tableLL.removeTable(TableListBox.SelectedIndex);
+            TableListBox.Items.Clear();
+            populateTablesDropdown();
+        }
+
+        private void BTNRollCustomTable_Click(object sender, EventArgs e)
+        {
+            if (TableListBox.SelectedIndex != -1)
+            {
+                TableOutputTXTarea.Clear();
+                TableOutputTXTarea.AppendText(tableLL.retrieveTable(TableListBox.SelectedIndex).rollTable());
+            }
+            else
+            {
+                MessageBox.Show("Please Select a Table from the drop Down List!", "Error!", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LSTEntryList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TableListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Displays Entries in Rich Text Box
+            displayTableEntries(TableListBox.SelectedIndex);
+
+            //Displays Entries in Drop Down
+            populateEntriesDropDown();
+        }
+
+        /******************************************
+        *
+        *       Random Tables Functions
+        *
+        *******************************************/
+
+        public void displayTableEntries(int index)
+        {
+            tableEntry temp = tableLL.retrieveTable(index).getFirst();
+            //Empty TXTTableEntries of text
+            TXTTableEntries.Clear();
+
+            //Display each entry on the richtextbox
+            for (int i = 0; i < tableLL.retrieveTable(index).getLength(); i++)
+            {
+                TXTTableEntries.AppendText(temp.entry + ": " + temp.weight + Environment.NewLine);
+                temp = tableLL.retrieveTable(index).getNext(i);
+            }
+        }
+
+        public void populateTablesDropdown()
+        {
+
+        }
+
+        public void populateEntriesDropDown()
+        {
+
         }
 
         
-
-
-
-
     }
 }

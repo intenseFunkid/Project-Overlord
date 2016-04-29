@@ -11,15 +11,16 @@ namespace projectOverlord
 
 
     //Holds the data for the table list
-    class tableSerialization
+    public class tableSerialization
     {
         public int tableID;
         public string title;
         public int totalWeight;
+        public Boolean rollOnNewDay;
     }
 
     //Holds the data for the individual entries of the tables
-    class tableEntrySerialization
+    public class tableEntrySerialization
     {
         public int tableID;
         public int entryID;
@@ -38,5 +39,16 @@ namespace projectOverlord
 
         //List of real life dates
         public List<dateEntry> dateHolder = new List<dateEntry>();
+
+        //public List<randomTable> tableHolder = new List<randomTable>();
+
+        //public class tableHolderClass
+        //{
+
+        //}
+        //List of random table entries
+        //public List<tableSerialization> tableHolder = new List<tableSerialization>();
+
+        //public List<tableEntrySerialization> tableEntryHolder = new List<tableEntrySerialization>();
     }
 }
