@@ -979,7 +979,7 @@ namespace projectOverlord
             
            
             // statblock is created with the above information, error checking will be implemented to ensure the required information
-            // is available
+            // is available to be entered into the new statblock for creation
 
             statBlockPF temp = new statBlockPF(characterLL.getLast().blockID + 1, charactername, playername, race_level);
 
@@ -1037,9 +1037,12 @@ namespace projectOverlord
             temp.knwPlan = Convert.ToInt32(BTNSaveChecking(this.txtPfSklPlanes.Text));
             temp.knwReli = Convert.ToInt32(BTNSaveChecking(this.txtPfSklReligion.Text));
 
+            // The three for loops below handle the gathering and saving of each boxes information, using the total amount fron the list box to dynamically
+            // add everything in, be it 2 items to 100 items.
+
             string selected;
             LSTBOXClassFeatLang.BeginUpdate();
-            //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
+
             for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
             {
                 LSTBOXClassFeatLang.SetSelected(i, true);
@@ -1048,16 +1051,14 @@ namespace projectOverlord
 
                 temp.classFeat.Add(LSTBOXClassFeatLang.SelectedItem.ToString());
 
-                //System.Windows.Forms.MessageBox.Show(selected);
 
-                //LSTBOXClassFeatLang.Items.Remove(selected);
+                LSTBOXClassFeatLang.SetSelected(i, false);
 
 
             }
             LSTBOXClassFeatLang.EndUpdate();
 
             LSTBOXitemsEquip.BeginUpdate();
-            //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
             for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
             {
                 LSTBOXitemsEquip.SetSelected(i, true);
@@ -1066,16 +1067,13 @@ namespace projectOverlord
 
                 temp.equipment.Add(LSTBOXitemsEquip.SelectedItem.ToString());
 
-               // System.Windows.Forms.MessageBox.Show(selected);
-
-                //LSTBOXClassFeatLang.Items.Remove(selected);
+                LSTBOXitemsEquip.SetSelected(i, false);
 
 
             }
             LSTBOXitemsEquip.EndUpdate();
 
             TXTBOXknownSpells.BeginUpdate();
-            //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
             for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
             {
                 TXTBOXknownSpells.SetSelected(i, true);
@@ -1084,9 +1082,7 @@ namespace projectOverlord
 
                 temp.spells.Add(TXTBOXknownSpells.SelectedItem.ToString());
 
-                //System.Windows.Forms.MessageBox.Show(selected);
-
-                //LSTBOXClassFeatLang.Items.Remove(selected);
+                TXTBOXknownSpells.SetSelected(i, false);
 
 
             }
@@ -1105,15 +1101,14 @@ namespace projectOverlord
 
         private void Load_Character(statBlockPF temp_load_in)
         {
-            string playername = this.inputPfPName.Text;
 
-            string charactername = this.inputPfCName.Text;
-            string race_level = this.inputPfRace.Text;
+            this.inputPfPName.Text = temp_load_in.playerName;
+            this.inputPfCName.Text = temp_load_in.name;
+            this.inputPfRace.Text = temp_load_in.raceClass;
 
 
-            // statblock is created with the above information, error checking will be implemented to ensure the required information
-            // is available
-
+             // the load character function acts like the save character function, except in reverse, by pulling the information and setting the
+            // by setting the interfaces information to what is inside the characters statblockpf
 
             this.inputPfStr.Text = Convert.ToString(temp_load_in.STR);
             
@@ -1226,56 +1221,44 @@ namespace projectOverlord
             string selected;
             LSTBOXClassFeatLang.BeginUpdate();
             //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
-            for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
+            for (int i = 0; i < temp_load_in.classFeat.Count(); i++)
             {
 
-                LSTBOXClassFeatLang.Items.Add(
 
-                selected = LSTBOXClassFeatLang.SelectedItem.ToString();
+                selected = Convert.ToString(temp_load_in.equipment[i]);
 
-                temp.classFeat.Add(LSTBOXClassFeatLang.SelectedItem.ToString());
-
+                LSTBOXClassFeatLang.Items.Add(selected);
 
             }
             LSTBOXClassFeatLang.EndUpdate();
 
             LSTBOXitemsEquip.BeginUpdate();
             //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
-            for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
+            for (int i = 0; i < temp_load_in.equipment.Count(); i++)
             {
-                LSTBOXitemsEquip.SetSelected(i, true);
 
-                selected = LSTBOXitemsEquip.SelectedItem.ToString();
 
-                temp.equipment.Add(LSTBOXitemsEquip.SelectedItem.ToString());
+             selected = Convert.ToString(temp_load_in.equipment[i]);
+
+             LSTBOXitemsEquip.Items.Add(selected);
 
             }
             LSTBOXitemsEquip.EndUpdate();
 
             TXTBOXknownSpells.BeginUpdate();
             //LSTBOXClassFeatLang.SelectionMode = SelectionMode.MultiExtended;
-            for (int i = 0; i < LSTBOXClassFeatLang.Items.Count; i++)
+            for (int i = 0; i < temp_load_in.spells.Count(); i++)
             {
-                TXTBOXknownSpells.SetSelected(i, true);
 
-                selected = TXTBOXknownSpells.SelectedItem.ToString();
 
-                temp.spells.Add(TXTBOXknownSpells.SelectedItem.ToString());
 
-                //System.Windows.Forms.MessageBox.Show(selected);
+                selected = Convert.ToString(temp_load_in.equipment[i]);
 
-                //LSTBOXClassFeatLang.Items.Remove(selected);
-
+                TXTBOXknownSpells.Items.Add(selected);
 
             }
             TXTBOXknownSpells.EndUpdate();
 
-
-
-            //update the list box with a new entry
-            LSTBOXCharacters.BeginUpdate();
-            LSTBOXCharacters.Items.Add(charactername);
-            LSTBOXCharacters.EndUpdate();
 
         }
         
@@ -1288,33 +1271,42 @@ namespace projectOverlord
             string added_item;
             added_item = this.inputPfAddFeat.Text;
 
+            if (added_item == "")
+            {
+                return;
+            }
+
             LSTBOXClassFeatLang.Items.Add(added_item);
             this.inputPfAddFeat.Text = "";
         }
 
-        private void btnPfRemoveFeat_Click(object sender, EventArgs e)
-        {
-            try{
-            //this function is to remove a feat to the feature & language list box
-            string selected = LSTBOXClassFeatLang.SelectedItem.ToString();
-
-            LSTBOXClassFeatLang.Items.Remove(selected);
-            }
-            catch
-            {
-                System.Windows.Forms.MessageBox.Show("you have not selected an entry to remove");
-            }
-        }
+       
 
         private void btnPfAddItem_Click(object sender, EventArgs e)
         {
             //this function is to add equipment to the list box
             string added_item;
             added_item = this.inputPfAddItem.Text;
-
+            if (added_item == "")
+            {
+                return;
+            }
             LSTBOXitemsEquip.Items.Add(added_item);
 
             this.inputPfAddItem.Text = "";
+        }
+
+        private void btnPfAddSpell_Click(object sender, EventArgs e)
+        {
+            //this function is to add spells to the list box
+            string added_item;
+            added_item = this.inputPfAddSpell.Text;
+            if (added_item == "")
+            {
+                return;
+            }
+            TXTBOXknownSpells.Items.Add(added_item);
+            this.inputPfAddSpell.Text = "";
         }
 
         private void btnPfRemoveItem_Click(object sender, EventArgs e)
@@ -1331,14 +1323,19 @@ namespace projectOverlord
             }
         }
 
-        private void btnPfAddSpell_Click(object sender, EventArgs e)
+        private void btnPfRemoveFeat_Click(object sender, EventArgs e)
         {
-            //this function is to add spells to the list box
-            string added_item;
-            added_item = this.inputPfAddSpell.Text;
+            try
+            {
+                //this function is to remove a feat to the feature & language list box
+                string selected = LSTBOXClassFeatLang.SelectedItem.ToString();
 
-            TXTBOXknownSpells.Items.Add(added_item);
-            this.inputPfAddSpell.Text = "";
+                LSTBOXClassFeatLang.Items.Remove(selected);
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("you have not selected an entry to remove");
+            }
         }
 
         private void btnPfRemoveSpell_Click(object sender, EventArgs e)
@@ -1367,37 +1364,53 @@ namespace projectOverlord
             string selected = LSTBOXCharacters.SelectedItem.ToString();
 
             ClearCharStat();
-            
-            int Scanning_ID = characterLL.getFirst().blockID;
+
+            int Scanning_ID = characterLL.getFirst().blockID + 1;
             int Last_ID = characterLL.getLast().blockID;
-            for (; Scanning_ID < Last_ID; Scanning_ID++)
+
+            for (; Scanning_ID <= Last_ID; Scanning_ID++)
+            {
                 if (index == Scanning_ID)
                 {
 
                     Load_Character(characterLL.retrieveEntry(index));
-                   
+
                 }
+            }
         }
 
         private void BTNDeleteChar_Click(object sender, EventArgs e)
         {
-            int index = LSTBOXCharacters.FindString(LSTBOXCharacters.SelectedItem.ToString());
-            string selected = LSTBOXCharacters.SelectedItem.ToString();
 
-            LSTBOXCharacters.SelectedIndex = index;
+            try
+            {
+                int index = LSTBOXCharacters.FindString(LSTBOXCharacters.SelectedItem.ToString());
+                string selected = LSTBOXCharacters.SelectedItem.ToString();
+
+                LSTBOXCharacters.SelectedIndex = index;
 
 
-            int Scanning_ID = characterLL.getFirst().blockID;
-            int Last_ID = characterLL.getLast().blockID;
-            for (; Scanning_ID < Last_ID; Scanning_ID++)
-                if (index == Scanning_ID)
-                {
-                    characterLL.removeEntry(index);
-                    MessageBox.Show("we're deleting a character entry");
-                    LSTBOXCharacters.BeginUpdate();
-                    LSTBOXCharacters.Items.Remove(selected);
-                    LSTBOXCharacters.EndUpdate();
-                }
+                int Scanning_ID = characterLL.getFirst().blockID;
+                int Last_ID = characterLL.getLast().blockID;
+                for (; Scanning_ID < Last_ID; Scanning_ID++)
+                    if (index == Scanning_ID)
+                    {
+                        characterLL.removeEntry(index);
+                        MessageBox.Show("we're deleting a character entry");
+                        LSTBOXCharacters.BeginUpdate();
+                        LSTBOXCharacters.Items.Remove(selected);
+                        LSTBOXCharacters.EndUpdate();
+                    }
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("you have not selected an entry to remove");
+            }
+
+
+            // on click, will delete currently selected character
+           
+            
 
 
 
@@ -1405,7 +1418,7 @@ namespace projectOverlord
 
         private bool BTNCharacterInfoSaveChecking(string character_info)
         {
-
+            // when the save button is clicked, this function checks to ensure the required information at minimum for a character is provided by the user
 
             if (this.inputPfPName.Text == "" || this.inputPfCName.Text == "" || this.inputPfRace.Text == "")
             {
@@ -1422,6 +1435,7 @@ namespace projectOverlord
             string playername = this.inputPfPName.Text;
             string charactername = this.inputPfCName.Text;
             string race_level = this.inputPfRace.Text;
+            // this check ensures that the required pieces of the character sheet are all typed in.
             if (BTNCharacterInfoSaveChecking(playername) == false
                || BTNCharacterInfoSaveChecking(charactername) == false
                || BTNCharacterInfoSaveChecking(race_level) == false)
@@ -1431,7 +1445,7 @@ namespace projectOverlord
 
             else
             {
-                Save_Character();
+                characterLL.addEntry(Save_Character());
                 ClearCharStat();
             }
 
@@ -1460,6 +1474,7 @@ namespace projectOverlord
 
         private string BTNSaveChecking(string number_check)
         {
+            // this checks to make sure a proper value has been entered, if one has not been entered properly, it then defaults to 0 instead
             try
             {
                 int result = int.Parse(number_check);
